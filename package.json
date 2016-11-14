@@ -1,0 +1,64 @@
+{
+  "name": "2dv610-assignment-1",
+  "version": "1.0.0",
+  "description": "Assignment 1 in the course 2dv610.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./dist/app.js",
+    "build": "tsc ./src/app.ts --outDir ./dist",
+    "lint": "tslint ./src/**/*.ts",
+    "test": "nyc mocha --compilers ts:ts-node/register src/**/*.spec.ts",
+    "coverage": "http-server coverage/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonpalmqvist/2dv610-assignment-1.git"
+  },
+  "keywords": [
+    "typescript",
+    "mocha",
+    "istanbul",
+    "tdd"
+  ],
+  "author": "simonpalmqvist",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simonpalmqvist/2dv610-assignment-1/issues"
+  },
+  "homepage": "https://github.com/simonpalmqvist/2dv610-assignment-1#readme",
+  "devDependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.32",
+    "@types/sinon": "^1.16.31",
+    "chai": "^3.5.0",
+    "http-server": "^0.9.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.1.2",
+    "nyc": "^8.4.0",
+    "sinon": "^1.17.6",
+    "ts-node": "^1.7.0",
+    "tslint": "^3.15.1",
+    "typescript": "^2.0.9"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "node_modules/",
+      "dist/"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true
+  }
+}
