@@ -34,4 +34,13 @@ class HopTest {
 
     expect(this.sut.alpha).to.equal(this.alpha)
   }
+
+  @test
+  public shouldNotBeAbleToSetPropertyAlphaToValueLargerThan100 () : void {
+    expect(() => {
+      this.sut.alpha = 100.5
+    }).to.throw(InvalidValueError)
+
+    expect(this.sut.alpha).to.equal(this.alpha)
+  }
 }
