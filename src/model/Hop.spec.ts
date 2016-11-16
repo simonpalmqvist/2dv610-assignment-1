@@ -28,19 +28,19 @@ class HopTest {
 
   @test
   public shouldNotBeAbleToSetPropertyAlphaToNegativeValue () : void {
-    expect(() => {
-      this.sut.alpha = -2.0
-    }).to.throw(InvalidValueError)
+    this.expectCallToThrowInvalidValueError(() => this.sut.alpha = -2.0)
 
     expect(this.sut.alpha).to.equal(this.alpha)
   }
 
   @test
   public shouldNotBeAbleToSetPropertyAlphaToValueLargerThan100 () : void {
-    expect(() => {
-      this.sut.alpha = 100.5
-    }).to.throw(InvalidValueError)
+    this.expectCallToThrowInvalidValueError(() => this.sut.alpha = 100.5)
 
     expect(this.sut.alpha).to.equal(this.alpha)
+  }
+
+  private expectCallToThrowInvalidValueError (call: () => any) : void {
+    expect(call).to.throw(InvalidValueError)
   }
 }
