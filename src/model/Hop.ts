@@ -1,4 +1,4 @@
-import InvalidValueError from "../error/InvalidValueError";
+import Validate  from '../validation/Validate'
 
 export default class Hop {
   private _alpha: number
@@ -9,9 +9,7 @@ export default class Hop {
   }
 
   public set alpha (alpha: number) {
-    if (alpha < 0 || alpha > 100) {
-      throw new InvalidValueError(`Property alpha can not be set to ${alpha}`)
-    }
+    Validate.percent(alpha)
 
     this._alpha = alpha
   }
@@ -21,9 +19,7 @@ export default class Hop {
   }
 
   public set amount (amount: number) {
-    if (amount < 0) {
-      throw new InvalidValueError()
-    }
+    Validate.notNegative(amount)
     this._amount = amount
   }
 

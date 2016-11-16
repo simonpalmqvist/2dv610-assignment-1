@@ -1,16 +1,26 @@
-import InvalidValueError from "../error/InvalidValueError";
+import Validate from '../validation/Validate'
 import Hop from './Hop'
 import { expect } from 'chai'
 import { suite, test } from 'mocha-typescript'
+import { stub } from 'sinon'
 
 @suite
 class HopTest {
   private alpha: number = 14.4
   private amount: number = 10
   private sut: Hop
+  private validatePercentStub: Sinon.SinonStub
+  private validateNotNegativeStub: Sinon.SinonStub
 
   public before () : void {
+    this.validatePercentStub = stub(Validate, 'percent')
+    this.validateNotNegativeStub = stub(Validate, 'notNegative')
     this.sut = new Hop(this.alpha, this.amount)
+  }
+
+  public after () : void {
+    this.validatePercentStub.restore()
+    this.validateNotNegativeStub.restore()
   }
 
   @test
@@ -28,17 +38,8 @@ class HopTest {
   }
 
   @test
-  public shouldNotBeAbleToSetPropertyAlphaToNegativeValue () : void {
-    this.expectCallToThrowInvalidValueError(() => this.sut.alpha = -2.0)
-
-    expect(this.sut.alpha).to.equal(this.alpha)
-  }
-
-  @test
-  public shouldNotBeAbleToSetPropertyAlphaToValueLargerThan100 () : void {
-    this.expectCallToThrowInvalidValueError(() => this.sut.alpha = 100.5)
-
-    expect(this.sut.alpha).to.equal(this.alpha)
+  public shouldValidateAlphaAsPercent () : void {
+    expect(this.validatePercentStub.calledOnce).to.be.true
   }
 
   @test
@@ -56,14 +57,7 @@ class HopTest {
   }
 
   @test
-  public shouldNotBeAbleToSetPropertyAmountToNegativeValue () : void {
-    this.expectCallToThrowInvalidValueError(() => this.sut.amount = -20)
-
-    expect(this.sut.amount).to.equal(this.amount)
-  }
-
-
-  private expectCallToThrowInvalidValueError (call: () => any) : void {
-    expect(call).to.throw(InvalidValueError)
+  public shouldValidateAmountWithNotNegative () : void {
+    expect(this.validateNotNegativeStub.calledOnce).to.be.true
   }
 }
