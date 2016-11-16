@@ -9,14 +9,14 @@ export default class Hop {
 
   public set alpha (alpha: number) {
     if (alpha < 0) {
-      throw new InvalidValueError()
+      throw new InvalidValueError(`Property alpha can not be set to ${alpha}`)
     }
 
     this._alpha = alpha
   }
 
   constructor (alpha: number) {
-    this._alpha = alpha
+    this.alpha = alpha
   }
 
 }
