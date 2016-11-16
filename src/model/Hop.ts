@@ -23,6 +23,10 @@ export default class Hop {
     this._amount = amount
   }
 
+  public get name () : string {
+    return ''
+  }
+
   constructor (alpha: number, amount: number) {
     this.alpha = alpha
     this.amount = amount

@@ -8,6 +8,7 @@ import { stub } from 'sinon'
 class HopTest {
   private alpha: number = 14.4
   private amount: number = 10
+  private name: string = 'My Recipe'
   private sut: Hop
   private validatePercentStub: Sinon.SinonStub
   private validateNotNegativeStub: Sinon.SinonStub
@@ -60,4 +61,10 @@ class HopTest {
   public shouldValidateAmountWithNotNegative () : void {
     expect(this.validateNotNegativeStub.calledOnce).to.be.true
   }
+
+  @test
+  public shouldBeAbleToGetPropertyName () : void {
+    expect(this.sut.name).to.equal(this.name)
+  }
+
 }
