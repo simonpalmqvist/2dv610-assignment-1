@@ -8,7 +8,7 @@ export default class Hop {
   }
 
   public set alpha (alpha: number) {
-    if (alpha < 0) {
+    if (alpha < 0 || alpha > 100) {
       throw new InvalidValueError(`Property alpha can not be set to ${alpha}`)
     }
 
