@@ -4,23 +4,24 @@ import { suite, test } from 'mocha-typescript'
 
 @suite
 class HopTest {
+  private alpha: number = 14.4
+  private sut: Hop
+
+  public before () : void {
+    this.sut = new Hop(this.alpha)
+  }
 
   @test
   public shouldBeAbleToGetPropertyAlpha () : void {
-    let alpha: number = 14.4
-    let sut: Hop = new Hop(alpha)
-
-    expect(sut.alpha).to.equal(alpha)
+    expect(this.sut.alpha).to.equal(this.alpha)
   }
 
   @test
   public shouldBeAbleToSetPropertyAlpha () : void {
-    let alpha: number = 14.4
-    let sut: Hop = new Hop(alpha)
     let newAlpha: number = 10.0
 
-    sut.alpha = newAlpha
+    this.sut.alpha = newAlpha
 
-    expect(sut.alpha).to.equal(newAlpha)
+    expect(this.sut.alpha).to.equal(newAlpha)
   }
 }
