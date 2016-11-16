@@ -1,8 +1,13 @@
 
 export default class Hop {
+  private _alpha: number
 
   public get alpha () : number {
-    return 14.4
+    return this._alpha
+  }
+
+  constructor (alpha: number) {
+    this._alpha = alpha
   }
 
 }

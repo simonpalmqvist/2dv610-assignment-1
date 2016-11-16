@@ -6,9 +6,9 @@ import { suite, test } from 'mocha-typescript'
 class HopTest {
 
   @test
-  public shouldBeAbleToGetPropertyAlphaAcid () : void {
+  public shouldBeAbleToGetPropertyAlpha () : void {
     let alpha: number = 14.4
-    let sut: Hop = new Hop()
+    let sut: Hop = new Hop(alpha)
 
     expect(sut.alpha).to.equal(alpha)
   }
