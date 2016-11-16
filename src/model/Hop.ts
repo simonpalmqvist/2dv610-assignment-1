@@ -26,7 +26,7 @@ export default class Hop {
 
   constructor (alpha: number, amount: number) {
     this.alpha = alpha
-    this._amount = amount
+    this.amount = amount
   }
 
 }
