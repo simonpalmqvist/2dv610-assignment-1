@@ -21,6 +21,9 @@ export default class Hop {
   }
 
   public set amount (amount: number) {
+    if (amount < 0) {
+      throw new InvalidValueError()
+    }
     this._amount = amount
   }
 
