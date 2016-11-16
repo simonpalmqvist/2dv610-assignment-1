@@ -2,6 +2,7 @@ import InvalidValueError from "../error/InvalidValueError";
 
 export default class Hop {
   private _alpha: number
+  private _amount: number
 
   public get alpha () : number {
     return this._alpha
@@ -16,11 +17,12 @@ export default class Hop {
   }
 
   public get amount () : number {
-    return 10
+    return this._amount
   }
 
-  constructor (alpha: number) {
+  constructor (alpha: number, amount: number) {
     this.alpha = alpha
+    this._amount = amount
   }
 
 }

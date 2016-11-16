@@ -10,7 +10,7 @@ class HopTest {
   private sut: Hop
 
   public before () : void {
-    this.sut = new Hop(this.alpha)
+    this.sut = new Hop(this.alpha, this.amount)
   }
 
   @test
