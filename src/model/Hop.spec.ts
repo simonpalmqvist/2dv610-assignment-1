@@ -55,6 +55,14 @@ class HopTest {
     expect(this.sut.amount).to.equal(newAmount)
   }
 
+  @test
+  public shouldNotBeAbleToSetPropertyAmountToNegativeValue () : void {
+    this.expectCallToThrowInvalidValueError(() => this.sut.amount = -20)
+
+    expect(this.sut.amount).to.equal(this.amount)
+  }
+
+
   private expectCallToThrowInvalidValueError (call: () => any) : void {
     expect(call).to.throw(InvalidValueError)
   }
