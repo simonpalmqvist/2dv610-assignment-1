@@ -1,3 +1,4 @@
+import InvalidValueError from "../error/InvalidValueError";
 
 export default class Hop {
   private _alpha: number
@@ -7,6 +8,10 @@ export default class Hop {
   }
 
   public set alpha (alpha: number) {
+    if (alpha < 0) {
+      throw new InvalidValueError()
+    }
+
     this._alpha = alpha
   }
 
