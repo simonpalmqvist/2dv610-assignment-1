@@ -16,7 +16,7 @@ export default class Hop {
   }
 
   public get amount () : number {
-    return 0
+    return 10
   }
 
   constructor (alpha: number) {
