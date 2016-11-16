@@ -6,6 +6,10 @@ export default class Hop {
     return this._alpha
   }
 
+  public set alpha (alpha: number) {
+    
+  }
+
   constructor (alpha: number) {
     this._alpha = alpha
   }
