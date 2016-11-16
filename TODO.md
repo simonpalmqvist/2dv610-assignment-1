@@ -4,8 +4,8 @@
 ## Model
 
 ### Hops
-* Hops should have an alpha acid in percentage
-** Minimum should be 0 % and max should be 100%
+* ~~Hops should have an alpha acid in percentage~~
+** ~~Minimum should be 0 % and max should be 100%~~
 * Hops should have an amount in grams
 ** Minimum should be 0
 * Hops should have a name to be identified with

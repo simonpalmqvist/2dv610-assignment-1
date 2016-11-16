@@ -15,6 +15,10 @@ export default class Hop {
     this._alpha = alpha
   }
 
+  public get amount () : number {
+    return 0
+  }
+
   constructor (alpha: number) {
     this.alpha = alpha
   }

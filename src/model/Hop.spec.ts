@@ -6,6 +6,7 @@ import { suite, test } from 'mocha-typescript'
 @suite
 class HopTest {
   private alpha: number = 14.4
+  private amount: number = 10
   private sut: Hop
 
   public before () : void {
@@ -38,6 +39,11 @@ class HopTest {
     this.expectCallToThrowInvalidValueError(() => this.sut.alpha = 100.5)
 
     expect(this.sut.alpha).to.equal(this.alpha)
+  }
+
+  @test
+  public shouldBeAbleToGetPropertyAmount () : void {
+    expect(this.sut.amount).to.equal(this.amount)
   }
 
   private expectCallToThrowInvalidValueError (call: () => any) : void {
