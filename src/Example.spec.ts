@@ -1,19 +1,29 @@
 import Example from './Example'
 import { expect } from 'chai'
+import { suite, test, slow, timeout, skip, only } from "mocha-typescript"
 
-describe('Example', () => {
+@suite
+class ExampleTest {
 
-  it('should initialize example', () => {
-    let example: Example = new Example(3)
+  private sut: Example
+  private expected: number = 3
 
-    expect(example.number).to.equal(3)
-  })
+  public before () : void {
+    this.sut = new Example(this.expected)
+  }
 
-  it('should be able to multiply', () => {
-    let example: Example = new Example(3)
+  @test
+  public shouldSetNumber () : void {
+    this.assertExampleNumber(this.expected)
+  }
 
-    example.double()
+  @test
+  public shouldBeAbleToMultiplyNumber () : void {
+    this.sut.double()
+    this.assertExampleNumber(this.expected * 2)
+  }
 
-    expect(example.number).to.equal(6)
-  })
-})
+  private assertExampleNumber (expected: number) : void {
+    expect(this.sut.number).to.equal(expected)
+  }
+}

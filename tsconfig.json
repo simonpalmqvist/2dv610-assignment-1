@@ -8,6 +8,7 @@
     "noImplicitAny": false,
     "removeComments": true,
     "noLib": false,
+    "experimentalDecorators": true,
     "moduleResolution": "node"
   },
   "filesGlob": [
