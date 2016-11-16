@@ -46,6 +46,15 @@ class HopTest {
     expect(this.sut.amount).to.equal(this.amount)
   }
 
+  @test
+  public shouldBeAbleToSetPropertyAmount () : void {
+    let newAmount: number = 300.0
+
+    this.sut.amount = newAmount
+
+    expect(this.sut.amount).to.equal(newAmount)
+  }
+
   private expectCallToThrowInvalidValueError (call: () => any) : void {
     expect(call).to.throw(InvalidValueError)
   }

@@ -20,6 +20,10 @@ export default class Hop {
     return this._amount
   }
 
+  public set amount (amount: number) {
+
+  }
+
   constructor (alpha: number, amount: number) {
     this.alpha = alpha
     this._amount = amount
