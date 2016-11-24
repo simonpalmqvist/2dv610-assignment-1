@@ -38,6 +38,7 @@ export default class Hop {
   }
 
   public set time (time: number) {
+    Validate.notNegative(time)
     this._time = time
   }
 
