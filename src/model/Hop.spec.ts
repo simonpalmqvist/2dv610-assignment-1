@@ -15,9 +15,9 @@ class HopTest {
   private validateNotNegativeStub: Sinon.SinonStub
 
   public before () : void {
+    this.sut = new Hop(this.alpha, this.amount, this.name, this.time)
     this.validatePercentStub = stub(Validate, 'percent')
     this.validateNotNegativeStub = stub(Validate, 'notNegative')
-    this.sut = new Hop(this.alpha, this.amount, this.name, this.time)
   }
 
   public after () : void {
@@ -41,6 +41,7 @@ class HopTest {
 
   @test
   public shouldValidateAlphaAsPercent () : void {
+    this.sut.alpha = 30
     expect(this.validatePercentStub.calledOnce).to.be.true
   }
 
@@ -60,6 +61,7 @@ class HopTest {
 
   @test
   public shouldValidateAmountWithNotNegative () : void {
+    this.sut.amount = 400
     expect(this.validateNotNegativeStub.calledOnce).to.be.true
   }
 
@@ -89,5 +91,11 @@ class HopTest {
     this.sut.time = newTime
 
     expect(this.sut.time).to.equal(newTime)
+  }
+
+  @test
+  public shouldValidateTimeWithNotNegative () : void {
+    this.sut.time = 30
+    expect(this.validateNotNegativeStub.calledOnce).to.be.true
   }
 }
