@@ -24,7 +24,7 @@ export default class Hop {
   }
 
   public get name () : string {
-    return ''
+    return 'My Recipe'
   }
 
   constructor (alpha: number, amount: number) {
