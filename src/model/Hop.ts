@@ -4,7 +4,7 @@ export default class Hop {
   private _alpha: number
   private _amount: number
   private _name: string
-  private _time: number = 60
+  private _time: number
 
   public get alpha () : number {
     return this._alpha
@@ -41,10 +41,11 @@ export default class Hop {
     this._time = time
   }
 
-  constructor (alpha: number, amount: number, name: string) {
+  constructor (alpha: number, amount: number, name: string, time: number) {
     this.alpha = alpha
     this.amount = amount
     this.name = name
+    this.time = time
   }
 
 }

@@ -17,7 +17,7 @@ class HopTest {
   public before () : void {
     this.validatePercentStub = stub(Validate, 'percent')
     this.validateNotNegativeStub = stub(Validate, 'notNegative')
-    this.sut = new Hop(this.alpha, this.amount, this.name)
+    this.sut = new Hop(this.alpha, this.amount, this.name, this.time)
   }
 
   public after () : void {
