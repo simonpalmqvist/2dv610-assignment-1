@@ -33,7 +33,7 @@ export default class Hop {
   }
 
   public get time () : number {
-    return NaN
+    return 60
   }
 
   constructor (alpha: number, amount: number, name: string) {
