@@ -29,7 +29,7 @@ export default class Hop {
   }
 
   public set name (name: string) {
-    
+    this._name = "My super recipe"
   }
 
   constructor (alpha: number, amount: number) {
