@@ -9,6 +9,7 @@ class HopTest {
   private alpha: number = 14.4
   private amount: number = 10
   private name: string = 'My Recipe'
+  private time: number = 60
   private sut: Hop
   private validatePercentStub: Sinon.SinonStub
   private validateNotNegativeStub: Sinon.SinonStub
@@ -78,6 +79,6 @@ class HopTest {
 
   @test
   public shouldBeAbleToGetPropertyTime () : void {
-    expect(this.sut.time).to.equal(60)
+    expect(this.sut.time).to.equal(this.time)
   }
 }
