@@ -9,9 +9,11 @@
 * ~~Hops should have an amount in grams~~
 ** ~~Minimum should be 0~~
 * ~~Hops should have a name to be identified with~~
-* Hops should have a time in minutes of how long it will be boiled
-** Minimum should be 0
-* Hops bitterness contribution should be calculated based on Tinseths formula (https://www.shbf.se/wiki/index.php/Formler_för_ungefärlig_beräkning_av_IBU)
+* ~~Hops should have a time in minutes of how long it will be boiled~~
+** ~~Minimum should be 0~~
+* Hops bitterness contribution (IBU) should be calculated based on Tinseths formula
+** With a batch size of 10 liters, Target gravity of 1.050, hop amount of 10g, alpha acid of 14% and boil time of 60 min should give an IBU of approx. 32.3.
+(https://www.shbf.se/wiki/index.php/Formler_för_ungefärlig_beräkning_av_IBU)
 
 ### Fermentables
 * Fermentable should have a yield percentage to show how much sugar that can be extracted
