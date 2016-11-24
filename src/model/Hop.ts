@@ -3,6 +3,7 @@ import Validate  from '../validation/Validate'
 export default class Hop {
   private _alpha: number
   private _amount: number
+  private _name: string = "My Recipe"
 
   public get alpha () : number {
     return this._alpha
@@ -24,7 +25,7 @@ export default class Hop {
   }
 
   public get name () : string {
-    return 'My Recipe'
+    return this._name
   }
 
   constructor (alpha: number, amount: number) {
