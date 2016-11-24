@@ -37,6 +37,10 @@ export default class Hop {
     return this._time
   }
 
+  public set time (time: number) {
+    
+  }
+
   constructor (alpha: number, amount: number, name: string) {
     this.alpha = alpha
     this.amount = amount

@@ -81,4 +81,13 @@ class HopTest {
   public shouldBeAbleToGetPropertyTime () : void {
     expect(this.sut.time).to.equal(this.time)
   }
+
+  @test
+  public shouldBeAbleToSetPropertyTime () : void {
+    let newTime: number = this.time * 2
+
+    this.sut.time = newTime
+
+    expect(this.sut.time).to.equal(newTime)
+  }
 }
