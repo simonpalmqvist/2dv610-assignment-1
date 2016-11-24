@@ -32,6 +32,10 @@ export default class Hop {
     this._name = name
   }
 
+  public get time () : number {
+    return NaN
+  }
+
   constructor (alpha: number, amount: number, name: string) {
     this.alpha = alpha
     this.amount = amount

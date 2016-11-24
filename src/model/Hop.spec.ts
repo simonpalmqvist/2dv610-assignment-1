@@ -75,4 +75,9 @@ class HopTest {
 
     expect(this.sut.name).to.equal(newName)
   }
+
+  @test
+  public shouldBeAbleToGetPropertyTime () : void {
+    expect(this.sut.time).to.equal(60)
+  }
 }
