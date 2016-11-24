@@ -28,6 +28,10 @@ export default class Hop {
     return this._name
   }
 
+  public set name (name: string) {
+    
+  }
+
   constructor (alpha: number, amount: number) {
     this.alpha = alpha
     this.amount = amount

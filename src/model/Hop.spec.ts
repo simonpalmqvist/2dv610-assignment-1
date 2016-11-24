@@ -67,4 +67,12 @@ class HopTest {
     expect(this.sut.name).to.equal(this.name)
   }
 
+  @test
+  public shouldBeAbleToSetPropertyName () : void {
+    let newName: string = "My super recipe"
+
+    this.sut.name = newName
+
+    expect(this.sut.name).to.equal(newName)
+  }
 }
