@@ -42,6 +42,12 @@ describe('Class Fermentable', function () {
       it('Should be able to get value', function () {
         expect(sut.amount).to.equal(amount)
       })
+
+      it('Should be able to set value', function () {
+        sut.amount = 4.0
+
+        expect(sut.amount).to.equal(4.0)
+      })
     })
   })
 })
