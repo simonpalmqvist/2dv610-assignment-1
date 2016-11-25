@@ -8,7 +8,7 @@ export default class Fermentable {
   }
 
   set yield (newYield: number) {
-    Validate.percent(0)
+    Validate.percent(newYield)
     this._yield = newYield
   }
 

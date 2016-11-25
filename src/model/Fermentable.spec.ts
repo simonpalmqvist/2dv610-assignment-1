@@ -9,14 +9,13 @@ class FermentableTest {
   private sut: Fermentable
   private yield: number = 0.75
   private validatePercentStub: Sinon.SinonStub
-  private validateNotNegativeStub: Sinon.SinonStub
 
-  public before () {
+  public before () : void {
     this.sut = new Fermentable(this.yield)
     this.validatePercentStub = stub(Validate, 'percent')
   }
 
-  public after () {
+  public after () : void {
     this.validatePercentStub.restore()
   }
 
@@ -36,7 +35,10 @@ class FermentableTest {
 
   @test
   public shouldValidateYieldAsPercent () : void {
-    this.sut.yield = 0.60
+    const newYield = 0.60
+    this.sut.yield = newYield
+
+    expect(this.validatePercentStub.args[0][0]).to.equal(newYield)
     expect(this.validatePercentStub.calledOnce).to.be.true
   }
 }

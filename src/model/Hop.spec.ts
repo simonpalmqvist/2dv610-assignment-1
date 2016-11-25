@@ -41,7 +41,9 @@ class HopTest {
 
   @test
   public shouldValidateAlphaAsPercent () : void {
-    this.sut.alpha = 0.30
+    const newAlpha = 0.30
+    this.sut.alpha = newAlpha
+    expect(this.validatePercentStub.args[0][0]).to.equal(newAlpha)
     expect(this.validatePercentStub.calledOnce).to.be.true
   }
 
@@ -61,7 +63,10 @@ class HopTest {
 
   @test
   public shouldValidateAmountWithNotNegative () : void {
-    this.sut.amount = 400
+    const newAmount = 400
+    this.sut.amount = newAmount
+
+    expect(this.validateNotNegativeStub.args[0][0]).to.equal(newAmount)
     expect(this.validateNotNegativeStub.calledOnce).to.be.true
   }
 
@@ -72,7 +77,7 @@ class HopTest {
 
   @test
   public shouldBeAbleToSetPropertyName () : void {
-    let newName: string = "My super hop"
+    let newName: string = 'My super hop'
 
     this.sut.name = newName
 
@@ -95,7 +100,9 @@ class HopTest {
 
   @test
   public shouldValidateTimeWithNotNegative () : void {
-    this.sut.time = 30
+    const newTime = 30
+    this.sut.time = newTime
+    expect(this.validateNotNegativeStub.args[0][0]).to.equal(newTime)
     expect(this.validateNotNegativeStub.calledOnce).to.be.true
   }
 
