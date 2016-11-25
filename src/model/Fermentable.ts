@@ -18,6 +18,7 @@ export default class Fermentable {
   }
 
   set amount (amount: number) {
+    Validate.notNegative(amount)
     this._amount = amount
   }
 
