@@ -1,7 +1,8 @@
 
 export default class Yeast {
+  private _name: string = 'My yeast'
 
   get name () : string {
-    return 'My yeast'
+    return this._name
   }
 }
