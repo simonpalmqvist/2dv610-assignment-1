@@ -11,6 +11,7 @@ describe('Class Fermentable', function () {
   const newYield: number = 0.60
   const amount: number = 3.0
   const newAmount: number = 4.0
+  const name: string = 'My malt'
 
   beforeEach(function () {
     sut = new Fermentable(yieldPercent, amount)
@@ -63,7 +64,7 @@ describe('Class Fermentable', function () {
 
     describe('Name', function () {
       it('Should be able to get value', function () {
-        expect(sut.name).to.equal('My malt')
+        expect(sut.name).to.equal(name)
       })
     })
   })
