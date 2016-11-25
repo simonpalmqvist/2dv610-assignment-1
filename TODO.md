@@ -24,8 +24,8 @@
 * Should be able to calculate color contribution according to the EBC scale
 
 ### Yeast
-* Yeast should have a name
-* Yeast should have a attenuation percentage to show how much sugar it can ferment
-** Minimum should be 0 % and max should be 100%
+* ~~Yeast should have a name~~
+* ~~Yeast should have a attenuation percentage to show how much sugar it can ferment~~
+** ~~Minimum should be 0 % and max should be 100%~~
 
 ### Recipe
