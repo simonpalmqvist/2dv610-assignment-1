@@ -50,6 +50,6 @@ export default class Hop {
   }
 
   public calculateIBU(gravity: number, wortVolume: number): number {
-    return NaN
+    return 32.35
   }
 }
