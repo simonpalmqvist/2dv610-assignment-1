@@ -49,4 +49,7 @@ export default class Hop {
     this.time = time
   }
 
+  public calculateIBU(gravity: number, wortVolume: number): number {
+    return NaN
+  }
 }

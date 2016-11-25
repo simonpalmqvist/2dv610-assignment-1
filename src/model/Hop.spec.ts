@@ -6,9 +6,9 @@ import { stub } from 'sinon'
 
 @suite
 class HopTest {
-  private alpha: number = 14.4
+  private alpha: number = 14
   private amount: number = 10
-  private name: string = 'My Recipe'
+  private name: string = 'My Hop'
   private time: number = 60
   private sut: Hop
   private validatePercentStub: Sinon.SinonStub
@@ -72,7 +72,7 @@ class HopTest {
 
   @test
   public shouldBeAbleToSetPropertyName () : void {
-    let newName: string = "My super recipe"
+    let newName: string = "My super hop"
 
     this.sut.name = newName
 
@@ -97,5 +97,15 @@ class HopTest {
   public shouldValidateTimeWithNotNegative () : void {
     this.sut.time = 30
     expect(this.validateNotNegativeStub.calledOnce).to.be.true
+  }
+
+  @test
+  public shouldBeAbleToCalculateIBU () : void {
+    const gravity: number = 1.050
+    const wortVolume: number = 10
+
+    const expected: number = this.sut.calculateIBU(gravity, wortVolume)
+
+    expect(expected).to.be.approximately(32.3, 0.1)
   }
 }
