@@ -18,6 +18,7 @@ export default class Fermentable {
   }
 
   set amount (amount: number) {
+    this._amount = amount
   }
 
   constructor (yieldPercent: number) {
