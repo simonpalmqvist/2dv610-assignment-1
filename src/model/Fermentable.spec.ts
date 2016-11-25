@@ -81,12 +81,12 @@ describe('Class Fermentable', function () {
     describe('calculateExpectedGravity', function () {
       it('Should be able to calculate expected gravity +/- 0.001', function () {
         sut = new Fermentable(0.78, 2, name)
-        const efficiency: number = 0.80
+        const efficiency: number = 0.65
         const volume: number = 10
 
         const expected = sut.calculateExpectedGravity(efficiency, volume)
 
-        expect(expected).to.be.approximately(1.048, 0.001)
+        expect(expected).to.be.approximately(1.039, 0.001)
       })
 
       it('Should return 1.000 when no amount is added', function () {
