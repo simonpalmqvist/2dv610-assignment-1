@@ -1,6 +1,6 @@
 
 export default class Yeast {
-  private _name: string = 'My yeast'
+  private _name: string
 
   get name () : string {
     return this._name
@@ -8,5 +8,13 @@ export default class Yeast {
 
   set name (name: string) {
     this._name = name
+  }
+
+  get attenuation () : number {
+    return NaN
+  }
+
+  constructor (name: string) {
+    this.name = name
   }
 }
