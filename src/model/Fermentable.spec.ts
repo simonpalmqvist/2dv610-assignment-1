@@ -8,6 +8,7 @@ describe('Class Fermentable', function () {
   let validatePercentStub: Sinon.SinonStub
   const yieldPercent: number = 0.75
   const newYield: number = 0.60
+  const amount: number = 3.0
 
   beforeEach(function () {
     sut = new Fermentable(yieldPercent)
@@ -39,7 +40,7 @@ describe('Class Fermentable', function () {
 
     describe('Amount', function () {
       it('Should be able to get value', function () {
-        expect(sut.amount).to.equal(3.0)
+        expect(sut.amount).to.equal(amount)
       })
     })
   })

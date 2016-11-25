@@ -2,6 +2,7 @@ import Validate  from '../validation/Validate'
 
 export default class Fermentable {
   private _yield: number
+  private _amount: number = 3.0
 
   get yield () : number {
     return this._yield
