@@ -11,7 +11,7 @@ export default class Yeast {
   }
 
   get attenuation () : number {
-    return NaN
+    return 0.75
   }
 
   constructor (name: string) {
