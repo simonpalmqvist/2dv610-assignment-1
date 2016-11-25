@@ -1,8 +1,12 @@
 
 export default class Recipe {
-  private _volume: number = 10
+  private _volume: number = 20
 
   get volume () : number {
     return this._volume
+  }
+
+  set volume (volume: number) {
+
   }
 }

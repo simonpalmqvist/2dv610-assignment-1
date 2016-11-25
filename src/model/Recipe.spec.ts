@@ -3,7 +3,6 @@ import { expect } from 'chai'
 
 describe('Class Recipe', function () {
   let sut: Recipe
-  const volume: number = 10
 
   beforeEach(function () {
     sut = new Recipe()
@@ -11,8 +10,16 @@ describe('Class Recipe', function () {
 
   describe('Property', function () {
     describe('Volume', function () {
-      it('Should be able to get value', function () {
-        expect(sut.volume).to.equal(volume)
+      it('Should have default value 20', function () {
+        expect(sut.volume).to.equal(20)
+      })
+
+      it('Should be able to set value', function () {
+        let newVolume: number = 10
+
+        sut.volume = newVolume
+
+        expect(sut.volume).to.equal(10)
       })
     })
   })
