@@ -1,3 +1,4 @@
+import Validate from '../validation/Validate'
 
 export default class Recipe {
   private _volume: number = 20
@@ -7,6 +8,7 @@ export default class Recipe {
   }
 
   set volume (volume: number) {
+    Validate.notNegative(volume)
     this._volume = volume
   }
 }
