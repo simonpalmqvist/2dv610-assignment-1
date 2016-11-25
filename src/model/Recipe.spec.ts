@@ -1,12 +1,20 @@
 import Recipe from './Recipe'
+import Validate from '../validation/Validate'
 import { expect } from 'chai'
+import { stub } from 'sinon'
 
 describe('Class Recipe', function () {
   let sut: Recipe
+  let validateNotNegativeStub: Sinon.SinonStub
   const newVolume: number = 10
 
   beforeEach(function () {
     sut = new Recipe()
+    validateNotNegativeStub = stub(Validate, 'notNegative')
+  })
+
+  afterEach(function () {
+    validateNotNegativeStub.restore()
   })
 
   describe('Property', function () {
@@ -19,6 +27,13 @@ describe('Class Recipe', function () {
         sut.volume = newVolume
 
         expect(sut.volume).to.equal(newVolume)
+      })
+
+      it('Should be validated as not negative', function () {
+        sut.volume = newVolume
+
+        expect(validateNotNegativeStub.calledOnce).to.be.true
+        expect(validateNotNegativeStub.args[0][0]).to.equal(newVolume)
       })
     })
   })
