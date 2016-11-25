@@ -15,8 +15,8 @@
 ** ~~With a batch size of 10 liters, Target gravity of 1.050, hop amount of 10g, alpha acid of 14% and boil time of 60 min should give an IBU of approx. 32.3.~~
 
 ### Fermentables
-* Fermentable should have a yield percentage to show how much sugar that can be extracted
-** Minimum should be 0 % and max should be 100%
+* ~~Fermentable should have a yield percentage to show how much sugar that can be extracted~~
+** ~~Minimum should be 0 % and max should be 100%~~
 * Fermentable should have amount in kg
 ** Minimum should be 0
 * Fermentable should have a name

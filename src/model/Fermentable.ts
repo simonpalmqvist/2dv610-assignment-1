@@ -12,6 +12,10 @@ export default class Fermentable {
     this._yield = newYield
   }
 
+  get amount () : number {
+    return NaN
+  }
+
   constructor (yieldPercent: number) {
     this.yield = yieldPercent
   }
