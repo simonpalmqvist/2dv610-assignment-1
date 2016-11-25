@@ -1,7 +1,7 @@
 
 export default class Yeast {
   private _name: string
-  private _attenuation: number = 0.75
+  private _attenuation: number
 
   get name () : string {
     return this._name
@@ -19,7 +19,8 @@ export default class Yeast {
     this._attenuation = attenuation
   }
 
-  constructor (name: string) {
+  constructor (name: string, attenuation: number) {
     this.name = name
+    this.attenuation = attenuation
   }
 }

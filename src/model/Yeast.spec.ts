@@ -4,9 +4,11 @@ import { expect } from 'chai'
 describe('Class Yeast', function () {
   let sut: Yeast
   const name: string = 'My yeast'
+  const attenuation: number = 0.75
+  const newAttenuation: number = 0.90
 
   beforeEach(function () {
-    sut = new Yeast(name)
+    sut = new Yeast(name, attenuation)
   })
 
   describe('Property', function () {
@@ -23,13 +25,13 @@ describe('Class Yeast', function () {
 
     describe('Attenuation', function () {
       it('Should be able to get value', function () {
-        expect(sut.attenuation).to.equal(0.75)
+        expect(sut.attenuation).to.equal(attenuation)
       })
 
       it('Should be able to set value', function () {
-        sut.attenuation = 0.9
+        sut.attenuation = newAttenuation
 
-        expect(sut.attenuation).to.equal(0.9)
+        expect(sut.attenuation).to.equal(newAttenuation)
       })
     })
   })
