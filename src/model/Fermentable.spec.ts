@@ -3,7 +3,7 @@ import Fermentable from './Fermentable'
 import { expect } from 'chai'
 import { stub } from 'sinon'
 
-describe('Class Fermentable', function () {
+describe('Class Fermentable', () => {
   let sut: Fermentable
   let validatePercentStub: Sinon.SinonStub
   let validateNotNegativeStub: Sinon.SinonStub
@@ -13,29 +13,29 @@ describe('Class Fermentable', function () {
   const newAmount: number = 4.0
   const name: string = 'My malt'
 
-  beforeEach(function () {
+  beforeEach(() => {
     sut = new Fermentable(yieldPercent, amount, name)
     validatePercentStub = stub(Validate, 'percent')
     validateNotNegativeStub = stub(Validate, 'notNegative')
   })
 
-  afterEach(function () {
+  afterEach(() => {
     validatePercentStub.restore()
     validateNotNegativeStub.restore()
   })
 
-  describe('Property', function () {
-    describe('Yield', function () {
-      it('Should be able to get value', function () {
+  describe('Property', () => {
+    describe('Yield', () => {
+      it('Should be able to get value', () => {
         expect(sut.yield).to.equal(yieldPercent)
       })
 
-      it('Should be able to set value', function () {
+      it('Should be able to set value', () => {
         sut.yield = newYield
         expect(sut.yield).to.equal(newYield)
       })
 
-      it('Should be validated as percent', function () {
+      it('Should be validated as percent', () => {
         sut.yield = newYield
 
         expect(validatePercentStub.calledOnce).to.be.true
@@ -43,18 +43,18 @@ describe('Class Fermentable', function () {
       })
     })
 
-    describe('Amount', function () {
-      it('Should be able to get value', function () {
+    describe('Amount', () => {
+      it('Should be able to get value', () => {
         expect(sut.amount).to.equal(amount)
       })
 
-      it('Should be able to set value', function () {
+      it('Should be able to set value', () => {
         sut.amount = newAmount
 
         expect(sut.amount).to.equal(newAmount)
       })
 
-      it('Should be validated as not negative', function () {
+      it('Should be validated as not negative', () => {
         sut.amount = newAmount
 
         expect(validateNotNegativeStub.calledOnce).to.be.true
@@ -62,13 +62,13 @@ describe('Class Fermentable', function () {
       })
     })
 
-    describe('Name', function () {
-      it('Should be able to get value', function () {
+    describe('Name', () => {
+      it('Should be able to get value', () => {
         expect(sut.name).to.equal(name)
       })
 
-      it('Should be able to set value', function () {
-        const newName = 'Pale ale-malt'
+      it('Should be able to set value', () => {
+        const newName: string = 'Pale ale-malt'
 
         sut.name = newName
 
@@ -77,22 +77,22 @@ describe('Class Fermentable', function () {
     })
   })
 
-  describe('Method', function () {
-    describe('calculateExpectedGravity', function () {
-      it('Should be able to calculate expected gravity +/- 0.001', function () {
+  describe('Method', () => {
+    describe('calculateExpectedGravity', () => {
+      it('Should be able to calculate expected gravity +/- 0.001', () => {
         sut = new Fermentable(0.78, 2, name)
         const efficiency: number = 0.65
         const volume: number = 10
 
-        const expected = sut.calculateExpectedGravity(efficiency, volume)
+        const expected: number = sut.calculateExpectedGravity(efficiency, volume)
 
         expect(expected).to.be.approximately(1.039, 0.001)
       })
 
-      it('Should return 1.000 when no amount is added', function () {
+      it('Should return 1.000 when no amount is added', () => {
         sut.amount = 0
 
-        const expected = sut.calculateExpectedGravity(0.80, 10)
+        const expected: number = sut.calculateExpectedGravity(0.80, 10)
 
         expect(expected).to.equal(1.000)
       })

@@ -38,8 +38,8 @@ export default class Fermentable {
   }
 
   public calculateExpectedGravity (efficiency: number, volume: number) : number {
-    const g = ((this.yield * 384 * efficiency * this.amount) / volume ) / 1000
+    const gravity: number = ((this.yield * 384 * efficiency * this.amount) / volume ) / 1000
 
-    return 1 + g
+    return 1 + gravity
   }
 }

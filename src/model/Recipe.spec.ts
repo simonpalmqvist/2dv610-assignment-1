@@ -1,35 +1,35 @@
-import Recipe from './Recipe'
 import Validate from '../validation/Validate'
+import Recipe from './Recipe'
 import { expect } from 'chai'
 import { stub } from 'sinon'
 
-describe('Class Recipe', function () {
+describe('Class Recipe', () => {
   let sut: Recipe
   let validateNotNegativeStub: Sinon.SinonStub
   const newVolume: number = 10
 
-  beforeEach(function () {
+  beforeEach(() => {
     sut = new Recipe()
     validateNotNegativeStub = stub(Validate, 'notNegative')
   })
 
-  afterEach(function () {
+  afterEach(() => {
     validateNotNegativeStub.restore()
   })
 
-  describe('Property', function () {
-    describe('Volume', function () {
-      it('Should have default value 20', function () {
+  describe('Property', () => {
+    describe('Volume', () => {
+      it('Should have default value 20', () => {
         expect(sut.volume).to.equal(20)
       })
 
-      it('Should be able to set value', function () {
+      it('Should be able to set value', () => {
         sut.volume = newVolume
 
         expect(sut.volume).to.equal(newVolume)
       })
 
-      it('Should be validated as not negative', function () {
+      it('Should be validated as not negative', () => {
         sut.volume = newVolume
 
         expect(validateNotNegativeStub.calledOnce).to.be.true
