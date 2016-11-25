@@ -1,8 +1,9 @@
 
 export default class Fermentable {
+  private _yield: number = 0.75
 
   get yield () : number {
-    return 0.75
+    return this._yield
   }
 
 }
