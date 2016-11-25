@@ -7,6 +7,6 @@ export default class Yeast {
   }
 
   set name (name: string) {
-
+    this._name = name
   }
 }
