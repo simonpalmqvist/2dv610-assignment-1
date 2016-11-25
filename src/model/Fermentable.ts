@@ -23,7 +23,7 @@ export default class Fermentable {
   }
 
   get name () : string {
-    return undefined
+    return "My malt"
   }
 
   constructor (yieldPercent: number, amount: number) {
