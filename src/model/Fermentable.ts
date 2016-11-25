@@ -1,3 +1,4 @@
+import Validate  from '../validation/Validate'
 
 export default class Fermentable {
   private _yield: number
@@ -7,6 +8,7 @@ export default class Fermentable {
   }
 
   set yield (newYield: number) {
+    Validate.percent(0)
     this._yield = newYield
   }
 
