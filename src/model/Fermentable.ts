@@ -13,7 +13,7 @@ export default class Fermentable {
   }
 
   get amount () : number {
-    return NaN
+    return 3.0
   }
 
   constructor (yieldPercent: number) {
