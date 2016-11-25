@@ -16,7 +16,7 @@ export default class Yeast {
   }
 
   set attenuation (attenuation: number) {
-    
+    this._attenuation = attenuation
   }
 
   constructor (name: string) {
