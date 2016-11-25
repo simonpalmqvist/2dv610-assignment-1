@@ -6,6 +6,7 @@ import { stub } from 'sinon'
 describe('Class Fermentable', function () {
   let sut: Fermentable
   let validatePercentStub: Sinon.SinonStub
+  let validateNotNegativeStub: Sinon.SinonStub
   const yieldPercent: number = 0.75
   const newYield: number = 0.60
   const amount: number = 3.0
@@ -14,10 +15,12 @@ describe('Class Fermentable', function () {
   beforeEach(function () {
     sut = new Fermentable(yieldPercent, amount)
     validatePercentStub = stub(Validate, 'percent')
+    validateNotNegativeStub = stub(Validate, 'notNegative')
   })
 
   afterEach(function () {
     validatePercentStub.restore()
+    validateNotNegativeStub.restore()
   })
 
   describe('Property', function () {
@@ -48,6 +51,13 @@ describe('Class Fermentable', function () {
         sut.amount = newAmount
 
         expect(sut.amount).to.equal(newAmount)
+      })
+
+      it('Should be validated as not negative', function () {
+        sut.amount = newAmount
+
+        expect(validateNotNegativeStub.calledOnce).to.be.true
+        expect(validateNotNegativeStub.args[0][0]).to.equal(newAmount)
       })
     })
   })
