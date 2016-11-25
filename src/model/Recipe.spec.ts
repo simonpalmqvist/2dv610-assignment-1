@@ -3,6 +3,7 @@ import { expect } from 'chai'
 
 describe('Class Recipe', function () {
   let sut: Recipe
+  const newVolume: number = 10
 
   beforeEach(function () {
     sut = new Recipe()
@@ -15,11 +16,9 @@ describe('Class Recipe', function () {
       })
 
       it('Should be able to set value', function () {
-        let newVolume: number = 10
-
         sut.volume = newVolume
 
-        expect(sut.volume).to.equal(10)
+        expect(sut.volume).to.equal(newVolume)
       })
     })
   })
