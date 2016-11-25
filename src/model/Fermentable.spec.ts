@@ -88,6 +88,14 @@ describe('Class Fermentable', function () {
 
         expect(expected).to.be.approximately(1.048, 0.001)
       })
+
+      it('Should return 1.000 when no amount is added', function () {
+        sut.amount = 0
+
+        const expected = sut.calculateExpectedGravity(0.80, 10)
+
+        expect(expected).to.equal(1.000)
+      })
     })
   })
 })

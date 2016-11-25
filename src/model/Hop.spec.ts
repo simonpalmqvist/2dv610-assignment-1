@@ -105,6 +105,14 @@ describe('Class Hop', function () {
 
         expect(expected).to.be.approximately(32.3, 0.1)
       })
+
+      it('Should return 0 IBU when time is 0', function () {
+        sut.time = 0
+
+        const expected: number = sut.calculateIBU(1.050, 10)
+
+        expect(expected).to.equal(0)
+      })
     })
   })
 })
