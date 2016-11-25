@@ -25,6 +25,12 @@ describe('Class Yeast', function () {
       it('Should be able to get value', function () {
         expect(sut.attenuation).to.equal(0.75)
       })
+
+      it('Should be able to set value', function () {
+        sut.attenuation = 0.9
+
+        expect(sut.attenuation).to.equal(0.9)
+      })
     })
   })
 })
