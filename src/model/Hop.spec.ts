@@ -1,118 +1,110 @@
 import Validate from '../validation/Validate'
 import Hop from './Hop'
 import { expect } from 'chai'
-import { suite, test } from 'mocha-typescript'
 import { stub } from 'sinon'
 
-@suite
-class HopTest {
-  private alpha: number = 0.14
-  private amount: number = 10
-  private name: string = 'My Hop'
-  private time: number = 60
-  private sut: Hop
-  private validatePercentStub: Sinon.SinonStub
-  private validateNotNegativeStub: Sinon.SinonStub
+describe("Class Hop", function () {
+  let sut: Hop
+  let validatePercentStub: Sinon.SinonStub
+  let validateNotNegativeStub: Sinon.SinonStub
+  const alpha: number = 0.14
+  const newAlpha: number = 0.03
+  const amount: number = 10
+  const newAmount: number = 30
+  const name: string = 'My Hop'
+  const newName: string = 'Simcoe'
+  const time: number = 60
+  const newTime: number = 120
 
-  public before () : void {
-    this.sut = new Hop(this.alpha, this.amount, this.name, this.time)
-    this.validatePercentStub = stub(Validate, 'percent')
-    this.validateNotNegativeStub = stub(Validate, 'notNegative')
-  }
+  beforeEach(function () {
+    sut = new Hop(alpha, amount, name, time)
+    validatePercentStub = stub(Validate, 'percent')
+    validateNotNegativeStub = stub(Validate, 'notNegative')
+  })
 
-  public after () : void {
-    this.validatePercentStub.restore()
-    this.validateNotNegativeStub.restore()
-  }
+  afterEach(function () {
+    validatePercentStub.restore()
+    validateNotNegativeStub.restore()
+  })
 
-  @test
-  public shouldBeAbleToGetPropertyAlpha () : void {
-    expect(this.sut.alpha).to.equal(this.alpha)
-  }
+  describe ("Property", function () {
+    describe ("Alpha", function () {
+      it("Should be able to get value", function () {
+        expect(sut.alpha).to.equal(alpha)
+      })
 
-  @test
-  public shouldBeAbleToSetPropertyAlpha () : void {
-    let newAlpha: number = 10.0
+      it("Should be able to set value", function () {
+        sut.alpha = newAlpha
+        expect(sut.alpha).to.equal(newAlpha)
+      })
 
-    this.sut.alpha = newAlpha
+      it("Should be validated as percent", function () {
+        sut.alpha = newAlpha
 
-    expect(this.sut.alpha).to.equal(newAlpha)
-  }
+        expect(validatePercentStub.args[0][0]).to.equal(newAlpha)
+        expect(validatePercentStub.calledOnce).to.be.true
+      })
+    })
 
-  @test
-  public shouldValidateAlphaAsPercent () : void {
-    const newAlpha = 0.30
-    this.sut.alpha = newAlpha
-    expect(this.validatePercentStub.args[0][0]).to.equal(newAlpha)
-    expect(this.validatePercentStub.calledOnce).to.be.true
-  }
+    describe ("Amount", function () {
+      it("Should be able to get value", function () {
+        expect(sut.amount).to.equal(amount)
+      })
 
-  @test
-  public shouldBeAbleToGetPropertyAmount () : void {
-    expect(this.sut.amount).to.equal(this.amount)
-  }
+      it("Should be able to set value", function () {
+        sut.amount = newAmount
+        expect(sut.amount).to.equal(newAmount)
+      })
 
-  @test
-  public shouldBeAbleToSetPropertyAmount () : void {
-    let newAmount: number = 300.0
+      it("Should be validated as not negative", function () {
+        sut.amount = newAmount
 
-    this.sut.amount = newAmount
+        expect(validateNotNegativeStub.args[0][0]).to.equal(newAmount)
+        expect(validateNotNegativeStub.calledOnce).to.be.true
+      })
+    })
 
-    expect(this.sut.amount).to.equal(newAmount)
-  }
+    describe ("Name", function () {
+      it("Should be able to get value", function () {
+        expect(sut.name).to.equal(name)
+      })
 
-  @test
-  public shouldValidateAmountWithNotNegative () : void {
-    const newAmount = 400
-    this.sut.amount = newAmount
+      it("Should be able to set value", function () {
+        sut.name = newName
+        expect(sut.name).to.equal(newName)
+      })
+    })
 
-    expect(this.validateNotNegativeStub.args[0][0]).to.equal(newAmount)
-    expect(this.validateNotNegativeStub.calledOnce).to.be.true
-  }
+    describe ("Time", function () {
+      it("Should be able to get value", function () {
+        expect(sut.time).to.equal(time)
+      })
 
-  @test
-  public shouldBeAbleToGetPropertyName () : void {
-    expect(this.sut.name).to.equal(this.name)
-  }
+      it("Should be able to set value", function () {
+        sut.time = newTime
+        expect(sut.time).to.equal(newTime)
+      })
 
-  @test
-  public shouldBeAbleToSetPropertyName () : void {
-    let newName: string = 'My super hop'
+      it("Should be validated as not negative", function () {
+        sut.time = newTime
 
-    this.sut.name = newName
+        expect(validateNotNegativeStub.args[0][0]).to.equal(newTime)
+        expect(validateNotNegativeStub.calledOnce).to.be.true
+      })
+    })
+  })
 
-    expect(this.sut.name).to.equal(newName)
-  }
+  describe("Method", function () {
+    describe("calculateIBU", function () {
+      it("Should be able to calculate IBU with +/- 0.1", function () {
+        sut = new Hop(0.14, 10, name, 60)
+        const gravity: number = 1.050
+        const wortVolume: number = 10
 
-  @test
-  public shouldBeAbleToGetPropertyTime () : void {
-    expect(this.sut.time).to.equal(this.time)
-  }
+        const expected: number = sut.calculateIBU(gravity, wortVolume)
 
-  @test
-  public shouldBeAbleToSetPropertyTime () : void {
-    let newTime: number = this.time * 2
-
-    this.sut.time = newTime
-
-    expect(this.sut.time).to.equal(newTime)
-  }
-
-  @test
-  public shouldValidateTimeWithNotNegative () : void {
-    const newTime = 30
-    this.sut.time = newTime
-    expect(this.validateNotNegativeStub.args[0][0]).to.equal(newTime)
-    expect(this.validateNotNegativeStub.calledOnce).to.be.true
-  }
-
-  @test
-  public shouldBeAbleToCalculateIBU () : void {
-    const gravity: number = 1.050
-    const wortVolume: number = 10
-
-    const expected: number = this.sut.calculateIBU(gravity, wortVolume)
-
-    expect(expected).to.be.approximately(32.3, 0.1)
-  }
-}
+        expect(expected).to.be.approximately(32.3, 0.1)
+      })
+    })
+  })
+})
