@@ -38,6 +38,6 @@ export default class Fermentable {
   }
 
   public calculateExpectedGravity (efficiency: number, volume: number) : number {
-    return NaN
+    return 1.0479
   }
 }
