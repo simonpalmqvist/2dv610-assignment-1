@@ -3,7 +3,7 @@ import Validate  from '../validation/Validate'
 export default class Fermentable {
   private _yield: number
   private _amount: number
-  private _name: string = 'My malt'
+  private _name: string
 
   get yield () : number {
     return this._yield
@@ -31,8 +31,13 @@ export default class Fermentable {
     this._name = name
   }
 
-  constructor (yieldPercent: number, amount: number) {
+  constructor (yieldPercent: number, amount: number, name: string) {
     this.yield = yieldPercent
     this.amount = amount
+    this.name = name
+  }
+
+  public calculateExpectedGravity (efficiency: number, volume: number) : number {
+    return NaN
   }
 }

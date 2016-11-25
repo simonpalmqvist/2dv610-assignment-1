@@ -14,7 +14,7 @@ describe('Class Fermentable', function () {
   const name: string = 'My malt'
 
   beforeEach(function () {
-    sut = new Fermentable(yieldPercent, amount)
+    sut = new Fermentable(yieldPercent, amount, name)
     validatePercentStub = stub(Validate, 'percent')
     validateNotNegativeStub = stub(Validate, 'notNegative')
   })
@@ -73,6 +73,20 @@ describe('Class Fermentable', function () {
         sut.name = newName
 
         expect(sut.name).to.equal(newName)
+      })
+    })
+  })
+
+  describe('Method', function () {
+    describe('calculateExpectedGravity', function () {
+      it('Should be able to calculate expected gravity +/- 0.001', function () {
+        sut = new Fermentable(0.78, 2, name)
+        const efficiency: number = 0.80
+        const volume: number = 10
+
+        const expected = sut.calculateExpectedGravity(efficiency, volume)
+
+        expect(expected).to.be.approximately(1.048, 0.001)
       })
     })
   })
