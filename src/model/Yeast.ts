@@ -5,4 +5,8 @@ export default class Yeast {
   get name () : string {
     return this._name
   }
+
+  set name (name: string) {
+
+  }
 }

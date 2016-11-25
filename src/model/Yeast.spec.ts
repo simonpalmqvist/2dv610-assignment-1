@@ -13,6 +13,11 @@ describe('Class Yeast', function () {
       it('Should be able to get value', function () {
         expect(sut.name).to.equal('My yeast')
       })
+
+      it('Should be able to set value', function () {
+        sut.name = 'West Coast M44'
+        expect(sut.name).to.equal('West Coast M44')
+      })
     })
   })
 })
