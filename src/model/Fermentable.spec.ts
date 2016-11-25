@@ -37,8 +37,8 @@ describe('Class Fermentable', function () {
       it('Should be validated as percent', function () {
         sut.yield = newYield
 
-        expect(validatePercentStub.args[0][0]).to.equal(newYield)
         expect(validatePercentStub.calledOnce).to.be.true
+        expect(validatePercentStub.args[0][0]).to.equal(newYield)
       })
     })
 

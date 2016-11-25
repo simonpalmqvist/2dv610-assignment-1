@@ -17,7 +17,7 @@
 ### Fermentables
 * ~~Fermentable should have a yield percentage to show how much sugar that can be extracted~~
 ** ~~Minimum should be 0 % and max should be 100%~~
-* Fermentable should have amount in kg
+* ~~Fermentable should have amount in kg~~
 ** Minimum should be 0
 * Fermentable should have a name
 * Should be able to calculate amount of sugar contribution with formula
