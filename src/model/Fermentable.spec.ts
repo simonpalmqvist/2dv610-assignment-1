@@ -66,6 +66,14 @@ describe('Class Fermentable', function () {
       it('Should be able to get value', function () {
         expect(sut.name).to.equal(name)
       })
+
+      it('Should be able to set value', function () {
+        const newName = 'Pale ale-malt'
+
+        sut.name = newName
+
+        expect(sut.name).to.equal(newName)
+      })
     })
   })
 })
