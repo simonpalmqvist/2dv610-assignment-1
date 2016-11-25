@@ -2,7 +2,7 @@
 export default class Fermentable {
 
   get yield () : number {
-    return NaN
+    return 0.75
   }
 
 }
