@@ -7,6 +7,6 @@ export default class Recipe {
   }
 
   set volume (volume: number) {
-
+    this._volume = volume
   }
 }
