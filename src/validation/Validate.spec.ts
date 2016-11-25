@@ -9,21 +9,21 @@ class ValidateTest {
   @test
   public shouldThrowErrorIfPercentIsNegative () : void {
     expect(() => {
-      Validate.percent(-2)
+      Validate.percent(-0.5)
     }).to.throw(InvalidValueError)
   }
 
   @test
-  public shouldNotThrowErrorIfPercentIsWithin0To100 () : void {
+  public shouldNotThrowErrorIfPercentIsWithin0To1 () : void {
     expect(() => {
-      Validate.percent(34)
+      Validate.percent(0.57)
     }).to.not.throw(InvalidValueError)
   }
 
   @test
-  public shouldThrowErrorIfPercentIsOver100 () : void {
+  public shouldThrowErrorIfPercentIsOver1 () : void {
     expect(() => {
-      Validate.percent(300)
+      Validate.percent(3)
     }).to.throw(InvalidValueError)
   }
 

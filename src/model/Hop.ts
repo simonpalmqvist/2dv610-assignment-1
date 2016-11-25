@@ -50,6 +50,10 @@ export default class Hop {
   }
 
   public calculateIBU(gravity: number, wortVolume: number): number {
-    return 32.35
+    const bignessFactor: number = 1.65 * Math.pow(0.000125, gravity - 1)
+    const boilTimeFactor: number = (1 - Math.exp(-0.04 * this.time)) / 4.15
+    const mgPerLAddedAlpha: number = (this.alpha * this.amount * 1000) / wortVolume
+
+    return bignessFactor * boilTimeFactor * mgPerLAddedAlpha
   }
 }

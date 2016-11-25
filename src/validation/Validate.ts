@@ -3,7 +3,7 @@ import InvalidValueError from '../error/InvalidValueError'
 export default class Validate {
 
   public static percent (percent: number) : void {
-    if (percent < 0 || percent > 100) {
+    if (percent < 0 || percent > 1) {
       throw new InvalidValueError()
     }
   }

@@ -6,7 +6,7 @@ import { stub } from 'sinon'
 
 @suite
 class HopTest {
-  private alpha: number = 14
+  private alpha: number = 0.14
   private amount: number = 10
   private name: string = 'My Hop'
   private time: number = 60
@@ -41,7 +41,7 @@ class HopTest {
 
   @test
   public shouldValidateAlphaAsPercent () : void {
-    this.sut.alpha = 30
+    this.sut.alpha = 0.30
     expect(this.validatePercentStub.calledOnce).to.be.true
   }
 
