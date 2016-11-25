@@ -8,7 +8,7 @@ class FermentableTest {
   private yield: number = 0.75
 
   public before () {
-    this.sut = new Fermentable()
+    this.sut = new Fermentable(this.yield)
   }
 
   @test
