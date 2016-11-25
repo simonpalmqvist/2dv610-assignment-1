@@ -7,6 +7,6 @@ export default class Fermentable {
   }
 
   set yield (newYield: number) {
-    
+    this._yield = newYield
   }
 }
