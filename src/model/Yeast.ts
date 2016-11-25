@@ -1,3 +1,4 @@
+import Validate from '../validation/Validate'
 
 export default class Yeast {
   private _name: string
@@ -16,6 +17,7 @@ export default class Yeast {
   }
 
   set attenuation (attenuation: number) {
+    Validate.percent(attenuation)
     this._attenuation = attenuation
   }
 
