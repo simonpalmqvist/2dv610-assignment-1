@@ -60,5 +60,11 @@ describe('Class Fermentable', function () {
         expect(validateNotNegativeStub.args[0][0]).to.equal(newAmount)
       })
     })
+
+    describe('Name', function () {
+      it('Should be able to get value', function () {
+        expect(sut.name).to.equal('My malt')
+      })
+    })
   })
 })

@@ -22,6 +22,10 @@ export default class Fermentable {
     this._amount = amount
   }
 
+  get name () : string {
+    return undefined
+  }
+
   constructor (yieldPercent: number, amount: number) {
     this.yield = yieldPercent
     this.amount = amount
