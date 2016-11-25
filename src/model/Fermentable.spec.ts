@@ -9,9 +9,10 @@ describe('Class Fermentable', function () {
   const yieldPercent: number = 0.75
   const newYield: number = 0.60
   const amount: number = 3.0
+  const newAmount: number = 4.0
 
   beforeEach(function () {
-    sut = new Fermentable(yieldPercent)
+    sut = new Fermentable(yieldPercent, amount)
     validatePercentStub = stub(Validate, 'percent')
   })
 
@@ -44,9 +45,9 @@ describe('Class Fermentable', function () {
       })
 
       it('Should be able to set value', function () {
-        sut.amount = 4.0
+        sut.amount = newAmount
 
-        expect(sut.amount).to.equal(4.0)
+        expect(sut.amount).to.equal(newAmount)
       })
     })
   })

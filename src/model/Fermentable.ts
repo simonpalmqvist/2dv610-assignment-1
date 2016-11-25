@@ -2,7 +2,7 @@ import Validate  from '../validation/Validate'
 
 export default class Fermentable {
   private _yield: number
-  private _amount: number = 3.0
+  private _amount: number
 
   get yield () : number {
     return this._yield
@@ -21,7 +21,8 @@ export default class Fermentable {
     this._amount = amount
   }
 
-  constructor (yieldPercent: number) {
+  constructor (yieldPercent: number, amount: number) {
     this.yield = yieldPercent
+    this.amount = amount
   }
 }
