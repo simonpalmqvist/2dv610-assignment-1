@@ -15,4 +15,13 @@ class FermentableTest {
   public shouldBeAbleToGetPropertyYield () : void {
     expect(this.sut.yield).to.equal(this.yield)
   }
+
+  @test
+  public shouldBeAbleToSetPropertyAlpha () : void {
+    let newYield: number = 0.3
+
+    this.sut.yield = newYield
+
+    expect(this.sut.yield).to.equal(newYield)
+  }
 }

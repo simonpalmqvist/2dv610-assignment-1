@@ -6,4 +6,7 @@ export default class Fermentable {
     return this._yield
   }
 
+  set yield (newYield: number) {
+    
+  }
 }
