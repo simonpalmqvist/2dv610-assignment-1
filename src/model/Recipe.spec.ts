@@ -1,7 +1,8 @@
 import Validate from '../validation/Validate'
-import Yeast from './Yeast'
+import Fermentable from './Fermentable'
 import Hop from './Hop'
 import Recipe from './Recipe'
+import Yeast from './Yeast'
 import { expect } from 'chai'
 import { stub, mock } from 'sinon'
 
@@ -93,6 +94,15 @@ describe('Class Recipe', () => {
     describe('Fermentable', () => {
       it('Should be an empty array as default', () => {
         expect(sut.fermentables).to.be.an.instanceof(Array)
+        expect(sut.fermentables).to.have.length(0)
+      })
+
+      it('Should return a copy of the array', () => {
+        const fermentables: Fermentable[] = sut.fermentables
+
+        fermentables.push(<any> mock(Fermentable))
+
+        expect(fermentables).to.have.length(1)
         expect(sut.fermentables).to.have.length(0)
       })
     })
