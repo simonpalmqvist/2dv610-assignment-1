@@ -49,6 +49,6 @@ export default class Recipe {
   }
 
   public addFermentable (fermentable: Fermentable) : void {
-    
+    this._fermentables = [fermentable]
   }
 }
