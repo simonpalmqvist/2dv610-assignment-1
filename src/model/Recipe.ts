@@ -50,7 +50,7 @@ export default class Recipe {
   }
 
   get expectedFG () : number {
-    return
+    return this.expectedOG - ((this.expectedOG - 1) * this.yeast.attenuation)
   }
 
   public addHop (hop: Hop) : void {

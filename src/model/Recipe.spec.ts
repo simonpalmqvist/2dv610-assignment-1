@@ -126,6 +126,7 @@ describe('Class Recipe', () => {
     describe('expectedFG', () => {
       it('Should calculate correct gravity +/- 0.001', () => {
         yeastMock.attenuation = 0.75
+        sut.yeast = <any> yeastMock
         fermentableMock.calculateExpectedGravity.returns(1.040)
         sut.addFermentable(<any> fermentableMock)
 
