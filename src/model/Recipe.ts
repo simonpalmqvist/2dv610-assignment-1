@@ -18,6 +18,7 @@ export default class Recipe {
   }
 
   set efficiency (efficiency: number) {
+    Validate.percent(efficiency)
     this._efficiency = efficiency
   }
 }
