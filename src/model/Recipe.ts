@@ -34,6 +34,6 @@ export default class Recipe {
   }
 
   get hops () : Hop[] {
-    return
+    return []
   }
 }
