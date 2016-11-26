@@ -13,6 +13,6 @@ export default class Recipe {
   }
 
   get efficiency () : number {
-    return 
+    return 0.75
   }
 }
