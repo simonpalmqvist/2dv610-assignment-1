@@ -37,4 +37,7 @@ export default class Recipe {
   get hops () : Hop[] {
     return this._hops.slice()
   }
+
+  public addHop (hop: Hop) : void {
+  }
 }

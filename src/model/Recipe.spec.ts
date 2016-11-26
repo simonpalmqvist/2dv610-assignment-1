@@ -88,5 +88,16 @@ describe('Class Recipe', () => {
     })
   })
 
+  describe('Method', () => {
+    describe('addHop', () => {
+      it('Should be able to add one hop', () => {
+        const hop: Hop = <any> mock(Hop)
 
+        sut.addHop(hop)
+
+        expect(sut.hops).to.have.length(1)
+        expect(sut.hops).to.contain(hop)
+      })
+    })
+  })
 })
