@@ -6,4 +6,5 @@ declare interface HopMock extends Sinon.SinonStub {
 }
 
 declare interface YeastMock extends Sinon.SinonStub {
+  attenuation: number
 }

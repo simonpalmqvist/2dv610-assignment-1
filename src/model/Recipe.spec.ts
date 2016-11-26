@@ -109,7 +109,7 @@ describe('Class Recipe', () => {
     })
 
     describe('expectedOG', () => {
-      it('Should add fermentables expected gravity', () => {
+      it('Should add fermentables expected gravity +/- 0.001', () => {
         fermentableMock.calculateExpectedGravity.returns(1.025)
 
         sut.addFermentable(<any> fermentableMock)
@@ -120,6 +120,16 @@ describe('Class Recipe', () => {
 
       it('Should return 1 when fermentables is empty', () => {
         expect(sut.expectedOG).to.equal(1)
+      })
+    })
+
+    describe('expectedFG', () => {
+      it('Should calculate correct gravity +/- 0.001', () => {
+        yeastMock.attenuation = 0.75
+        fermentableMock.calculateExpectedGravity.returns(1.040)
+        sut.addFermentable(<any> fermentableMock)
+
+        expect(sut.expectedFG).to.be.approximately(1.010, 0.001)
       })
     })
   })
