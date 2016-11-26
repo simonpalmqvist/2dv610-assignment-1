@@ -12,6 +12,7 @@ describe('Class Recipe', () => {
   let validatePercentStub: Sinon.SinonStub
   let yeastMock: Sinon.SinonMock
   let hopMock: Sinon.SinonMock
+  let fermentableMock: Sinon.SinonMock
   const newVolume: number = 10
   const newEfficiency: number = 0.90
 
@@ -22,6 +23,7 @@ describe('Class Recipe', () => {
     validatePercentStub = stub(Validate, 'percent')
     yeastMock = mock(Yeast)
     hopMock = mock(Hop)
+    fermentableMock = mock(Fermentable)
   })
 
   afterEach(() => {
@@ -128,7 +130,6 @@ describe('Class Recipe', () => {
 
     describe('addFermentable', () => {
       it('Should be able to add one fermentable', () => {
-        let fermentableMock: Sinon.SinonMock = <any> mock(Fermentable)
         sut.addFermentable(<any> fermentableMock)
 
         expect(sut.fermentables).to.have.length(1)
