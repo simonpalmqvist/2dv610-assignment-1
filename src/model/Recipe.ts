@@ -35,6 +35,6 @@ export default class Recipe {
   }
 
   get hops () : Hop[] {
-    return this._hops
+    return this._hops.slice()
   }
 }
