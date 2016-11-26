@@ -39,5 +39,6 @@ export default class Recipe {
   }
 
   public addHop (hop: Hop) : void {
+    this._hops = [hop]
   }
 }
