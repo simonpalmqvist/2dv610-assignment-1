@@ -8,6 +8,7 @@ export default class Recipe {
   private _efficiency: number = 0.75
   private _yeast: Yeast
   private _hops: Hop[] = []
+  private _fermentables: Fermentable[] = []
 
   get volume () : number {
     return this._volume
@@ -40,7 +41,7 @@ export default class Recipe {
   }
 
   get fermentables () : Fermentable[] {
-    return []
+    return this._fermentables
   }
 
   public addHop (hop: Hop) : void {
