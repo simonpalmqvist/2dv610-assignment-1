@@ -4,6 +4,7 @@
     "semicolon": [true, "never"],
     "variable-name": [true, "allow-leading-underscore"],
     "quotemark": [true, "single"],
+    "interface-name": "false",
     "typedef": [
       true,
       "call-signature",

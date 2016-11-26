@@ -4,7 +4,7 @@ import Hop from './Hop'
 import Recipe from './Recipe'
 import Yeast from './Yeast'
 import { expect } from 'chai'
-import { stub, createStubInstance } from 'sinon'
+import { createStubInstance, stub } from 'sinon'
 
 describe('Class Recipe', () => {
   let sut: Recipe
@@ -15,7 +15,6 @@ describe('Class Recipe', () => {
   let fermentableMock: FermentableMock
   const newVolume: number = 10
   const newEfficiency: number = 0.90
-
 
   beforeEach(() => {
     sut = new Recipe()
