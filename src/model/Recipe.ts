@@ -44,6 +44,10 @@ export default class Recipe {
     return this._fermentables.slice()
   }
 
+  get expectedOG () : number {
+    return
+  }
+
   public addHop (hop: Hop) : void {
     this._hops.push(hop)
   }

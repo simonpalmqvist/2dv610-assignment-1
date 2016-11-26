@@ -23,7 +23,7 @@ describe('Class Recipe', () => {
     validatePercentStub = stub(Validate, 'percent')
     yeastMock = mock(Yeast)
     hopMock = mock(Hop)
-    fermentableMock = mock(Fermentable)
+    fermentableMock = mock(Fermentable.prototype)
   })
 
   afterEach(() => {
@@ -93,7 +93,7 @@ describe('Class Recipe', () => {
       })
     })
 
-    describe('Fermentable', () => {
+    describe('Fermentables', () => {
       it('Should be an empty array as default', () => {
         expect(sut.fermentables).to.be.an.instanceof(Array)
         expect(sut.fermentables).to.have.length(0)
@@ -106,6 +106,19 @@ describe('Class Recipe', () => {
 
         expect(fermentables).to.have.length(1)
         expect(sut.fermentables).to.have.length(0)
+      })
+    })
+
+    describe('expectedOG', () => {
+      it('Should add fermentables expected gravity', () => {
+        fermentableMock
+          .expects('calculateExpectedGravity')
+          .returns(1.025)
+
+        sut.addFermentable(<any> fermentableMock)
+        sut.addFermentable(<any> fermentableMock)
+
+        expect(sut.expectedOG).to.equal(1.050)
       })
     })
   })

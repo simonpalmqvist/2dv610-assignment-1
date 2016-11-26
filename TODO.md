@@ -38,6 +38,8 @@
 * ~~Can add Hops to Recipe~~
 * ~~Can add Fermentables to Recipe~~
 * Calculate expected original gravity based on Fermentables
+  * Should return 1 if not fermentable exists
+  * Should sum expected gravity from each fermentable
 * Calculate expected final gravity based on original gravity and Yeast
 * Calculate total IBU based on Hops
 * Calculate ABV based on original and final gravity
