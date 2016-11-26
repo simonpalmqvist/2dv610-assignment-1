@@ -11,4 +11,8 @@ export default class Recipe {
     Validate.notNegative(volume)
     this._volume = volume
   }
+
+  get efficiency () : number {
+    return 
+  }
 }

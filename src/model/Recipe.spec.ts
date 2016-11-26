@@ -36,5 +36,11 @@ describe('Class Recipe', () => {
         expect(validateNotNegativeStub.args[0][0]).to.equal(newVolume)
       })
     })
+
+    describe('Efficiency', () => {
+      it('Should have default value 0.75', () => {
+        expect(sut.efficiency).to.equal(0.75)
+      })
+    })
   })
 })
