@@ -40,7 +40,7 @@ export default class Recipe {
   }
 
   get fermentables () : Fermentable[] {
-    return
+    return []
   }
 
   public addHop (hop: Hop) : void {
