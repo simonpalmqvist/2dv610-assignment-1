@@ -118,6 +118,10 @@ describe('Class Recipe', () => {
 
         expect(sut.expectedOG).to.be.approximately(1.050, 0.001)
       })
+
+      it('Should return 1 when fermentables is empty', () => {
+        expect(sut.expectedOG).to.equal(1)
+      })
     })
   })
 
