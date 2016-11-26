@@ -41,7 +41,7 @@ export default class Recipe {
   }
 
   get fermentables () : Fermentable[] {
-    return this._fermentables
+    return this._fermentables.slice()
   }
 
   public addHop (hop: Hop) : void {
