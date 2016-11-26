@@ -76,6 +76,15 @@ describe('Class Recipe', () => {
         expect(sut.hops).to.be.an.instanceof(Array)
         expect(sut.hops).to.have.length(0)
       })
+
+      it('Should return a copy of the array', () => {
+        const hops: Hop[] = sut.hops
+
+        hops.push(<any> mock(Hop))
+
+        expect(hops).to.have.length(1)
+        expect(sut.hops).to.have.length(0)
+      })
     })
   })
 
