@@ -18,6 +18,6 @@ export default class Recipe {
   }
 
   set efficiency (efficiency: number) {
-    
+    this._efficiency = efficiency
   }
 }
