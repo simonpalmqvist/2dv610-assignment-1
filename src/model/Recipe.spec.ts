@@ -74,6 +74,7 @@ describe('Class Recipe', () => {
     describe('Hops', () => {
       it('Should be an empty array as default', () => {
         expect(sut.hops).to.be.an.instanceof(Array)
+        expect(sut.hops).to.have.length(0)
       })
     })
   })
