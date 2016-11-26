@@ -132,6 +132,12 @@ describe('Class Recipe', () => {
 
         expect(sut.expectedFG).to.be.approximately(1.010, 0.001)
       })
+
+      it('Should show expectedOG when no Yeast is added', () => {
+        stubProperty(sut, 'expectedOG', 1.030)
+
+        expect(sut.expectedFG).to.equal(1.030)
+      })
     })
   })
 
