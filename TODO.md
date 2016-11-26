@@ -32,8 +32,8 @@
 ### Recipe
 * ~~Recipe should have volume in liter~~
   * ~~Minimum should be 0~~
-* Recipe should have efficiency
-  * Minimum should be 0 % and max should be 100%
+* ~~Recipe should have efficiency~~
+  * ~~Minimum should be 0 % and max should be 100%~~
 * Can add a Yeast to Recipe
 * Can add Hops to Recipe
 * Can add Fermentables to Recipe

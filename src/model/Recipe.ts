@@ -1,4 +1,5 @@
 import Validate from '../validation/Validate'
+import Yeast from './Yeast'
 
 export default class Recipe {
   private _volume: number = 20
@@ -20,5 +21,13 @@ export default class Recipe {
   set efficiency (efficiency: number) {
     Validate.percent(efficiency)
     this._efficiency = efficiency
+  }
+
+  get yeast () : Yeast {
+    return
+  }
+
+  set yeast (newYeast: Yeast) {
+
   }
 }

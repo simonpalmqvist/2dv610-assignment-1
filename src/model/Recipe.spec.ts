@@ -1,12 +1,14 @@
 import Validate from '../validation/Validate'
+import Yeast from './Yeast'
 import Recipe from './Recipe'
 import { expect } from 'chai'
-import { stub } from 'sinon'
+import { stub, mock } from 'sinon'
 
 describe('Class Recipe', () => {
   let sut: Recipe
   let validateNotNegativeStub: Sinon.SinonStub
   let validatePercentStub: Sinon.SinonStub
+  let yeastMock: Sinon.SinonMock
   const newVolume: number = 10
   const newEfficiency: number = 0.90
 
@@ -14,6 +16,7 @@ describe('Class Recipe', () => {
     sut = new Recipe()
     validateNotNegativeStub = stub(Validate, 'notNegative')
     validatePercentStub = stub(Validate, 'percent')
+    yeastMock = mock(Yeast)
   })
 
   afterEach(() => {
@@ -58,6 +61,14 @@ describe('Class Recipe', () => {
 
         expect(validatePercentStub.calledOnce).to.be.true
         expect(validatePercentStub.args[0][0]).to.equal(newEfficiency)
+      })
+    })
+
+    describe('Yeast', () => {
+      it('Should be able to set yeast', () => {
+        sut.yeast = <any> yeastMock
+
+        expect(sut.yeast).to.equal(yeastMock)
       })
     })
   })
