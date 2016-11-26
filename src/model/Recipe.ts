@@ -51,9 +51,9 @@ export default class Recipe {
   }
 
   get expectedFG () : number {
-    if (!this.yeast) return this.expectedOG
+    const attenuation: number = !this.yeast ? 0 : this.yeast.attenuation
 
-    const change: number = (this.expectedOG - 1) * this.yeast.attenuation
+    const change: number = (this.expectedOG - 1) * attenuation
     return this.expectedOG - change
   }
 
