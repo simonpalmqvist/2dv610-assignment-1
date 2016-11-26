@@ -41,6 +41,12 @@ describe('Class Recipe', () => {
       it('Should have default value 0.75', () => {
         expect(sut.efficiency).to.equal(0.75)
       })
+
+      it('Should be able to set value', () => {
+        sut.efficiency = 0.90
+
+        expect(sut.efficiency).to.equal(0.90)
+      })
     })
   })
 })
