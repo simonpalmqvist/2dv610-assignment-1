@@ -4,6 +4,7 @@ import Yeast from './Yeast'
 export default class Recipe {
   private _volume: number = 20
   private _efficiency: number = 0.75
+  private _yeast: Yeast
 
   get volume () : number {
     return this._volume
@@ -24,10 +25,10 @@ export default class Recipe {
   }
 
   get yeast () : Yeast {
-    return
+    return this._yeast
   }
 
   set yeast (newYeast: Yeast) {
-
+    this._yeast = newYeast
   }
 }

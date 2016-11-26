@@ -58,7 +58,6 @@ describe('Class Recipe', () => {
 
       it('Should be validated as percent', () => {
         sut.efficiency = newEfficiency
-
         expect(validatePercentStub.calledOnce).to.be.true
         expect(validatePercentStub.args[0][0]).to.equal(newEfficiency)
       })
