@@ -4,15 +4,15 @@ import Hop from './Hop'
 import Recipe from './Recipe'
 import Yeast from './Yeast'
 import { expect } from 'chai'
-import { stub, mock, createStubInstance } from 'sinon'
+import { stub, createStubInstance } from 'sinon'
 
 describe('Class Recipe', () => {
   let sut: Recipe
   let validateNotNegativeStub: Sinon.SinonStub
   let validatePercentStub: Sinon.SinonStub
-  let yeastMock: Sinon.SinonMock
-  let hopMock: Sinon.SinonMock
-  let fermentableMock: Sinon.SinonMock
+  let yeastMock: YeastMock
+  let hopMock: HopMock
+  let fermentableMock: FermentableMock
   const newVolume: number = 10
   const newEfficiency: number = 0.90
 
@@ -21,9 +21,9 @@ describe('Class Recipe', () => {
     sut = new Recipe()
     validateNotNegativeStub = stub(Validate, 'notNegative')
     validatePercentStub = stub(Validate, 'percent')
-    yeastMock = mock(Yeast)
-    hopMock = mock(Hop)
-    fermentableMock = mock(Fermentable.prototype)
+    yeastMock = <YeastMock> createStubInstance(Yeast)
+    hopMock = <HopMock> createStubInstance(Hop)
+    fermentableMock = <FermentableMock> createStubInstance(Fermentable)
   })
 
   afterEach(() => {
@@ -102,7 +102,7 @@ describe('Class Recipe', () => {
       it('Should return a copy of the array', () => {
         const fermentables: Fermentable[] = sut.fermentables
 
-        fermentables.push(<any> mock(Fermentable))
+        fermentables.push(<any> fermentableMock)
 
         expect(fermentables).to.have.length(1)
         expect(sut.fermentables).to.have.length(0)
@@ -111,12 +111,10 @@ describe('Class Recipe', () => {
 
     describe('expectedOG', () => {
       it('Should add fermentables expected gravity', () => {
-        let instance: any = createStubInstance(Fermentable)
+        fermentableMock.calculateExpectedGravity.returns(1.025)
 
-        instance.calculateExpectedGravity.returns(1.025)
-
-        sut.addFermentable(<any> instance)
-        sut.addFermentable(<any> instance)
+        sut.addFermentable(<any> fermentableMock)
+        sut.addFermentable(<any> fermentableMock)
 
         expect(sut.expectedOG).to.be.approximately(1.050, 0.001)
       })
