@@ -2,6 +2,7 @@ import Validate from '../validation/Validate'
 
 export default class Recipe {
   private _volume: number = 20
+  private _efficiency: number = 0.75
 
   get volume () : number {
     return this._volume
@@ -13,6 +14,6 @@ export default class Recipe {
   }
 
   get efficiency () : number {
-    return 0.75
+    return this._efficiency
   }
 }
