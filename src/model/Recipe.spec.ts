@@ -8,6 +8,7 @@ describe('Class Recipe', () => {
   let validateNotNegativeStub: Sinon.SinonStub
   let validatePercentStub: Sinon.SinonStub
   const newVolume: number = 10
+  const newEfficiency: number = 0.90
 
   beforeEach(() => {
     sut = new Recipe()
@@ -46,17 +47,17 @@ describe('Class Recipe', () => {
       })
 
       it('Should be able to set value', () => {
-        const newEfficiency = 0.90
+
         sut.efficiency = newEfficiency
 
         expect(sut.efficiency).to.equal(newEfficiency)
       })
 
       it('Should be validated as percent', () => {
-        sut.efficiency = 0.90
+        sut.efficiency = newEfficiency
 
         expect(validatePercentStub.calledOnce).to.be.true
-        expect(validatePercentStub.args[0][0]).to.equal(0.90)
+        expect(validatePercentStub.args[0][0]).to.equal(newEfficiency)
       })
     })
   })
