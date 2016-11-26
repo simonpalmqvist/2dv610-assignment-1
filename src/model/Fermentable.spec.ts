@@ -82,7 +82,7 @@ describe('Class Fermentable', () => {
         const efficiency: number = 0.65
         const volume: number = 10
 
-        const expected: number = sut.calculateExpectedGravity(efficiency, volume)
+        const expected: number = sut.calcExpectedOG(efficiency, volume)
 
         expect(expected).to.be.approximately(1.039, 0.001)
       })
@@ -90,7 +90,7 @@ describe('Class Fermentable', () => {
       it('Should return 1.000 when no amount is added', () => {
         sut.amount = 0
 
-        const expected: number = sut.calculateExpectedGravity(0.80, 10)
+        const expected: number = sut.calcExpectedOG(0.80, 10)
 
         expect(expected).to.equal(1.000)
       })

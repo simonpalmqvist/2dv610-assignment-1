@@ -1,5 +1,5 @@
 declare interface FermentableMock extends Sinon.SinonStub {
-  calculateExpectedGravity: Sinon.SinonStub
+  calcExpectedOG: Sinon.SinonStub
 }
 
 declare interface HopMock extends Sinon.SinonStub {

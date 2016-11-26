@@ -1,3 +1,4 @@
+import { stubProperty } from '../test/helper'
 import Validate from '../validation/Validate'
 import Fermentable from './Fermentable'
 import Hop from './Hop'
@@ -110,7 +111,7 @@ describe('Class Recipe', () => {
 
     describe('expectedOG', () => {
       it('Should add fermentables expected gravity +/- 0.001', () => {
-        fermentableMock.calculateExpectedGravity.returns(1.025)
+        fermentableMock.calcExpectedOG.returns(1.025)
 
         sut.addFermentable(<any> fermentableMock)
         sut.addFermentable(<any> fermentableMock)
@@ -127,8 +128,7 @@ describe('Class Recipe', () => {
       it('Should calculate correct gravity +/- 0.001', () => {
         yeastMock.attenuation = 0.75
         sut.yeast = <any> yeastMock
-        fermentableMock.calculateExpectedGravity.returns(1.040)
-        sut.addFermentable(<any> fermentableMock)
+        stubProperty(sut, 'expectedOG', 1.040)
 
         expect(sut.expectedFG).to.be.approximately(1.010, 0.001)
       })

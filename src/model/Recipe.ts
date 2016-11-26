@@ -46,11 +46,13 @@ export default class Recipe {
 
   get expectedOG () : number {
     return this._fermentables
-      .reduce((og, fermentable) => og + (fermentable.calculateExpectedGravity(this.efficiency, this.volume) - 1), 1)
+      .map((f) => f.calcExpectedOG(this.efficiency, this.volume) - 1)
+      .reduce((total, og) => total + og, 1)
   }
 
   get expectedFG () : number {
-    return this.expectedOG - ((this.expectedOG - 1) * this.yeast.attenuation)
+    const change: number = (this.expectedOG - 1) * this.yeast.attenuation
+    return this.expectedOG - change
   }
 
   public addHop (hop: Hop) : void {
