@@ -36,7 +36,7 @@
   * ~~Minimum should be 0 % and max should be 100%~~
 * ~~Can add a Yeast to Recipe~~
 * ~~Can add Hops to Recipe~~
-* Can add Fermentables to Recipe
+* ~~Can add Fermentables to Recipe~~
 * Calculate expected original gravity based on Fermentables
 * Calculate expected final gravity based on original gravity and Yeast
 * Calculate total IBU based on Hops
