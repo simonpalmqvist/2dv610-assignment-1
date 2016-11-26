@@ -1,3 +1,4 @@
+import Fermentable from './Fermentable'
 import Hop from './Hop'
 import Validate from '../validation/Validate'
 import Yeast from './Yeast'
@@ -36,6 +37,10 @@ export default class Recipe {
 
   get hops () : Hop[] {
     return this._hops.slice()
+  }
+
+  get fermentables () : Fermentable[] {
+    return
   }
 
   public addHop (hop: Hop) : void {

@@ -89,6 +89,13 @@ describe('Class Recipe', () => {
         expect(sut.hops).to.have.length(0)
       })
     })
+
+    describe('Fermentable', () => {
+      it('Should be an empty array as default', () => {
+        expect(sut.fermentables).to.be.an.instanceof(Array)
+        expect(sut.fermentables).to.have.length(0)
+      })
+    })
   })
 
   describe('Method', () => {
