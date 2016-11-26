@@ -10,14 +10,17 @@ describe('Class Recipe', () => {
   let validateNotNegativeStub: Sinon.SinonStub
   let validatePercentStub: Sinon.SinonStub
   let yeastMock: Sinon.SinonMock
+  let hopMock: Sinon.SinonMock
   const newVolume: number = 10
   const newEfficiency: number = 0.90
+
 
   beforeEach(() => {
     sut = new Recipe()
     validateNotNegativeStub = stub(Validate, 'notNegative')
     validatePercentStub = stub(Validate, 'percent')
     yeastMock = mock(Yeast)
+    hopMock = mock(Hop)
   })
 
   afterEach(() => {
@@ -80,7 +83,7 @@ describe('Class Recipe', () => {
       it('Should return a copy of the array', () => {
         const hops: Hop[] = sut.hops
 
-        hops.push(<any> mock(Hop))
+        hops.push(<any> hopMock)
 
         expect(hops).to.have.length(1)
         expect(sut.hops).to.have.length(0)
@@ -91,12 +94,10 @@ describe('Class Recipe', () => {
   describe('Method', () => {
     describe('addHop', () => {
       it('Should be able to add one hop', () => {
-        const hop: Hop = <any> mock(Hop)
-
-        sut.addHop(hop)
+        sut.addHop(<any> hopMock)
 
         expect(sut.hops).to.have.length(1)
-        expect(sut.hops).to.contain(hop)
+        expect(sut.hops).to.contain(hopMock)
       })
     })
   })
