@@ -38,8 +38,7 @@ describe('Class Fermentable', () => {
       it('Should be validated as percent', () => {
         sut.yield = newYield
 
-        expect(validatePercentStub.calledOnce).to.be.true
-        expect(validatePercentStub.args[0][0]).to.equal(newYield)
+        expect(validatePercentStub.calledWith(newYield)).to.be.true
       })
     })
 
@@ -57,8 +56,7 @@ describe('Class Fermentable', () => {
       it('Should be validated as not negative', () => {
         sut.amount = newAmount
 
-        expect(validateNotNegativeStub.calledOnce).to.be.true
-        expect(validateNotNegativeStub.args[0][0]).to.equal(newAmount)
+        expect(validateNotNegativeStub.calledWith(newAmount)).to.be.true
       })
     })
 

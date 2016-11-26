@@ -41,8 +41,7 @@ describe('Class Hop', () => {
       it('Should be validated as percent', () => {
         sut.alpha = newAlpha
 
-        expect(validatePercentStub.calledOnce).to.be.true
-        expect(validatePercentStub.args[0][0]).to.equal(newAlpha)
+        expect(validatePercentStub.calledWith(newAlpha)).to.be.true
       })
     })
 
@@ -59,8 +58,7 @@ describe('Class Hop', () => {
       it('Should be validated as not negative', () => {
         sut.amount = newAmount
 
-        expect(validateNotNegativeStub.calledOnce).to.be.true
-        expect(validateNotNegativeStub.args[0][0]).to.equal(newAmount)
+        expect(validateNotNegativeStub.calledWith(newAmount)).to.be.true
       })
     })
 
@@ -88,8 +86,7 @@ describe('Class Hop', () => {
       it('Should be validated as not negative', () => {
         sut.time = newTime
 
-        expect(validateNotNegativeStub.calledOnce).to.be.true
-        expect(validateNotNegativeStub.args[0][0]).to.equal(newTime)
+        expect(validateNotNegativeStub.calledWith(newTime)).to.be.true
       })
     })
   })

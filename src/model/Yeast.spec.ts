@@ -45,8 +45,7 @@ describe('Class Yeast', () => {
       it('Should be validated as percent', () => {
         sut.attenuation = newAttenuation
 
-        expect(validatePercentStub.calledOnce).to.be.true
-        expect(validatePercentStub.args[0][0]).to.equal(newAttenuation)
+        expect(validatePercentStub.calledWith(newAttenuation)).to.be.true
       })
     })
   })

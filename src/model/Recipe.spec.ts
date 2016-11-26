@@ -39,8 +39,7 @@ describe('Class Recipe', () => {
       it('Should be validated as not negative', () => {
         sut.volume = newVolume
 
-        expect(validateNotNegativeStub.calledOnce).to.be.true
-        expect(validateNotNegativeStub.args[0][0]).to.equal(newVolume)
+        expect(validateNotNegativeStub.calledWith(newVolume)).to.be.true
       })
     })
 
@@ -58,8 +57,8 @@ describe('Class Recipe', () => {
 
       it('Should be validated as percent', () => {
         sut.efficiency = newEfficiency
-        expect(validatePercentStub.calledOnce).to.be.true
-        expect(validatePercentStub.args[0][0]).to.equal(newEfficiency)
+
+        expect(validatePercentStub.calledWith(newEfficiency)).to.be.true
       })
     })
 
