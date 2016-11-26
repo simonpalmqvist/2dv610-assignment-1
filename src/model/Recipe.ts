@@ -45,7 +45,8 @@ export default class Recipe {
   }
 
   get expectedOG () : number {
-    return
+    return this._fermentables
+      .reduce((og, fermentable) => og + (fermentable.calculateExpectedGravity(this.efficiency, this.volume) - 1), 1)
   }
 
   public addHop (hop: Hop) : void {

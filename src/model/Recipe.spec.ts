@@ -4,7 +4,7 @@ import Hop from './Hop'
 import Recipe from './Recipe'
 import Yeast from './Yeast'
 import { expect } from 'chai'
-import { stub, mock } from 'sinon'
+import { stub, mock, createStubInstance } from 'sinon'
 
 describe('Class Recipe', () => {
   let sut: Recipe
@@ -111,14 +111,14 @@ describe('Class Recipe', () => {
 
     describe('expectedOG', () => {
       it('Should add fermentables expected gravity', () => {
-        fermentableMock
-          .expects('calculateExpectedGravity')
-          .returns(1.025)
+        let instance: any = createStubInstance(Fermentable)
 
-        sut.addFermentable(<any> fermentableMock)
-        sut.addFermentable(<any> fermentableMock)
+        instance.calculateExpectedGravity.returns(1.025)
 
-        expect(sut.expectedOG).to.equal(1.050)
+        sut.addFermentable(<any> instance)
+        sut.addFermentable(<any> instance)
+
+        expect(sut.expectedOG).to.be.approximately(1.050, 0.001)
       })
     })
   })
