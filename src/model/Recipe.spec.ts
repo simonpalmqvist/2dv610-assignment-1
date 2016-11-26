@@ -6,15 +6,18 @@ import { stub } from 'sinon'
 describe('Class Recipe', () => {
   let sut: Recipe
   let validateNotNegativeStub: Sinon.SinonStub
+  let validatePercentStub: Sinon.SinonStub
   const newVolume: number = 10
 
   beforeEach(() => {
     sut = new Recipe()
     validateNotNegativeStub = stub(Validate, 'notNegative')
+    validatePercentStub = stub(Validate, 'percent')
   })
 
   afterEach(() => {
     validateNotNegativeStub.restore()
+    validatePercentStub.restore()
   })
 
   describe('Property', () => {
@@ -47,6 +50,13 @@ describe('Class Recipe', () => {
         sut.efficiency = newEfficiency
 
         expect(sut.efficiency).to.equal(newEfficiency)
+      })
+
+      it('Should be validated as percent', () => {
+        sut.efficiency = 0.90
+
+        expect(validatePercentStub.calledOnce).to.be.true
+        expect(validatePercentStub.args[0][0]).to.equal(0.90)
       })
     })
   })
