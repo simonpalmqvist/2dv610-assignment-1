@@ -135,6 +135,14 @@ describe('Class Recipe', () => {
         expect(sut.fermentables).to.have.length(1)
         expect(sut.fermentables).to.contain(fermentableMock)
       })
+
+      it('Should be able to add several fermentables', () => {
+        sut.addFermentable(<any> fermentableMock)
+        sut.addFermentable(<any> fermentableMock)
+
+        expect(sut.fermentables).to.have.length(2)
+        expect(sut.fermentables).to.contain(fermentableMock)
+      })
     })
   })
 })
