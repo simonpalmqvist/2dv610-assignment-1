@@ -1,3 +1,4 @@
+import Hop from './Hop'
 import Validate from '../validation/Validate'
 import Yeast from './Yeast'
 
@@ -30,5 +31,9 @@ export default class Recipe {
 
   set yeast (newYeast: Yeast) {
     this._yeast = newYeast
+  }
+
+  get hops () : Hop[] {
+    return
   }
 }

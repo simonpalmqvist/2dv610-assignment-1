@@ -1,5 +1,6 @@
 import Validate from '../validation/Validate'
 import Yeast from './Yeast'
+import Hop from './Hop'
 import Recipe from './Recipe'
 import { expect } from 'chai'
 import { stub, mock } from 'sinon'
@@ -69,5 +70,13 @@ describe('Class Recipe', () => {
         expect(sut.yeast).to.equal(yeastMock)
       })
     })
+
+    describe('Hops', () => {
+      it('Should be an empty array as default', () => {
+        expect(sut.hops).to.be.an.instanceof(Array)
+      })
+    })
   })
+
+
 })
