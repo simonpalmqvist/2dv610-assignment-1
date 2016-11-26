@@ -43,9 +43,10 @@ describe('Class Recipe', () => {
       })
 
       it('Should be able to set value', () => {
-        sut.efficiency = 0.90
+        const newEfficiency = 0.90
+        sut.efficiency = newEfficiency
 
-        expect(sut.efficiency).to.equal(0.90)
+        expect(sut.efficiency).to.equal(newEfficiency)
       })
     })
   })
