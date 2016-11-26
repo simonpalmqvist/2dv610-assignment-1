@@ -125,5 +125,15 @@ describe('Class Recipe', () => {
         expect(sut.hops).to.contain(hopMock)
       })
     })
+
+    describe('addFermentable', () => {
+      it('Should be able to add one fermentable', () => {
+        let fermentableMock: Sinon.SinonMock = <any> mock(Fermentable)
+        sut.addFermentable(<any> fermentableMock)
+
+        expect(sut.fermentables).to.have.length(1)
+        expect(sut.fermentables).to.contain(fermentableMock)
+      })
+    })
   })
 })
