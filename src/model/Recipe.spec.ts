@@ -99,6 +99,14 @@ describe('Class Recipe', () => {
         expect(sut.hops).to.have.length(1)
         expect(sut.hops).to.contain(hopMock)
       })
+
+      it('Should be able to add several hops', () => {
+        sut.addHop(<any> hopMock)
+        sut.addHop(<any> hopMock)
+
+        expect(sut.hops).to.have.length(2)
+        expect(sut.hops).to.contain(hopMock)
+      })
     })
   })
 })
