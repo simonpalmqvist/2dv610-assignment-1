@@ -156,6 +156,22 @@ describe('Class Recipe', () => {
         expect(sut.expectedIBU).to.equal(0)
       })
     })
+
+    describe('expectedABV', () => {
+      it('Should return correct abv on lower gravitys +/- 0.1', () => {
+        stubProperty(sut, 'expectedOG', 1.050)
+        stubProperty(sut, 'expectedFG', 1.010)
+
+        expect(sut.expectedABV).to.be.approximately(5.3, 0.1)
+      })
+
+      it('Should return correct abv on higher gravitys +/- 0.1', () => {
+        stubProperty(sut, 'expectedOG', 1.070)
+        stubProperty(sut, 'expectedFG', 1.010)
+
+        expect(sut.expectedABV).to.be.approximately(5.3, 0.1)
+      })
+    })
   })
 
   describe('Method', () => {

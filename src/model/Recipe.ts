@@ -63,6 +63,10 @@ export default class Recipe {
       .reduce((sum: number, ibu: number) => sum + ibu, 0)
   }
 
+  get expectedABV () : number {
+    return 0
+  }
+
   public addHop (hop: Hop) : void {
     this._hops.push(hop)
   }
