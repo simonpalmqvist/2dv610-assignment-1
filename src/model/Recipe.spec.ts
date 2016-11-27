@@ -171,6 +171,13 @@ describe('Class Recipe', () => {
 
         expect(sut.expectedABV).to.be.approximately(0.098, 0.001)
       })
+
+      it('Should return 0 if original gravity is 0', () => {
+        stubProperty(sut, 'expectedOG', 1.000)
+        stubProperty(sut, 'expectedFG', 1.000)
+
+        expect(sut.expectedABV).to.equal(0)
+      })
     })
   })
 

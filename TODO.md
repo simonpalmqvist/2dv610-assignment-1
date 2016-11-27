@@ -45,6 +45,42 @@
   * ~~Should be same as original gravity if no yeast is added~~
   * ~~Should be 1.000 if no fermentables are added~~
 * ~~Calculate total IBU based on Hops~~
-* Calculate Alcohol by volume based on original and final gravity
-  * Should be approximately 5.3 % with og 1.050 and fg 1.010
-  * Should be approximately 9.3 % with og 1.070 and fg 1.010 
+* ~~Calculate Alcohol by volume based on original and final gravity~~
+  * ~~Should be approximately 5.3 % with og 1.050 and fg 1.010~~
+  * ~~Should be approximately 9.8 % with og 1.080 and fg 1.010~~
+  * ~~Should return 0 if nothing is added~~
+
+## Controller
+
+### RecipeApp
+
+* Should tell view to render
+* Should listen for events/actions from view
+* Should handle adding of hops
+* Should handle adding of fermentables
+* Should handle adding of yeast
+* Should tell view to re-render on changes
+
+## view
+
+### MainView
+* Should display welcome message on start
+* Should show menu on each re-render
+* Should show recipe on each re-render
+  * Should show recipe volume
+  * Should show recipe efficiency
+  * Should show expected OG
+  * Should show expected FG
+  * Should show expected IBU
+  * Should show expected ABV
+  * Should show list of fermentables
+  * Should show list of hops
+  * Should show yeast
+
+### Table
+* Should be able to add padding between columns.
+* Should be able to render header columns
+  * Should have a config with length of each column
+  * Should have a line separating the rest of the rows
+* Should be able to render row
+  * Should have a config with length of each column
