@@ -45,7 +45,7 @@ export default class Recipe {
   }
 
   get expectedOG () : number {
-    return this._fermentables
+    return this.fermentables
       .map((f) => f.calcExpectedOG(this.efficiency, this.volume) - 1)
       .reduce((total, og) => total + og, 1)
   }
@@ -58,7 +58,9 @@ export default class Recipe {
   }
 
   get expectedIBU () : number {
-    return
+    return this.hops
+      .map((hop: Hop) => hop.calculateIBU(this.expectedOG, this.volume))
+      .reduce((sum: number, ibu: number) => sum + ibu, 0)
   }
 
   public addHop (hop: Hop) : void {
