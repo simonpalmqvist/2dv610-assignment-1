@@ -117,6 +117,7 @@ describe('Class Recipe', () => {
         sut.addFermentable(<any> fermentableMock)
 
         expect(sut.expectedOG).to.be.approximately(1.050, 0.001)
+        expect(fermentableMock.calcExpectedOG.calledWith(sut.efficiency, sut.volume)).to.be.true
       })
 
       it('Should return 1 when fermentables is empty', () => {
@@ -148,6 +149,11 @@ describe('Class Recipe', () => {
         sut.addHop(<any> hopMock)
 
         expect(sut.expectedIBU).to.equal(68)
+        expect(hopMock.calculateIBU.calledWith(sut.expectedOG, sut.volume)).to.be.true
+      })
+
+      it('Should return 0 if no hops is added', () => {
+        expect(sut.expectedIBU).to.equal(0)
       })
     })
   })
