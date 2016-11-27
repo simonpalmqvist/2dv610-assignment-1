@@ -54,11 +54,11 @@
 
 ### RecipeApp
 
-* Should tell view to render
+* ~~Should tell view to render~~
 * Should listen for events/actions from view
-* Should handle adding of hops
-* Should handle adding of fermentables
-* Should handle adding of yeast
+  * Should handle adding of hops
+  * Should handle adding of fermentables
+  * Should handle adding of yeast
 * Should tell view to re-render on changes
 
 ## view

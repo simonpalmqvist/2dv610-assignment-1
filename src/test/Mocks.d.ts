@@ -12,4 +12,5 @@ declare interface YeastMock extends Sinon.SinonStub {
 
 declare interface ViewMock extends Sinon.SinonStub {
   render: Sinon.SinonStub
+  on: Sinon.SinonStub
 }
