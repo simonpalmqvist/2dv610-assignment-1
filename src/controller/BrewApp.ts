@@ -8,6 +8,6 @@ export default class BrewApp {
   }
 
   public init () : void {
-
+    this._view.render()
   }
 }
