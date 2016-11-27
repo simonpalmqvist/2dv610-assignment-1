@@ -1,3 +1,4 @@
+import Actions from '../view/Action'
 import View from '../view/View'
 
 export default class BrewApp {
@@ -9,5 +10,6 @@ export default class BrewApp {
 
   public init () : void {
     this._view.render()
+    this._view.on(Actions.ADD_HOP, () => 'implement me')
   }
 }
