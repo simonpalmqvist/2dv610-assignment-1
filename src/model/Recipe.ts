@@ -64,7 +64,10 @@ export default class Recipe {
   }
 
   get expectedABV () : number {
-    return (76.08 * (this.expectedOG-this.expectedFG) / (1.775-this.expectedOG)) * (this.expectedFG / 0.794)
+    const og = this.expectedOG
+    const fg = this.expectedFG
+
+    return (76.08 * (og-fg) / (1.775-og)) * (fg / 0.794) / 100
   }
 
   public addHop (hop: Hop) : void {
