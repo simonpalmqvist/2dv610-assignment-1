@@ -139,6 +139,17 @@ describe('Class Recipe', () => {
         expect(sut.expectedFG).to.equal(1.030)
       })
     })
+
+    describe('expectedIBU', () => {
+      it('Should calculate correct ibu', () => {
+        hopMock.calculateIBU.returns(34)
+
+        sut.addHop(<any> hopMock)
+        sut.addHop(<any> hopMock)
+
+        expect(sut.expectedIBU).to.equal(68)
+      })
+    })
   })
 
   describe('Method', () => {

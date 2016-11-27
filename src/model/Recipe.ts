@@ -57,6 +57,10 @@ export default class Recipe {
     return this.expectedOG - change
   }
 
+  get expectedIBU () : number {
+    return
+  }
+
   public addHop (hop: Hop) : void {
     this._hops.push(hop)
   }
