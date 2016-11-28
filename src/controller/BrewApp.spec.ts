@@ -1,7 +1,9 @@
 import * as HopModule from '../model/Hop'
 import { Recipe } from '../model/Recipe'
 import Action from '../view/Action'
+import { State } from '../view/State'
 import { View } from '../view/View'
+import { stubProperty } from '../test/helper'
 import { BrewApp } from './BrewApp'
 import { expect, use } from 'chai'
 import { createStubInstance, stub } from 'sinon'
@@ -28,6 +30,32 @@ describe('Class BrewApp', () => {
         expect(viewMock.render).calledOnce
       })
 
+      it('Should pass on current state to render without added ingredients', () => {
+        recipeMock.volume = 2
+        recipeMock.efficiency = 0.8
+        stubProperty(recipeMock, 'expectedOG', 1.050)
+        stubProperty(recipeMock, 'expectedFG', 1.010)
+        stubProperty(recipeMock, 'expectedIBU', 36)
+        stubProperty(recipeMock, 'expectedABV', 0.48)
+
+        let state: State = {
+          recipe: {
+            volume: 2,
+            efficiency: 0.8,
+            expectedOG: 1.050,
+            expectedFG: 1.010,
+            expectedIBU: 36,
+            expectedABV: 0.48,
+            hops: [],
+            fermentables: []
+          }
+        }
+
+        sut.init()
+
+        expect(viewMock.render.firstCall.args[0]).to.deep.equal(state)
+      })
+
       it('Should add listener for ADD_HOPS action', () => {
         sut.init()
 
@@ -47,25 +75,17 @@ describe('Class BrewApp', () => {
     })
 
     it('Should create a hop with values sent in event', () => {
-      const alpha: number = 12
-      const amount: number = 40
-      const name: string = 'Amarillo'
-      const time: number = 15
+      const args = [12, 40, 'Amarillo', 15]
 
       // Trigger callback function when the listener is added
-      viewMock.on
-        .withArgs(Action.ADD_HOP)
-        .yields(alpha, amount, name, time)
+      viewMock.on.withArgs(Action.ADD_HOP).yields(...args)
       sut.init()
 
-      expect(hopStub).calledWithExactly(alpha, amount, name, time)
+      expect(hopStub).calledWithExactly(...args)
     })
 
     it('Should call recipe addHop with created hop', () => {
-      viewMock.on
-        .withArgs(Action.ADD_HOP)
-        .yields()
-
+      viewMock.on.withArgs(Action.ADD_HOP).yields()
       sut.init()
 
       const createdHop: Sinon.SinonStub = hopStub.firstCall.returnValue

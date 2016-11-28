@@ -16,6 +16,12 @@ declare interface ViewMock extends Sinon.SinonStub {
 }
 
 declare interface RecipeMock extends Sinon.SinonStub {
+  volume: number
+  efficiency: number
+  expectedOG: Sinon.SinonStub
+  expectedFG: Sinon.SinonStub
+  expectedIBU: Sinon.SinonStub
+  expectedABV: Sinon.SinonStub
   addHop: Sinon.SinonStub
   addFermentable: Sinon.SinonStub
 }
