@@ -1,6 +1,6 @@
 import Validate  from '../validation/Validate'
 
-export default class Hop {
+export class Hop {
   private _alpha: number
   private _amount: number
   private _name: string

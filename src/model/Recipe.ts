@@ -1,6 +1,6 @@
 import Validate from '../validation/Validate'
 import Fermentable from './Fermentable'
-import Hop from './Hop'
+import { Hop } from './Hop'
 import Yeast from './Yeast'
 
 export default class Recipe {

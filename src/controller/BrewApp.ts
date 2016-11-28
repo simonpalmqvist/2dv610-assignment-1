@@ -10,6 +10,6 @@ export default class BrewApp {
 
   public init () : void {
     this._view.render()
-    this._view.on(Actions.ADD_HOP, () => 'implement me')
+    this._view.on(Actions.ADD_HOP, () => console.warn('implement me'))
   }
 }

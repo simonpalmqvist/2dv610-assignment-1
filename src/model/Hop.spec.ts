@@ -1,5 +1,5 @@
 import Validate from '../validation/Validate'
-import Hop from './Hop'
+import { Hop } from './Hop'
 import { expect } from 'chai'
 import { stub } from 'sinon'
 
