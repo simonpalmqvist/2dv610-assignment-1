@@ -7,8 +7,6 @@ import { expect, use } from 'chai'
 import * as SinonChai from 'sinon-chai'
 import { createStubInstance, spy, stub } from 'sinon'
 
-
-
 describe('Class BrewApp', () => {
   use(SinonChai)
   let HopStub: Sinon.SinonStub
@@ -64,18 +62,15 @@ describe('Class BrewApp', () => {
     })
 
     it('Should call recipe addHop with created hop', () => {
-      let hopSpy: Sinon.SinonSpy = spy()
-
-      HopStub.returns(hopSpy)
-
       viewMock.on
         .withArgs(Action.ADD_HOP)
         .yields()
 
       sut.init()
 
-      expect(recipeMock.addHop).calledWithExactly(hopSpy)
+      const createdHop = HopStub.firstCall.returnValue
 
+      expect(recipeMock.addHop).calledWithExactly(createdHop)
     })
   })
 })

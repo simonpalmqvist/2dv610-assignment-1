@@ -18,6 +18,6 @@ export default class BrewApp {
   }
 
   private _addHop(alpha: number, amount: number, name: string, time: number) : void {
-    new Hop(alpha, amount, name, time)
+    this._recipe.addHop(new Hop(alpha, amount, name, time))
   }
 }
