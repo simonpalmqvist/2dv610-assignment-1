@@ -1,9 +1,9 @@
 import { Hop } from '../model/Hop'
-import Recipe from '../model/Recipe'
+import { Recipe } from '../model/Recipe'
 import Actions from '../view/Action'
-import View from '../view/View'
+import { View } from '../view/View'
 
-export default class BrewApp {
+export class BrewApp {
   private readonly _view: View
   private readonly _recipe: Recipe
 

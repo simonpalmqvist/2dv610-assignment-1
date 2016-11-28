@@ -1,9 +1,9 @@
 import Validate from '../validation/Validate'
-import Fermentable from './Fermentable'
+import { Fermentable } from './Fermentable'
 import { Hop } from './Hop'
-import Yeast from './Yeast'
+import { Yeast } from './Yeast'
 
-export default class Recipe {
+export class Recipe {
   private _volume: number = 20
   private _efficiency: number = 0.75
   private _yeast: Yeast
@@ -64,10 +64,10 @@ export default class Recipe {
   }
 
   get expectedABV () : number {
-    const og = this.expectedOG
-    const fg = this.expectedFG
+    const og: number = this.expectedOG
+    const fg: number = this.expectedFG
 
-    return (76.08 * (og-fg) / (1.775-og)) * (fg / 0.794) / 100
+    return (76.08 * (og - fg) / (1.775 - og)) * (fg / 0.794) / 100
   }
 
   public addHop (hop: Hop) : void {

@@ -1,6 +1,6 @@
 import Validate from '../validation/Validate'
 
-export default class Yeast {
+export class Yeast {
   private _name: string
   private _attenuation: number
 

@@ -1,6 +1,6 @@
 import Validate  from '../validation/Validate'
 
-export default class Fermentable {
+export class Fermentable {
   private _yield: number
   private _amount: number
   private _name: string

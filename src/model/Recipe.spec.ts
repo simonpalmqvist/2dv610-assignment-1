@@ -1,9 +1,9 @@
 import { stubProperty } from '../test/helper'
 import Validate from '../validation/Validate'
-import Fermentable from './Fermentable'
+import { Fermentable } from './Fermentable'
 import { Hop } from './Hop'
-import Recipe from './Recipe'
-import Yeast from './Yeast'
+import { Recipe } from './Recipe'
+import { Yeast } from './Yeast'
 import { expect } from 'chai'
 import { createStubInstance, stub } from 'sinon'
 

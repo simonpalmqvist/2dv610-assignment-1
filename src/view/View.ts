@@ -1,6 +1,7 @@
 import { EventEmitter } from 'events'
 
-export default class View extends EventEmitter {
+export class View extends EventEmitter {
   public render () : void {
+    console.warn('implement me')
   }
 }
