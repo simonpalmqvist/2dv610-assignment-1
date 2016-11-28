@@ -37,11 +37,11 @@ export default class Recipe {
   }
 
   get hops () : Hop[] {
-    return this._hops.slice()
+    return !this._hops ? [] : this._hops.slice()
   }
 
   get fermentables () : Fermentable[] {
-    return this._fermentables.slice()
+    return !this._fermentables ? [] : this._fermentables.slice()
   }
 
   get expectedOG () : number {

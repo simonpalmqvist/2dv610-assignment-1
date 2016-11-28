@@ -1,22 +1,25 @@
 import * as HopModule from '../model/Hop'
+import Recipe from '../model/Recipe'
 import Action from '../view/Action'
 import View from '../view/View'
 import BrewApp from './BrewApp'
 import { expect, use } from 'chai'
 import * as SinonChai from 'sinon-chai'
-import { createStubInstance, stub } from 'sinon'
+import { createStubInstance, spy, stub } from 'sinon'
 
 
 
 describe('Class BrewApp', () => {
   use(SinonChai)
-  let hopStub: Sinon.SinonStub
+  let HopStub: Sinon.SinonStub
   let viewMock: ViewMock
+  let recipeMock: RecipeMock
   let sut: BrewApp
 
   beforeEach(() => {
     viewMock = <ViewMock> createStubInstance(View)
-    sut = new BrewApp(<any> viewMock)
+    recipeMock = <RecipeMock> createStubInstance(Recipe)
+    sut = new BrewApp(<any> viewMock, <any> recipeMock)
   })
 
   describe('Method', () => {
@@ -38,8 +41,12 @@ describe('Class BrewApp', () => {
   describe('ADD_HOP', () => {
 
     beforeEach(() => {
-      hopStub = stub(HopModule, 'Hop')
+      HopStub = stub(HopModule, 'Hop')
     })
+    afterEach(() => {
+      HopStub.restore()
+    })
+
 
     it('Should create a hop with values sent in event', () => {
       const alpha = 12
@@ -53,11 +60,22 @@ describe('Class BrewApp', () => {
         .yields(alpha, amount, name, time)
       sut.init()
 
-      expect(hopStub).calledWith(alpha, amount, name, time)
+      expect(HopStub).calledWithExactly(alpha, amount, name, time)
     })
 
-    afterEach(() => {
-      hopStub.restore()
+    it('Should call recipe addHop with created hop', () => {
+      let hopSpy: Sinon.SinonSpy = spy()
+
+      HopStub.returns(hopSpy)
+
+      viewMock.on
+        .withArgs(Action.ADD_HOP)
+        .yields()
+
+      sut.init()
+
+      expect(recipeMock.addHop).calledWithExactly(hopSpy)
+
     })
   })
 })

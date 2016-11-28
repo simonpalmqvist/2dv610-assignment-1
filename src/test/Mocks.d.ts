@@ -14,3 +14,8 @@ declare interface ViewMock extends Sinon.SinonStub {
   render: Sinon.SinonStub
   on: Sinon.SinonStub
 }
+
+declare interface RecipeMock extends Sinon.SinonStub {
+  addHop: Sinon.SinonStub
+  addFermentable: Sinon.SinonStub
+}
