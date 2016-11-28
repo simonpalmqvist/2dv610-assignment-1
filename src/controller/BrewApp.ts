@@ -11,6 +11,10 @@ export default class BrewApp {
 
   public init () : void {
     this._view.render()
-    this._view.on(Actions.ADD_HOP, (alpha, amount, name, time) => new Hop(alpha, amount, name, time))
+    this._view.on(Actions.ADD_HOP, this._addHop.bind(this))
+  }
+
+  private _addHop(alpha: number, amount: number, name: string, time: number) : void {
+    new Hop(alpha, amount, name, time)
   }
 }

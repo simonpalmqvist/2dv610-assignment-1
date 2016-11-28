@@ -42,16 +42,18 @@ describe('Class BrewApp', () => {
     })
 
     it('Should create a hop with values sent in event', () => {
-      let viewMock: ViewMock = <ViewMock> createStubInstance(View)
-      let sut: BrewApp = new BrewApp(<any> viewMock)
+      const alpha = 12
+      const amount = 40
+      const name = 'Amarillo'
+      const time = 15
 
       // Trigger callback function when the listener is added
       viewMock.on
         .withArgs(Action.ADD_HOP)
-        .yields(12,30,'Amarillo', 60)
+        .yields(alpha, amount, name, time)
       sut.init()
 
-      expect(hopStub).calledWith(12,30,'Amarillo',60)
+      expect(hopStub).calledWith(alpha, amount, name, time)
     })
 
     afterEach(() => {
