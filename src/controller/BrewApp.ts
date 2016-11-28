@@ -1,6 +1,7 @@
 import { Hop } from '../model/Hop'
 import { Recipe } from '../model/Recipe'
 import Actions from '../view/Action'
+import { State } from '../view/State'
 import { View } from '../view/View'
 
 export class BrewApp {
@@ -13,7 +14,19 @@ export class BrewApp {
   }
 
   public init () : void {
-    this._view.render()
+    let state: State = {
+      recipe: {
+        volume: this._recipe.volume,
+        efficiency: this._recipe.efficiency,
+        expectedOG: this._recipe.expectedOG,
+        expectedFG: this._recipe.expectedFG,
+        expectedIBU: this._recipe.expectedIBU,
+        expectedABV: this._recipe.expectedABV,
+        hops: [],
+        fermentables: []
+      }
+    }
+    this._view.render(state)
     this._view.on(Actions.ADD_HOP, this._addHop.bind(this))
   }
 
