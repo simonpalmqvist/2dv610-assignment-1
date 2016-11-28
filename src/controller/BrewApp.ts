@@ -1,3 +1,4 @@
+import { Hop } from '../model/Hop'
 import Actions from '../view/Action'
 import View from '../view/View'
 
@@ -10,6 +11,6 @@ export default class BrewApp {
 
   public init () : void {
     this._view.render()
-    this._view.on(Actions.ADD_HOP, () => console.warn('implement me'))
+    this._view.on(Actions.ADD_HOP, (alpha, amount, name, time) => new Hop(alpha, amount, name, time))
   }
 }
