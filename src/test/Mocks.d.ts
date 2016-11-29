@@ -34,3 +34,8 @@ declare interface ReadlineMock extends Sinon.SinonStub {
   on: Sinon.SinonStub
   close: Sinon.SinonStub
 }
+
+declare interface ConsoleUIMock extends Sinon.SinonStub {
+  print: Sinon.SinonStub
+  registerInputHandler: Sinon.SinonStub
+}
