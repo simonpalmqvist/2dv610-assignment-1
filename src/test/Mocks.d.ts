@@ -25,3 +25,7 @@ declare interface RecipeMock extends Sinon.SinonStub {
   addHop: Sinon.SinonStub
   addFermentable: Sinon.SinonStub
 }
+
+declare interface ConsoleMock extends Sinon.SinonStub {
+  log: Sinon.SinonStub
+}
