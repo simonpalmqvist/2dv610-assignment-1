@@ -4,6 +4,7 @@ import { EventEmitter } from 'events'
 
 export class View extends EventEmitter {
   private _ui: ConsoleUI
+  private _printStart: boolean = true
 
   constructor (ui: ConsoleUI) {
     super()
@@ -11,10 +12,13 @@ export class View extends EventEmitter {
   }
 
   public render (state: State) : void {
-    this._printWelcomeMessage()
+    if(this._printStart) {
+      this._printWelcomeMessage()
+    }
   }
 
   private _printWelcomeMessage () : void {
     this._ui.print('Welcome to this beer brewing app!')
+    this._printStart = false
   }
 }
