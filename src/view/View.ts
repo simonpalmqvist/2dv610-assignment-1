@@ -12,7 +12,7 @@ export class View extends EventEmitter {
   }
 
   public render (state: State) : void {
-    if(this._printStart) {
+    if (this._printStart) {
       this._printWelcomeMessage()
     }
   }
