@@ -7,14 +7,14 @@ export function stubProperty (object: any, property: string, returns: any) : voi
 export function getFakeStateWithoutIngredients () : State {
   return {
     recipe: {
-      volume: 2,
       efficiency: 0.8,
-      expectedOG: 1.050,
+      expectedABV: 0.48,
       expectedFG: 1.010,
       expectedIBU: 36,
-      expectedABV: 0.48,
+      expectedOG: 1.050,
+      fermentables: [],
       hops: [],
-      fermentables: []
-    }
+      volume: 2,
+    },
   }
 }

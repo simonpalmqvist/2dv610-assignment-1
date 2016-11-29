@@ -25,15 +25,15 @@ export class BrewApp {
   private _getUpdatedState () : State {
     return {
       recipe: {
-        volume: this._recipe.volume,
         efficiency: this._recipe.efficiency,
-        expectedOG: this._recipe.expectedOG,
+        expectedABV: this._recipe.expectedABV,
         expectedFG: this._recipe.expectedFG,
         expectedIBU: this._recipe.expectedIBU,
-        expectedABV: this._recipe.expectedABV,
+        expectedOG: this._recipe.expectedOG,
+        fermentables: [],
         hops: [],
-        fermentables: []
-      }
+        volume: this._recipe.volume,
+      },
     }
   }
 }

@@ -1,12 +1,12 @@
 import * as HopModule from '../model/Hop'
 import { Recipe } from '../model/Recipe'
+import {
+  getFakeStateWithoutIngredients,
+  stubProperty,
+} from '../test/helper'
 import Action from '../view/Action'
 import { State } from '../view/State'
 import { View } from '../view/View'
-import {
-  getFakeStateWithoutIngredients,
-  stubProperty
-} from '../test/helper'
 import { BrewApp } from './BrewApp'
 import { expect, use } from 'chai'
 import { createStubInstance, stub } from 'sinon'
@@ -67,7 +67,7 @@ describe('Class BrewApp', () => {
     })
 
     it('Should create a hop with values sent in event', () => {
-      const args = [12, 40, 'Amarillo', 15]
+      const args: any[] = [12, 40, 'Amarillo', 15]
 
       // Trigger callback function when the listener is added
       viewMock.on.withArgs(Action.ADD_HOP).yields(...args)
