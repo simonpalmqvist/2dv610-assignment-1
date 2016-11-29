@@ -10,12 +10,13 @@ describe('Class View', () => {
   describe('Method', () => {
     describe('render', () => {
       it('Should present startup message on first call', () => {
+        let message: string = 'Welcome to this beer brewing app!'
         let consoleUIMock: ConsoleUIMock = <ConsoleUIMock> createStubInstance(ConsoleUI)
         let sut: View = new View(<any> consoleUIMock)
 
         sut.render(<any> {})
 
-        expect(consoleUIMock.print).to.be.calledWith('Welcome to this beer brewing app!')
+        expect(consoleUIMock.print).to.be.calledWith(message)
       })
     })
   })

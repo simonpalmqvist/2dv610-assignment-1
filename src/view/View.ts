@@ -11,6 +11,10 @@ export class View extends EventEmitter {
   }
 
   public render (state: State) : void {
+    this._printWelcomeMessage()
+  }
+
+  private _printWelcomeMessage () : void {
     this._ui.print('Welcome to this beer brewing app!')
   }
 }
