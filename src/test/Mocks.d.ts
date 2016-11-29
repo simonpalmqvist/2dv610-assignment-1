@@ -29,3 +29,8 @@ declare interface RecipeMock extends Sinon.SinonStub {
 declare interface ConsoleMock extends Sinon.SinonStub {
   log: Sinon.SinonStub
 }
+
+declare interface ReadlineMock extends Sinon.SinonStub {
+  on: Sinon.SinonStub
+  close: Sinon.SinonStub
+}
