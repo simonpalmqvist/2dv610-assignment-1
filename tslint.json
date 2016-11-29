@@ -5,6 +5,7 @@
     "variable-name": [true, "allow-leading-underscore"],
     "quotemark": [true, "single"],
     "interface-name": "false",
+    "no-namespace": false,
     "typedef": [
       true,
       "call-signature",

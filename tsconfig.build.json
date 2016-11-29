@@ -1,0 +1,17 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "es5",
+    "outDir": "dist",
+    "module": "commonjs",
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "noLib": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "node"
+  },
+  "files": [
+    "./src/app.ts"
+  ]
+}
