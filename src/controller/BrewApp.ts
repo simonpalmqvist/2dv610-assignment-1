@@ -14,7 +14,16 @@ export class BrewApp {
   }
 
   public init () : void {
-    let state: State = {
+    this._view.render(this._getUpdatedState())
+    this._view.on(Actions.ADD_HOP, this._addHop.bind(this))
+  }
+
+  private _addHop (alpha: number, amount: number, name: string, time: number) : void {
+    this._recipe.addHop(new Hop(alpha, amount, name, time))
+  }
+
+  private _getUpdatedState () : State {
+    return {
       recipe: {
         volume: this._recipe.volume,
         efficiency: this._recipe.efficiency,
@@ -26,11 +35,5 @@ export class BrewApp {
         fermentables: []
       }
     }
-    this._view.render(state)
-    this._view.on(Actions.ADD_HOP, this._addHop.bind(this))
-  }
-
-  private _addHop(alpha: number, amount: number, name: string, time: number) : void {
-    this._recipe.addHop(new Hop(alpha, amount, name, time))
   }
 }

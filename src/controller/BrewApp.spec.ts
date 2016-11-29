@@ -3,7 +3,10 @@ import { Recipe } from '../model/Recipe'
 import Action from '../view/Action'
 import { State } from '../view/State'
 import { View } from '../view/View'
-import { stubProperty } from '../test/helper'
+import {
+  getFakeStateWithoutIngredients,
+  stubProperty
+} from '../test/helper'
 import { BrewApp } from './BrewApp'
 import { expect, use } from 'chai'
 import { createStubInstance, stub } from 'sinon'
@@ -31,25 +34,14 @@ describe('Class BrewApp', () => {
       })
 
       it('Should pass on current state to render without added ingredients', () => {
-        recipeMock.volume = 2
-        recipeMock.efficiency = 0.8
-        stubProperty(recipeMock, 'expectedOG', 1.050)
-        stubProperty(recipeMock, 'expectedFG', 1.010)
-        stubProperty(recipeMock, 'expectedIBU', 36)
-        stubProperty(recipeMock, 'expectedABV', 0.48)
+        let state: State = getFakeStateWithoutIngredients()
 
-        let state: State = {
-          recipe: {
-            volume: 2,
-            efficiency: 0.8,
-            expectedOG: 1.050,
-            expectedFG: 1.010,
-            expectedIBU: 36,
-            expectedABV: 0.48,
-            hops: [],
-            fermentables: []
-          }
-        }
+        recipeMock.volume = state.recipe.volume
+        recipeMock.efficiency = state.recipe.efficiency
+        stubProperty(recipeMock, 'expectedOG', state.recipe.expectedOG)
+        stubProperty(recipeMock, 'expectedFG', state.recipe.expectedFG)
+        stubProperty(recipeMock, 'expectedIBU', state.recipe.expectedIBU)
+        stubProperty(recipeMock, 'expectedABV', state.recipe.expectedABV)
 
         sut.init()
 
