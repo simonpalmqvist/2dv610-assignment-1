@@ -18,6 +18,8 @@ export class ConsoleUI {
   }
 
   public askQuestion (question: string) : Promise<any> {
-    return new Promise<any>(() => '' )
+    return new Promise<any>(() => {
+      this._input.question(question, () => 'Implement')
+    })
   }
 }
