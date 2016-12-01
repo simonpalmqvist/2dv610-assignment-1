@@ -53,6 +53,7 @@ describe('Class View', () => {
       })
 
       it('Should show add hops form when input is "add hop"', () => {
+        recipeViewMock.showAddHopsForm.returns(Promise.resolve())
         consoleUIMock.registerInputHandler.callArgWith(0, 'add hop')
 
         expect(recipeViewMock.showAddHopsForm).to.be.called

@@ -1,6 +1,6 @@
 
 export class RecipeView {
-  public showAddHopsForm () : void {
-    'implement me'
+  public showAddHopsForm () : Promise<any> {
+    return Promise.resolve('implement me')
   }
 }

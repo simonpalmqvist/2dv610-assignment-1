@@ -1,3 +1,4 @@
+import Action from './Action'
 import { ConsoleUI } from './ConsoleUI'
 import { RecipeView } from './RecipeView'
 import { State } from './State'
@@ -32,6 +33,7 @@ export class View extends EventEmitter {
     switch (input) {
       case 'add hop':
         this._recipeView.showAddHopsForm()
+          .then((hop) => this.emit(Action.ADD_HOP, hop))
         break
       default:
         'implement me'
