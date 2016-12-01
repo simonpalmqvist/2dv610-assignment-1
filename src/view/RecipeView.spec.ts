@@ -12,6 +12,7 @@ describe('Class RecipeView', () => {
   let stateMock: State.State
   let consoleUIMock: ConsoleUIMock
   let sut: RecipeView
+  const nameLabel: string = 'Name of hop: '
 
   beforeEach(() => {
     stateMock = getFakeStateWithoutIngredients()
@@ -48,14 +49,17 @@ describe('Class RecipeView', () => {
 
         sut.showAddHopsForm()
 
-        expect(consoleUIMock.askQuestion).to.be.calledWith('Name of hop: ')
+        expect(consoleUIMock.askQuestion).to.be.calledWith(nameLabel)
       })
 
-      it('Should return name with promise', (done) => {
-        consoleUIMock.askQuestion.withArgs('Name of hop: ').returns(Promise.resolve('Cascade'))
+      it('Should set name received from question', (done) => {
+        let expected: string = 'Cascade'
+        consoleUIMock.askQuestion
+          .withArgs(nameLabel)
+          .returns(Promise.resolve(expected))
 
-        sut.showAddHopsForm().then((hop) => {
-          expect(hop.name).to.equal('Cascade')
+        sut.showAddHopsForm().then(({name}) => {
+          expect(name).to.equal(expected)
           done()
         })
       })
