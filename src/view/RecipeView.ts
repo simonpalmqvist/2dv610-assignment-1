@@ -1,6 +1,7 @@
+import { HopForm } from './HopForm'
 
 export class RecipeView {
-  public showAddHopsForm () : Promise<any> {
-    return Promise.resolve('implement me')
+  public showAddHopsForm () : Promise<HopForm> {
+    return Promise.resolve({} as HopForm)
   }
 }

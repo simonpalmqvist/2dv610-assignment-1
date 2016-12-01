@@ -1,5 +1,6 @@
 import Action from './Action'
 import { ConsoleUI } from './ConsoleUI'
+import { HopForm } from './HopForm'
 import { RecipeView } from './RecipeView'
 import { View } from './View'
 import { expect, use } from 'chai'
@@ -12,6 +13,12 @@ describe('Class View', () => {
   let consoleUIMock: ConsoleUIMock
   let recipeViewMock: RecipeViewMock
   let sut: View
+  const hopForm: HopForm = {
+    alpha: 14,
+    amount: 30,
+    name: 'Amarillo',
+    time: 60,
+  }
 
   beforeEach(() => {
     stateMock = {}
@@ -53,27 +60,24 @@ describe('Class View', () => {
       })
 
       it('Should show add hops form when input is "add hop"', () => {
-        recipeViewMock.showAddHopsForm.returns(Promise.resolve())
+        recipeViewMock.showAddHopsForm.returns(Promise.resolve(hopForm))
         consoleUIMock.registerInputHandler.callArgWith(0, 'add hop')
 
         expect(recipeViewMock.showAddHopsForm).to.be.called
       })
 
       it('Should emit action add hops when input is received from form', (done) => {
-        recipeViewMock.showAddHopsForm.returns(Promise.resolve({
-          alpha: 14,
-          amount: 30,
-          name: 'Amarillo',
-          time: 60
-        }))
+        const expected: any[] = [
+          hopForm.alpha,
+          hopForm.amount,
+          hopForm.name,
+          hopForm.time,
+        ]
 
-        sut.on(Action.ADD_HOP, (actual) => {
-          expect(actual).to.deep.equal({
-            alpha: 14,
-            amount: 30,
-            name: 'Amarillo',
-            time: 60
-          })
+        recipeViewMock.showAddHopsForm.returns(Promise.resolve(hopForm))
+
+        sut.on(Action.ADD_HOP, (...actual) => {
+          expect(actual).to.deep.equal(expected)
           done()
         })
 

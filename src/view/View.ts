@@ -32,8 +32,14 @@ export class View extends EventEmitter {
   private _handleUserActions (input: string) : void {
     switch (input) {
       case 'add hop':
-        this._recipeView.showAddHopsForm()
-          .then((hop) => this.emit(Action.ADD_HOP, hop))
+        this._recipeView.showAddHopsForm().then((hop) => this.emit(
+            Action.ADD_HOP,
+            hop.alpha,
+            hop.amount,
+            hop.name,
+            hop.time,
+          )
+        )
         break
       default:
         'implement me'
