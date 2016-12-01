@@ -131,7 +131,7 @@ describe('Class RecipeView', () => {
       consoleUIMock.askQuestion.returns(Promise.resolve(expected))
 
       sut.showAddHopsForm().then(({alpha}) => {
-        expect(alpha).to.equal(+expected)
+        expect(alpha).to.equal(+expected / 100)
         done()
       })
     })
