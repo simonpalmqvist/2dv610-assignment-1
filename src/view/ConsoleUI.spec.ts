@@ -63,6 +63,20 @@ describe('Class ConsoleUI', () => {
         expect(readlineMock.question).to.always.be.calledWith(question)
         expect(readlineMock.question).to.be.calledTwice
       })
+
+      it('Should get second input when answer first was wrong', (done) => {
+        const falseAnswer: string = 'Monkeyday'
+        let promise: Promise<string> = sut.askQuestion(question, (a) => false)
+
+        readlineMock.question.firstCall.callArgWith(1, falseAnswer)
+        readlineMock.question.secondCall.callArgWith(1, answer)
+
+        promise.then((result) => {
+          expect(result).to.equal(answer)
+          done()
+        }).catch((error) => done(`promise was rejected: ${error}`))
+
+      })
     })
   })
 })
