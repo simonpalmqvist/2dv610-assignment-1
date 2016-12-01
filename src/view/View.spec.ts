@@ -2,7 +2,7 @@ import { ConsoleUI } from './ConsoleUI'
 import { RecipeView } from './RecipeView'
 import { View } from './View'
 import { expect, use } from 'chai'
-import { createStubInstance } from 'sinon'
+import { assert, createStubInstance } from 'sinon'
 import * as SinonChai from 'sinon-chai'
 
 describe('Class View', () => {
@@ -34,6 +34,12 @@ describe('Class View', () => {
         sut.render(stateMock)
 
         expect(consoleUIMock.print).to.be.calledOnce
+      })
+
+      it('Should show prompt last', () => {
+        sut.render(stateMock)
+
+        assert.callOrder(consoleUIMock.print, consoleUIMock.prompt)
       })
     })
 

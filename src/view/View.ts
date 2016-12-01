@@ -19,6 +19,7 @@ export class View extends EventEmitter {
     if (this._printStart) {
       this._printWelcomeMessage()
     }
+
   }
 
   private _printWelcomeMessage () : void {
