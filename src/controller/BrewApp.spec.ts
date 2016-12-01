@@ -63,13 +63,22 @@ describe('Class BrewApp', () => {
             expectedIBU: 36,
             expectedOG: 1.050,
             fermentables: [],
-            hops: [{
-              alpha: 14,
-              amount: 50,
-              name: 'Cascade',
-              time: 15,
-              ibu: 10,
-            }],
+            hops: [
+              {
+                alpha: 6,
+                amount: 50,
+                name: 'Cascade',
+                time: 15,
+                ibu: 10,
+              },
+              {
+                alpha: 12,
+                amount: 100,
+                name: 'Citra',
+                time: 0,
+                ibu: 0,
+              },
+            ],
             volume: 2,
           },
         }
@@ -80,7 +89,13 @@ describe('Class BrewApp', () => {
         stubProperty(recipeMock, 'expectedFG', state.recipe.expectedFG)
         stubProperty(recipeMock, 'expectedIBU', state.recipe.expectedIBU)
         stubProperty(recipeMock, 'expectedABV', state.recipe.expectedABV)
-        stubProperty(recipeMock, 'hops', state.recipe.hops)
+        stubProperty(recipeMock, 'hops', state.recipe.hops.map((hop) => ({
+          alpha: hop.alpha,
+          amount: hop.amount,
+          name: hop.name,
+          time: hop.time,
+          calculateIBU() { return  hop.ibu },
+        })))
 
         sut.render()
 

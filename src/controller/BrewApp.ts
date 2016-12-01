@@ -32,7 +32,13 @@ export class BrewApp {
         expectedIBU: this._recipe.expectedIBU,
         expectedOG: this._recipe.expectedOG,
         fermentables: [],
-        hops: [],
+        hops: this._recipe.hops.map((hop) => ({
+          alpha: hop.alpha,
+          amount: hop.amount,
+          name: hop.name,
+          time: hop.time,
+          ibu: hop.calculateIBU(this._recipe.expectedOG, this._recipe.volume)
+        })),
         volume: this._recipe.volume,
       },
     }
