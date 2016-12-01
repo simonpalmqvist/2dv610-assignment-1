@@ -19,7 +19,13 @@ export class ConsoleUI {
 
   public askQuestion (question: string, validation?: (string) => boolean) : Promise<string> {
     return new Promise<string>((resolve) => {
-      this._input.question(question, (answer) => resolve(answer.trim()))
+      this._input.question(question, (answer) => {
+        let result: any = !validation || validation(answer.trim())
+          ? answer.trim()
+          : this.askQuestion(question, validation)
+
+        resolve(result)
+      })
     })
   }
 }
