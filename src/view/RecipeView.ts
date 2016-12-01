@@ -75,6 +75,6 @@ export class RecipeView {
 
   private _validatePercent(answer: string) : boolean {
     let number: number = +answer
-    return !isNaN(number) && number > 0
+    return !isNaN(number) && number > 0 && number <= 100
   }
 }
