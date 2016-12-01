@@ -37,6 +37,7 @@ export class RecipeView {
     return this._ui.askQuestion('Name of hop: ')
       .then((name) => result.name = name)
       .then(() => this._ui.askQuestion('Alpha (%) [0-100]: ', this._validatePercent))
+      .then((alpha) => result.alpha = +alpha)
       .then(() => result)
   }
 

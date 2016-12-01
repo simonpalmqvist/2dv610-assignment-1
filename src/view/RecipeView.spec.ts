@@ -128,10 +128,11 @@ describe('Class RecipeView', () => {
       })
     })
 
-    it('Should set name received from question', (done) => {
+    it('Should set alpha received from question', (done) => {
       let expected: string = '45'
+      consoleUIMock.askQuestion.returns(Promise.resolve())
       consoleUIMock.askQuestion
-        .withArgs(nameLabel)
+        .withArgs(alphaLabel)
         .returns(Promise.resolve(expected))
 
       sut.showAddHopsForm().then(({alpha}) => {
