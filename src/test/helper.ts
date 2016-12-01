@@ -4,6 +4,13 @@ export function stubProperty (object: any, property: string, returns: any) : voi
   Object.defineProperty(object, property, {value: returns})
 }
 
+export function assertPromise (promise: Promise<string>, resolve: (result: string) => void, done: (error?: any) => void) : void {
+  promise
+    .then(resolve)
+    .then(() => done())
+    .catch((error) => done(`promise was rejected: ${error}`))
+}
+
 export function getFakeStateWithoutIngredients () : State {
   return {
     recipe: {

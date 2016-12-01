@@ -1,3 +1,4 @@
+import { assertPromise } from '../test/helper'
 import { ConsoleUI } from './ConsoleUI'
 import { expect, use } from 'chai'
 import * as readline from 'readline'
@@ -9,6 +10,7 @@ describe('Class ConsoleUI', () => {
   let consoleMock: ConsoleMock
   let readlineMock: ReadlineMock
   let sut: ConsoleUI
+  let promise: Promise<string>
   const question = 'What day is it?'
   const answer = 'Sunday'
 
@@ -45,18 +47,15 @@ describe('Class ConsoleUI', () => {
       })
 
       it('Should resolve returned promise when input is added', (done) => {
-        let promise: Promise<string> = sut.askQuestion(question)
+        promise = sut.askQuestion(question)
 
         readlineMock.question.callArgWith(1, answer)
 
-        promise.then((result) => {
-          expect(result).to.equal(answer)
-          done()
-        }).catch((error) => done(`promise was rejected: ${error}`))
+        assertPromise(promise, (result) => expect(result).to.equal(answer), done)
       })
 
       it('Should ask for input again if value doesnt match validation', () => {
-        let promise: Promise<string> = sut.askQuestion(question, () => false)
+        sut.askQuestion(question, () => false)
 
         readlineMock.question.callArgWith(1, answer)
 
@@ -66,16 +65,12 @@ describe('Class ConsoleUI', () => {
 
       it('Should get second input when answer first was wrong', (done) => {
         const falseAnswer: string = 'Monkeyday'
-        let promise: Promise<string> = sut.askQuestion(question, (a) => a === answer)
+        promise = sut.askQuestion(question, (a) => a === answer)
 
         readlineMock.question.firstCall.callArgWith(1, falseAnswer)
         readlineMock.question.secondCall.callArgWith(1, answer)
 
-        promise.then((result) => {
-          expect(result).to.equal(answer)
-          done()
-        }).catch((error) => done(`promise was rejected: ${error}`))
-
+        assertPromise(promise, (result) => expect(result).to.equal(answer), done)
       })
     })
   })
