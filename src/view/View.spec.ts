@@ -60,7 +60,7 @@ describe('Class View', () => {
       })
 
       it('Should show prompt after action', () => {
-        consoleUIMock.registerInputHandler.callArgWith(0, 'dkqopdkwpqko')
+        consoleUIMock.registerInputHandler.callArgWith(0, 'some action')
 
         expect(consoleUIMock.prompt).to.be.called
       })
