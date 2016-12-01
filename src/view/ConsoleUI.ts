@@ -30,5 +30,6 @@ export class ConsoleUI {
   }
 
   public prompt () : void {
+    this._input.prompt()
   }
 }
