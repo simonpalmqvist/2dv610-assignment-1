@@ -1,3 +1,4 @@
+import { Fermentable } from '../model/Fermentable'
 import { Hop } from '../model/Hop'
 import { Recipe } from '../model/Recipe'
 import Actions from '../view/Action'
@@ -23,7 +24,7 @@ export class BrewApp {
     this.render()
   }
 
-  private _getUpdatedState () : State {
+  private _getUpdatedState () : State.State {
     return {
       recipe: {
         efficiency: this._recipe.efficiency,
@@ -31,16 +32,26 @@ export class BrewApp {
         expectedFG: this._recipe.expectedFG,
         expectedIBU: this._recipe.expectedIBU,
         expectedOG: this._recipe.expectedOG,
-        fermentables: [],
-        hops: this._recipe.hops.map((hop) => ({
-          alpha: hop.alpha,
-          amount: hop.amount,
-          name: hop.name,
-          time: hop.time,
-          ibu: hop.calculateIBU(this._recipe.expectedOG, this._recipe.volume)
-        })),
+        fermentables: <ReadonlyArray<State.Fermentable>> [],
+        hops: this._getHopState(),
         volume: this._recipe.volume,
+        yeast: undefined,
       },
     }
+  }
+
+  private _getHopState () : Array<State.Hop> {
+    let array: Array<State.Hop> = []
+
+    for (let hop of this._recipe.hops) {
+      array.push({
+        alpha: hop.alpha,
+        amount: hop.amount,
+        ibu: hop.calculateIBU(this._recipe.expectedOG, this._recipe.volume),
+        name: hop.name,
+        time: hop.time,
+      })
+    }
+    return array
   }
 }

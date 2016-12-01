@@ -16,7 +16,7 @@ export class View extends EventEmitter {
     this._ui.registerInputHandler(this._handleUserActions.bind(this))
   }
 
-  public render (state: State) : void {
+  public render (state: State.State) : void {
     if (this._printStart) {
       this._printWelcomeMessage()
     }

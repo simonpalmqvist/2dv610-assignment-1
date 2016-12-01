@@ -1,8 +1,9 @@
 import * as HopModule from '../model/Hop'
 import { Recipe } from '../model/Recipe'
 import {
+  addStateToRecipeMock,
+  getFakeStateWithHops,
   getFakeStateWithoutIngredients,
-  stubProperty,
 } from '../test/helper'
 import Action from '../view/Action'
 import { State } from '../view/State'
@@ -40,14 +41,8 @@ describe('Class BrewApp', () => {
       })
 
       it('Should pass on current state to render without added ingredients', () => {
-        let state: State = getFakeStateWithoutIngredients()
-
-        recipeMock.volume = state.recipe.volume
-        recipeMock.efficiency = state.recipe.efficiency
-        stubProperty(recipeMock, 'expectedOG', state.recipe.expectedOG)
-        stubProperty(recipeMock, 'expectedFG', state.recipe.expectedFG)
-        stubProperty(recipeMock, 'expectedIBU', state.recipe.expectedIBU)
-        stubProperty(recipeMock, 'expectedABV', state.recipe.expectedABV)
+        let state: State.State = getFakeStateWithoutIngredients()
+        addStateToRecipeMock(recipeMock, state)
 
         sut.render()
 
@@ -55,47 +50,8 @@ describe('Class BrewApp', () => {
       })
 
       it('Should pass on current state to render with added hops', () => {
-        let state: State = {
-          recipe: {
-            efficiency: 0.8,
-            expectedABV: 0.48,
-            expectedFG: 1.010,
-            expectedIBU: 36,
-            expectedOG: 1.050,
-            fermentables: [],
-            hops: [
-              {
-                alpha: 6,
-                amount: 50,
-                name: 'Cascade',
-                time: 15,
-                ibu: 10,
-              },
-              {
-                alpha: 12,
-                amount: 100,
-                name: 'Citra',
-                time: 0,
-                ibu: 0,
-              },
-            ],
-            volume: 2,
-          },
-        }
-
-        recipeMock.volume = state.recipe.volume
-        recipeMock.efficiency = state.recipe.efficiency
-        stubProperty(recipeMock, 'expectedOG', state.recipe.expectedOG)
-        stubProperty(recipeMock, 'expectedFG', state.recipe.expectedFG)
-        stubProperty(recipeMock, 'expectedIBU', state.recipe.expectedIBU)
-        stubProperty(recipeMock, 'expectedABV', state.recipe.expectedABV)
-        stubProperty(recipeMock, 'hops', state.recipe.hops.map((hop) => ({
-          alpha: hop.alpha,
-          amount: hop.amount,
-          name: hop.name,
-          time: hop.time,
-          calculateIBU() { return  hop.ibu },
-        })))
+        let state: State.State = getFakeStateWithHops()
+        addStateToRecipeMock(recipeMock, state)
 
         sut.render()
 

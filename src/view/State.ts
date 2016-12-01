@@ -1,15 +1,14 @@
-export interface State {
-  recipe: State.Recipe
-}
+export namespace State {
+  export interface State {
+    recipe: State.Recipe
+  }
 
-namespace State {
   export interface Recipe {
-
     readonly volume: number
     readonly efficiency: number
     readonly yeast?: State.Yeast
-    readonly hops: State.Hop[]
-    readonly fermentables: State.Fermentable[]
+    readonly hops: ReadonlyArray<State.Hop>
+    readonly fermentables: ReadonlyArray<State.Fermentable>
     readonly expectedOG: number
     readonly expectedFG: number
     readonly expectedIBU: number
