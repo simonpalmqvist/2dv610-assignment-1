@@ -32,8 +32,16 @@ export class RecipeView {
   }
 
   public showAddHopsForm () : Promise<HopForm> {
+    let result: HopForm = {
+      alpha: 0,
+      amount: 0,
+      name: '',
+      time: 0
+    }
+
     return this._ui.askQuestion('Name of hop: ')
-      .then(() => ({} as HopForm))
+      .then((name) => result.name = name)
+      .then(() => result)
   }
 
   private _twoColumn (firstColumn: string, secondColumn: string) : string {
