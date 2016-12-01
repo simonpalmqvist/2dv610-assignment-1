@@ -41,7 +41,7 @@ export class RecipeView {
 
     return this._ui.askQuestion('Name of hop: ')
       .then((name) => result.name = name)
-      .then(() => this._ui.askQuestion('Alpha (%) [0-100]: ', (answer) => !isNaN(+answer) && +answer > 0))
+      .then(() => this._ui.askQuestion('Alpha (%) [0-100]: ', this._validatePercent))
       .then(() => result)
   }
 
@@ -71,5 +71,10 @@ export class RecipeView {
 
   private _repeatChar (char: string, times: number) : string {
     return new Array(times + 1).join(char)
+  }
+
+  private _validatePercent(answer: string) : boolean {
+    let number: number = +answer
+    return !isNaN(number) && number > 0
   }
 }

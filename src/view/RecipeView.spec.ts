@@ -12,6 +12,7 @@ describe('Class RecipeView', () => {
   let stateMock: State.State
   let consoleUIMock: ConsoleUIMock
   let sut: RecipeView
+  let validator: (answer: string) => boolean
   const nameLabel: string = 'Name of hop: '
   const alphaLabel: string = 'Alpha (%) [0-100]: '
 
@@ -76,7 +77,6 @@ describe('Class RecipeView', () => {
 
       it('Should validate alpha and return false if not a number', (done) => {
         let notNumber: string = 'fkerorekog'
-        let validator: (answer: string) => boolean
         consoleUIMock.askQuestion.returns(Promise.resolve())
 
         sut.showAddHopsForm().then(() => {
@@ -90,7 +90,6 @@ describe('Class RecipeView', () => {
 
       it('Should validate alpha and return false if number is negative', (done) => {
         let negativeNumber: string = '-1'
-        let validator: (answer: string) => boolean
         consoleUIMock.askQuestion.returns(Promise.resolve())
 
         sut.showAddHopsForm().then(() => {
