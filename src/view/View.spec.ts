@@ -39,7 +39,10 @@ describe('Class View', () => {
       it('Should show prompt last', () => {
         sut.render(stateMock)
 
-        assert.callOrder(consoleUIMock.print, consoleUIMock.prompt)
+        assert.callOrder(
+          consoleUIMock.print,
+          consoleUIMock.prompt
+        )
       })
     })
 
