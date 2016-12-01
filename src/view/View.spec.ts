@@ -33,5 +33,12 @@ describe('Class View', () => {
         expect(consoleUIMock.print).to.be.calledOnce
       })
     })
+
+    describe('handleUserAction', () => {
+      it('Should have registered handler to console UI', () => {
+        expect(consoleUIMock.registerInputHandler).to.be.called
+      })
+    })
   })
+
 })
