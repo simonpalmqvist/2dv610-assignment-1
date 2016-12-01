@@ -20,6 +20,7 @@ export class View extends EventEmitter {
       this._printWelcomeMessage()
     }
 
+    this._ui.prompt()
   }
 
   private _printWelcomeMessage () : void {
