@@ -25,7 +25,7 @@ describe('Class BrewApp', () => {
     sut = new BrewApp(<any> viewMock, <any> recipeMock)
   })
 
-  describe('Method', () => {
+    describe('Method', () => {
     describe('init', () => {
       it('Should tell view to render', () => {
         sut.init()
@@ -49,8 +49,6 @@ describe('Class BrewApp', () => {
       })
 
       it('Should add listener for ADD_HOPS action', () => {
-        sut.init()
-
         expect(viewMock.on).calledWith(Action.ADD_HOP)
       })
     })
@@ -70,26 +68,22 @@ describe('Class BrewApp', () => {
       const args: any[] = [12, 40, 'Amarillo', 15]
 
       // Trigger callback function when the listener is added
-      viewMock.on.withArgs(Action.ADD_HOP).yields(...args)
-      sut.init()
+      viewMock.on.withArgs(Action.ADD_HOP).callArgWith(1, ...args)
 
       expect(hopStub).calledWithExactly(...args)
     })
 
     it('Should call recipe addHop with created hop', () => {
-      viewMock.on.withArgs(Action.ADD_HOP).yields()
-      sut.init()
+      viewMock.on.withArgs(Action.ADD_HOP).callArg(1)
 
       const createdHop: Sinon.SinonStub = hopStub.firstCall.returnValue
       expect(recipeMock.addHop).calledWithExactly(createdHop)
     })
 
     it('Should call render after hop is added', () => {
-      viewMock.on.withArgs(Action.ADD_HOP).yields()
-      sut.init()
+      viewMock.on.withArgs(Action.ADD_HOP).callArg(1)
 
-      expect(viewMock.render).to.be.calledTwice
-      expect(viewMock.render.lastCall).to.be.calledAfter(recipeMock.addHop)
+      expect(viewMock.render).to.be.calledAfter(recipeMock.addHop)
     })
   })
 })
