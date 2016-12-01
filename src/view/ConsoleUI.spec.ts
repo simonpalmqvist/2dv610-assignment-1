@@ -37,10 +37,12 @@ describe('Class ConsoleUI', () => {
 
     describe('askQuestion', () => {
       it('Should print question', () => {
-        sut.askQuestion('What day is it?')
+        const question = 'What day is it?'
+        sut.askQuestion(question)
 
-        expect(readlineMock.question).to.be.calledWith('What day is it?')
+        expect(readlineMock.question).to.be.calledWith(question)
       })
+
     })
   })
 })
