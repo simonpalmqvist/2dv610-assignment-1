@@ -100,6 +100,19 @@ describe('Class RecipeView', () => {
           done()
         })
       })
+
+      it('Should validate alpha and return false if number is over 100', (done) => {
+        let negativeNumber: string = '101'
+        consoleUIMock.askQuestion.returns(Promise.resolve())
+
+        sut.showAddHopsForm().then(() => {
+          validator = consoleUIMock.askQuestion
+            .withArgs(alphaLabel).firstCall.args[1]
+
+          expect(validator(negativeNumber)).to.be.false
+          done()
+        })
+      })
     })
   })
 })
