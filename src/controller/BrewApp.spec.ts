@@ -83,5 +83,13 @@ describe('Class BrewApp', () => {
       const createdHop: Sinon.SinonStub = hopStub.firstCall.returnValue
       expect(recipeMock.addHop).calledWithExactly(createdHop)
     })
+
+    it('Should call render after hop is added', () => {
+      viewMock.on.withArgs(Action.ADD_HOP).yields()
+      sut.init()
+
+      expect(viewMock.render).to.be.calledTwice
+      expect(viewMock.render.lastCall).to.be.calledAfter(recipeMock.addHop)
+    })
   })
 })
