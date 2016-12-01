@@ -127,5 +127,17 @@ describe('Class RecipeView', () => {
         })
       })
     })
+
+    it('Should set name received from question', (done) => {
+      let expected: string = '45'
+      consoleUIMock.askQuestion
+        .withArgs(nameLabel)
+        .returns(Promise.resolve(expected))
+
+      sut.showAddHopsForm().then(({alpha}) => {
+        expect(alpha).to.equal(+expected)
+        done()
+      })
+    })
   })
 })
