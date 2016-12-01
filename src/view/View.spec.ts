@@ -1,4 +1,5 @@
 import { ConsoleUI } from './ConsoleUI'
+import { RecipeView } from './RecipeView'
 import { View } from './View'
 import { expect, use } from 'chai'
 import { createStubInstance } from 'sinon'
@@ -8,12 +9,14 @@ describe('Class View', () => {
   use(SinonChai)
   let stateMock: any
   let consoleUIMock: ConsoleUIMock
+  let recipeViewMock: RecipeViewMock
   let sut: View
 
   beforeEach(() => {
     stateMock = {}
+    recipeViewMock = <RecipeViewMock> createStubInstance(RecipeView)
     consoleUIMock = <ConsoleUIMock> createStubInstance(ConsoleUI)
-    sut = new View(<any> consoleUIMock)
+    sut = new View(<any> consoleUIMock, <any> recipeViewMock)
   })
 
   describe('Method', () => {
@@ -37,6 +40,12 @@ describe('Class View', () => {
     describe('handleUserAction', () => {
       it('Should have registered handler to console UI', () => {
         expect(consoleUIMock.registerInputHandler).to.be.called
+      })
+
+      it('Should show add hops form when input is "add hops"', () => {
+        consoleUIMock.registerInputHandler.callArgWith(0, 'add hops')
+
+        expect(recipeViewMock.showAddHopsForm).to.be.called
       })
     })
   })

@@ -1,4 +1,5 @@
 import { ConsoleUI } from './ConsoleUI'
+import { RecipeView } from './RecipeView'
 import { State } from './State'
 import { EventEmitter } from 'events'
 
@@ -6,7 +7,7 @@ export class View extends EventEmitter {
   private _ui: ConsoleUI
   private _printStart: boolean = true
 
-  constructor (ui: ConsoleUI) {
+  constructor (ui: ConsoleUI, recipeView: RecipeView) {
     super()
     this._ui = ui
 
