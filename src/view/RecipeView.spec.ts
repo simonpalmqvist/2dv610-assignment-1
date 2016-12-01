@@ -13,6 +13,7 @@ describe('Class RecipeView', () => {
   let consoleUIMock: ConsoleUIMock
   let sut: RecipeView
   const nameLabel: string = 'Name of hop: '
+  const alphaLabel: string = 'Alpha (%) [0-100]: '
 
   beforeEach(() => {
     stateMock = getFakeStateWithoutIngredients()
@@ -68,17 +69,19 @@ describe('Class RecipeView', () => {
         consoleUIMock.askQuestion.returns(Promise.resolve())
 
         sut.showAddHopsForm().then(() => {
-          expect(consoleUIMock.askQuestion.withArgs('Alpha (%) [0-100]: ')).to.be.called
+          expect(consoleUIMock.askQuestion.withArgs()).to.be.called
           done()
         })
       })
 
       it('Should validate alpha and return false if not a number', (done) => {
         let notNumber: string = 'fkerorekog'
+        let validator: (answer: string) => boolean
         consoleUIMock.askQuestion.returns(Promise.resolve())
 
         sut.showAddHopsForm().then(({name}) => {
-          let validator: (answer: string) => boolean = consoleUIMock.askQuestion.withArgs('Alpha (%) [0-100]: ').firstCall.args[1]
+          validator = consoleUIMock.askQuestion
+            .withArgs(alphaLabel).firstCall.args[1]
 
           expect(validator(notNumber)).to.be.false
           done()
