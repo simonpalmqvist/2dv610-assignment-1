@@ -79,11 +79,25 @@ describe('Class RecipeView', () => {
         let validator: (answer: string) => boolean
         consoleUIMock.askQuestion.returns(Promise.resolve())
 
-        sut.showAddHopsForm().then(({name}) => {
+        sut.showAddHopsForm().then(() => {
           validator = consoleUIMock.askQuestion
             .withArgs(alphaLabel).firstCall.args[1]
 
           expect(validator(notNumber)).to.be.false
+          done()
+        })
+      })
+
+      it('Should validate alpha and return false if number is negative', (done) => {
+        let negativeNumber: string = '-1'
+        let validator: (answer: string) => boolean
+        consoleUIMock.askQuestion.returns(Promise.resolve())
+
+        sut.showAddHopsForm().then(() => {
+          validator = consoleUIMock.askQuestion
+            .withArgs(alphaLabel).firstCall.args[1]
+
+          expect(validator(negativeNumber)).to.be.false
           done()
         })
       })
