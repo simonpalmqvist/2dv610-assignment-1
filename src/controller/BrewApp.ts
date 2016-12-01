@@ -14,13 +14,13 @@ export class BrewApp {
     this._view.on(Actions.ADD_HOP, this._addHop.bind(this))
   }
 
-  public init () : void {
+  public render () : void {
     this._view.render(this._getUpdatedState())
   }
 
   private _addHop (alpha: number, amount: number, name: string, time: number) : void {
     this._recipe.addHop(new Hop(alpha, amount, name, time))
-    this._view.render(this._getUpdatedState())
+    this.render()
   }
 
   private _getUpdatedState () : State {

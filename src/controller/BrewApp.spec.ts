@@ -25,10 +25,16 @@ describe('Class BrewApp', () => {
     sut = new BrewApp(<any> viewMock, <any> recipeMock)
   })
 
-    describe('Method', () => {
-    describe('init', () => {
+  describe('Constructor', () => {
+    it('Should add listener for ADD_HOPS action', () => {
+      expect(viewMock.on).calledWith(Action.ADD_HOP)
+    })
+  })
+
+  describe('Method', () => {
+    describe('render', () => {
       it('Should tell view to render', () => {
-        sut.init()
+        sut.render()
 
         expect(viewMock.render).calledOnce
       })
@@ -43,19 +49,15 @@ describe('Class BrewApp', () => {
         stubProperty(recipeMock, 'expectedIBU', state.recipe.expectedIBU)
         stubProperty(recipeMock, 'expectedABV', state.recipe.expectedABV)
 
-        sut.init()
+        sut.render()
 
         expect(viewMock.render.firstCall.args[0]).to.deep.equal(state)
       })
 
-      it('Should add listener for ADD_HOPS action', () => {
-        expect(viewMock.on).calledWith(Action.ADD_HOP)
-      })
     })
   })
 
   describe('ADD_HOP', () => {
-
     beforeEach(() => {
       hopStub = stub(HopModule, 'Hop')
     })
@@ -67,7 +69,6 @@ describe('Class BrewApp', () => {
     it('Should create a hop with values sent in event', () => {
       const args: any[] = [12, 40, 'Amarillo', 15]
 
-      // Trigger callback function when the listener is added
       viewMock.on.withArgs(Action.ADD_HOP).callArgWith(1, ...args)
 
       expect(hopStub).calledWithExactly(...args)
