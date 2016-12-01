@@ -1,7 +1,9 @@
+import { getFakeStateWithoutIngredients } from '../test/helper'
 import Action from './Action'
 import { ConsoleUI } from './ConsoleUI'
 import { HopForm } from './HopForm'
 import { RecipeView } from './RecipeView'
+import { State } from './State'
 import { View } from './View'
 import { expect, use } from 'chai'
 import { assert, createStubInstance } from 'sinon'
@@ -9,7 +11,7 @@ import * as SinonChai from 'sinon-chai'
 
 describe('Class View', () => {
   use(SinonChai)
-  let stateMock: any
+  let stateMock: State.State
   let consoleUIMock: ConsoleUIMock
   let recipeViewMock: RecipeViewMock
   let sut: View
@@ -23,7 +25,7 @@ describe('Class View', () => {
   }
 
   beforeEach(() => {
-    stateMock = {}
+    stateMock = getFakeStateWithoutIngredients()
     recipeViewMock = <RecipeViewMock> createStubInstance(RecipeView)
     consoleUIMock = <ConsoleUIMock> createStubInstance(ConsoleUI)
     sut = new View(<any> consoleUIMock, <any> recipeViewMock)
@@ -53,7 +55,7 @@ describe('Class View', () => {
       it('Should show recipe information', () => {
         sut.render(stateMock)
 
-        expect(recipeViewMock.showRecipeInformation).to.be.calledWith(stateMock)
+        expect(recipeViewMock.showRecipeInformation).to.be.calledWith(stateMock.recipe)
       })
 
       it('Should show prompt last', () => {

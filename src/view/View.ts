@@ -23,7 +23,7 @@ export class View extends EventEmitter {
       this._printWelcomeMessage()
     }
 
-    this._recipeView.showRecipeInformation(state)
+    this._recipeView.showRecipeInformation(state.recipe)
 
     this._ui.prompt()
   }

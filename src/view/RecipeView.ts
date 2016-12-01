@@ -3,7 +3,7 @@ import { State } from './State'
 
 export class RecipeView {
 
-  public showRecipeInformation (state: State.State) : void {
+  public showRecipeInformation (state: State.Recipe) : void {
 
   }
 
