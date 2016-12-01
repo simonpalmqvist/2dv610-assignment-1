@@ -50,6 +50,15 @@ describe('Class RecipeView', () => {
 
         expect(consoleUIMock.askQuestion).to.be.calledWith('Name of hop: ')
       })
+
+      it('Should return name with promise', (done) => {
+        consoleUIMock.askQuestion.withArgs('Name of hop: ').returns(Promise.resolve('Cascade'))
+
+        sut.showAddHopsForm().then((hop) => {
+          expect(hop.name).to.equal('Cascade')
+          done()
+        })
+      })
     })
   })
 })
