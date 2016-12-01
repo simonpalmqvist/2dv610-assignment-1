@@ -42,7 +42,7 @@ export class View extends EventEmitter {
         )
         break
       default:
-        'implement me'
+        this._ui.print('Please use one of the following commands: [add hop]')
     }
   this._ui.prompt()
   }
