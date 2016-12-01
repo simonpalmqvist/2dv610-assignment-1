@@ -45,12 +45,13 @@ describe('Class ConsoleUI', () => {
 
 
       it('Should resolve returned promise when input is added', (done) => {
+        let input = 'my input'
         let promise: Promise<string> = sut.askQuestion('')
 
-        readlineMock.question.callArgWith(1, 'my input')
+        readlineMock.question.callArgWith(1, input)
 
         promise.then((result) => {
-          expect(result).to.equal('my input')
+          expect(result).to.equal(input)
           done()
         }).catch((error) => done(`promise was rejected: ${error}`))
       })
