@@ -113,6 +113,19 @@ describe('Class RecipeView', () => {
           done()
         })
       })
+
+      it('Should validate alpha and return true within 0-100', (done) => {
+        let negativeNumber: string = '100'
+        consoleUIMock.askQuestion.returns(Promise.resolve())
+
+        sut.showAddHopsForm().then(() => {
+          validator = consoleUIMock.askQuestion
+            .withArgs(alphaLabel).firstCall.args[1]
+
+          expect(validator(negativeNumber)).to.be.true
+          done()
+        })
+      })
     })
   })
 })
