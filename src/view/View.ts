@@ -32,18 +32,22 @@ export class View extends EventEmitter {
   private _handleUserActions (input: string) : void {
     switch (input) {
       case 'add hop':
-        this._recipeView.showAddHopsForm().then((hop) => this.emit(
-            Action.ADD_HOP,
-            hop.alpha,
-            hop.amount,
-            hop.name,
-            hop.time,
-          )
-        )
+        this._handleHopAction()
         break
       default:
         this._ui.print('Please use one of the following commands: [add hop]')
     }
   this._ui.prompt()
+  }
+
+  private _handleHopAction () : void {
+    this._recipeView.showAddHopsForm().then((hop) => this.emit(
+        Action.ADD_HOP,
+        hop.alpha,
+        hop.amount,
+        hop.name,
+        hop.time,
+      )
+    )
   }
 }
