@@ -17,7 +17,7 @@ export class ConsoleUI {
     this._output.log(message)
   }
 
-  public askQuestion (question: string, validation?: (string) => boolean) : Promise<string> {
+  public askQuestion (question: string, validation?: (answer: string) => boolean) : Promise<string> {
     return new Promise<string>((resolve) => {
       this._input.question(question, (answer) => {
         let result: any = !validation || validation(answer.trim())

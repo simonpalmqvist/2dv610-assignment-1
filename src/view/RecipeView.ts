@@ -1,6 +1,6 @@
 
 export class RecipeView {
-
-  showAddHopsForm () : void {
+  public showAddHopsForm () : void {
+    'implement me'
   }
 }

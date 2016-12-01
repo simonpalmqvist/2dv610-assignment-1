@@ -31,6 +31,8 @@ export class View extends EventEmitter {
       case 'add hop':
         this._recipeView.showAddHopsForm()
         break
+      default:
+        'implement me'
     }
   }
 }

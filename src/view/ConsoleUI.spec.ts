@@ -11,8 +11,8 @@ describe('Class ConsoleUI', () => {
   let readlineMock: ReadlineMock
   let sut: ConsoleUI
   let promise: Promise<string>
-  const question = 'What day is it?'
-  const answer = 'Sunday'
+  const question: string = 'What day is it?'
+  const answer: string = 'Sunday'
 
   beforeEach(() => {
     consoleMock = <ConsoleMock> createStubInstance(console.constructor)
