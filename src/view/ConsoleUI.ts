@@ -16,4 +16,8 @@ export class ConsoleUI {
   public print (message: string) : void {
     this._output.log(message)
   }
+
+  public askQuestion (question: string) : Promise<any> {
+    return new Promise<any>(() => '' )
+  }
 }

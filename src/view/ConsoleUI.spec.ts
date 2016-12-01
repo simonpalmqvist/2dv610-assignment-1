@@ -34,5 +34,13 @@ describe('Class ConsoleUI', () => {
         expect(readlineMock.on).to.be.calledWith('line', callback)
       })
     })
+
+    describe('askQuestion', () => {
+      it('Should print question', () => {
+        sut.askQuestion('What day is it?')
+
+        expect(readlineMock.question).to.be.calledWith('What day is it?')
+      })
+    })
   })
 })
