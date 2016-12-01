@@ -56,9 +56,7 @@ describe('Class RecipeView', () => {
 
       it('Should set name received from question', (done) => {
         let expected: string = 'Cascade'
-        consoleUIMock.askQuestion
-          .withArgs(nameLabel)
-          .returns(Promise.resolve(expected))
+        consoleUIMock.askQuestion.returns(Promise.resolve(expected))
 
         sut.showAddHopsForm().then(({name}) => {
           expect(name).to.equal(expected)
@@ -130,10 +128,7 @@ describe('Class RecipeView', () => {
 
     it('Should set alpha received from question', (done) => {
       let expected: string = '45'
-      consoleUIMock.askQuestion.returns(Promise.resolve())
-      consoleUIMock.askQuestion
-        .withArgs(alphaLabel)
-        .returns(Promise.resolve(expected))
+      consoleUIMock.askQuestion.returns(Promise.resolve(expected))
 
       sut.showAddHopsForm().then(({alpha}) => {
         expect(alpha).to.equal(+expected)
