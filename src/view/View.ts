@@ -9,6 +9,8 @@ export class View extends EventEmitter {
   constructor (ui: ConsoleUI) {
     super()
     this._ui = ui
+
+    this._ui.registerInputHandler(this._handleUserActions.bind(this))
   }
 
   public render (state: State) : void {
@@ -20,5 +22,8 @@ export class View extends EventEmitter {
   private _printWelcomeMessage () : void {
     this._ui.print('Welcome to this beer brewing app!')
     this._printStart = false
+  }
+
+  private _handleUserActions (input: string) : void {
   }
 }

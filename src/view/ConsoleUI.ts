@@ -9,7 +9,7 @@ export class ConsoleUI {
     this._input = rl
   }
 
-  public registerInputHandler(callback: () => void) : void {
+  public registerInputHandler(callback: (input: string) => void) : void {
     this._input.on('line', callback)
   }
 
