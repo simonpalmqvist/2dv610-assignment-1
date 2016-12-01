@@ -13,6 +13,8 @@ describe('Class View', () => {
   let consoleUIMock: ConsoleUIMock
   let recipeViewMock: RecipeViewMock
   let sut: View
+  const blankLines: string = '\n\n'
+  const startMessage: string = 'Welcome to this beer brewing app!'
   const hopForm: HopForm = {
     alpha: 14,
     amount: 30,
@@ -32,32 +34,29 @@ describe('Class View', () => {
       it('Should start new render with two blank rows', () => {
         sut.render(stateMock)
 
-        expect(consoleUIMock.print.withArgs('\n\n')).to.be.called
+        expect(consoleUIMock.print.withArgs(blankLines)).to.be.called
       })
 
       it('Should present startup message on first render', () => {
-        let message: string = 'Welcome to this beer brewing app!'
-
         sut.render(stateMock)
 
-        expect(consoleUIMock.print.withArgs(message)).to.be.called
+        expect(consoleUIMock.print.withArgs(startMessage)).to.be.called
       })
 
       it('Should not present startup message second time', () => {
-        let message: string = 'Welcome to this beer brewing app!'
-
         sut.render(stateMock)
         sut.render(stateMock)
 
-        expect(consoleUIMock.print.withArgs(message)).to.be.calledOnce
+        expect(consoleUIMock.print.withArgs(startMessage)).to.be.calledOnce
       })
 
       it('Should show prompt last', () => {
         sut.render(stateMock)
 
         assert.callOrder(
-          consoleUIMock.print,
-          consoleUIMock.prompt
+          consoleUIMock.print.withArgs(blankLines),
+          consoleUIMock.print.withArgs(startMessage),
+          consoleUIMock.prompt,
         )
       })
     })
