@@ -29,19 +29,27 @@ describe('Class View', () => {
 
   describe('Method', () => {
     describe('render', () => {
+      it('Should start new render with two blank rows', () => {
+        sut.render(stateMock)
+
+        expect(consoleUIMock.print.withArgs('\n\n')).to.be.called
+      })
+
       it('Should present startup message on first render', () => {
         let message: string = 'Welcome to this beer brewing app!'
 
         sut.render(stateMock)
 
-        expect(consoleUIMock.print).to.be.calledWith(message)
+        expect(consoleUIMock.print.withArgs(message)).to.be.called
       })
 
       it('Should not present startup message second time', () => {
+        let message: string = 'Welcome to this beer brewing app!'
+
         sut.render(stateMock)
         sut.render(stateMock)
 
-        expect(consoleUIMock.print).to.be.calledOnce
+        expect(consoleUIMock.print.withArgs(message)).to.be.calledOnce
       })
 
       it('Should show prompt last', () => {
