@@ -4,13 +4,14 @@ import { State } from './State'
 import { EventEmitter } from 'events'
 
 export class View extends EventEmitter {
+  private _recipeView: RecipeView
   private _ui: ConsoleUI
   private _printStart: boolean = true
 
   constructor (ui: ConsoleUI, recipeView: RecipeView) {
     super()
     this._ui = ui
-
+    this._recipeView = recipeView
     this._ui.registerInputHandler(this._handleUserActions.bind(this))
   }
 
@@ -26,5 +27,10 @@ export class View extends EventEmitter {
   }
 
   private _handleUserActions (input: string) : void {
+    switch (input) {
+      case 'add hop':
+        this._recipeView.showAddHopsForm()
+        break
+    }
   }
 }
