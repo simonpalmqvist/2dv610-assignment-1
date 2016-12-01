@@ -54,6 +54,39 @@ describe('Class BrewApp', () => {
         expect(viewMock.render.firstCall.args[0]).to.deep.equal(state)
       })
 
+      it('Should pass on current state to render with added hops', () => {
+        let state: State = {
+          recipe: {
+            efficiency: 0.8,
+            expectedABV: 0.48,
+            expectedFG: 1.010,
+            expectedIBU: 36,
+            expectedOG: 1.050,
+            fermentables: [],
+            hops: [{
+              alpha: 14,
+              amount: 50,
+              name: 'Cascade',
+              time: 15,
+              ibu: 10,
+            }],
+            volume: 2,
+          },
+        }
+
+        recipeMock.volume = state.recipe.volume
+        recipeMock.efficiency = state.recipe.efficiency
+        stubProperty(recipeMock, 'expectedOG', state.recipe.expectedOG)
+        stubProperty(recipeMock, 'expectedFG', state.recipe.expectedFG)
+        stubProperty(recipeMock, 'expectedIBU', state.recipe.expectedIBU)
+        stubProperty(recipeMock, 'expectedABV', state.recipe.expectedABV)
+        stubProperty(recipeMock, 'hops', state.recipe.hops)
+
+        sut.render()
+
+        expect(viewMock.render.firstCall.args).to.deep.equal([state])
+      })
+
     })
   })
 
