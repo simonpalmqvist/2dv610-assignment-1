@@ -65,6 +65,13 @@ describe('Class View', () => {
         expect(consoleUIMock.prompt).to.be.called
       })
 
+      it('Should show message if action doesnt exist', () => {
+        let expected = 'Please use one of the following commands: [add hop]'
+        consoleUIMock.registerInputHandler.callArgWith(0, 'no action')
+
+        expect(consoleUIMock.print).to.be.calledWith(expected)
+      })
+
       it('Should show add hops form when input is "add hop"', () => {
         recipeViewMock.showAddHopsForm.returns(Promise.resolve(hopForm))
         consoleUIMock.registerInputHandler.callArgWith(0, 'add hop')
