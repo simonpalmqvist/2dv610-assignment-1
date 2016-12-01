@@ -45,5 +45,7 @@ declare interface ConsoleUIMock extends Sinon.SinonStub {
 }
 
 declare interface RecipeViewMock extends Sinon.SinonStub {
+  showRecipeInformation: Sinon.SinonStub
+  showHopInformation: Sinon.SinonStub
   showAddHopsForm: Sinon.SinonStub
 }

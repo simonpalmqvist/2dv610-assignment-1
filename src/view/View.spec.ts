@@ -50,6 +50,12 @@ describe('Class View', () => {
         expect(consoleUIMock.print.withArgs(startMessage)).to.be.calledOnce
       })
 
+      it('Should show recipe information', () => {
+        sut.render(stateMock)
+
+        expect(recipeViewMock.showRecipeInformation).to.be.calledWith(stateMock)
+      })
+
       it('Should show prompt last', () => {
         sut.render(stateMock)
 
