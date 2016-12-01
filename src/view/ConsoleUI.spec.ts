@@ -66,7 +66,7 @@ describe('Class ConsoleUI', () => {
 
       it('Should get second input when answer first was wrong', (done) => {
         const falseAnswer: string = 'Monkeyday'
-        let promise: Promise<string> = sut.askQuestion(question, (a) => false)
+        let promise: Promise<string> = sut.askQuestion(question, (a) => a === answer)
 
         readlineMock.question.firstCall.callArgWith(1, falseAnswer)
         readlineMock.question.secondCall.callArgWith(1, answer)
