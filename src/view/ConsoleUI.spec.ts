@@ -9,6 +9,8 @@ describe('Class ConsoleUI', () => {
   let consoleMock: ConsoleMock
   let readlineMock: ReadlineMock
   let sut: ConsoleUI
+  const question = 'What day is it?'
+  const answer = 'Sunday'
 
   beforeEach(() => {
     consoleMock = <ConsoleMock> createStubInstance(console.constructor)
@@ -37,30 +39,26 @@ describe('Class ConsoleUI', () => {
 
     describe('askQuestion', () => {
       it('Should print question', () => {
-        const question = 'What day is it?'
         sut.askQuestion(question)
 
         expect(readlineMock.question).to.be.calledWith(question)
       })
 
       it('Should resolve returned promise when input is added', (done) => {
-        let input = 'my input'
-        let promise: Promise<string> = sut.askQuestion('')
+        let promise: Promise<string> = sut.askQuestion(question)
 
-        readlineMock.question.callArgWith(1, input)
+        readlineMock.question.callArgWith(1, answer)
 
         promise.then((result) => {
-          expect(result).to.equal(input)
+          expect(result).to.equal(answer)
           done()
         }).catch((error) => done(`promise was rejected: ${error}`))
       })
 
       it('Should ask for input again if value doesnt match validation', () => {
-        let input = 'bla bla'
-        let question = 'What day is it?'
         let promise: Promise<string> = sut.askQuestion(question, () => false)
 
-        readlineMock.question.callArgWith(1, input)
+        readlineMock.question.callArgWith(1, answer)
 
         expect(readlineMock.question).to.always.be.calledWith(question)
         expect(readlineMock.question).to.be.calledTwice
