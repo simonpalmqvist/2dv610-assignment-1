@@ -43,6 +43,16 @@ describe('Class ConsoleUI', () => {
         expect(readlineMock.question).to.be.calledWith(question)
       })
 
+
+      it('Should resolve returned promise when input is added', (done) => {
+        let promise: Promise<string> = sut.askQuestion('')
+
+        readlineMock.question.callArgWith(1, 'my input')
+
+        promise.then((result) => {
+          expect(result).to.equal('my input')
+        })
+      })
     })
   })
 })
