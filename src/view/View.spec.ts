@@ -70,6 +70,8 @@ describe('Class View', () => {
         assert.callOrder(
           consoleUIMock.print.withArgs(blankLines),
           consoleUIMock.print.withArgs(startMessage),
+          recipeViewMock.showRecipeInformation,
+          recipeViewMock.showHopInformation,
           consoleUIMock.prompt,
         )
       })

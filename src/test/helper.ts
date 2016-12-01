@@ -42,13 +42,13 @@ function _generateFakeState (hops: State.Hop[],
   return {
     recipe: {
       efficiency: 0.8,
-      expectedABV: 0.48,
+      expectedABV: 0.048,
       expectedFG: 1.010,
       expectedIBU: 36,
       expectedOG: 1.050,
       fermentables,
       hops,
-      volume: 2,
+      volume: 20,
       yeast,
     },
   }
