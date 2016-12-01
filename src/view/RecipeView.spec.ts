@@ -22,15 +22,14 @@ describe('Class RecipeView', () => {
         expect(consoleUIMock.print).to.be.calledWith(`
 Recipe
 ----------------------------------------------
-Volume:     20 l
-Efficiency: 80 %
+Volume:        20 l
+Efficiency:    80 %
 
-OG:         1.050
-FG:         1.010
-IBU:        32
-ABV:        4,8 %
-----------------------------------------------
-          `)
+OG:            1.050
+FG:            1.010
+IBU:           36
+ABV:           4.8 %
+----------------------------------------------`)
       })
     })
   })
