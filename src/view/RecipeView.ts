@@ -41,7 +41,7 @@ export class RecipeView {
 
     return this._ui.askQuestion('Name of hop: ')
       .then((name) => result.name = name)
-      .then(() => this._ui.askQuestion('Alpha (%) [0-100]: ', () => undefined))
+      .then(() => this._ui.askQuestion('Alpha (%) [0-100]: ', (answer) => !isNaN(+answer)))
       .then(() => result)
   }
 
