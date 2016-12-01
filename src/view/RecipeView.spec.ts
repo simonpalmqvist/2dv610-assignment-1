@@ -13,23 +13,27 @@ describe('Class RecipeView', () => {
   describe('Method', () => {
     describe('showRecipeInformation', () => {
       it('Should print correct layout', () => {
+        const expected: string = [
+          '',
+          'Recipe',
+          '--------------------------------------------------',
+          'Volume:        20 l',
+          'Efficiency:    80.0 %',
+          '',
+          'OG:            1.050',
+          'FG:            1.010',
+          'IBU:           36',
+          'ABV:           4.8 %',
+          '--------------------------------------------------',
+        ].join('\n')
+
         let stateMock = getFakeStateWithoutIngredients()
         let consoleUIMock: ConsoleUIMock = <ConsoleUIMock> createStubInstance(ConsoleUI)
         let sut: RecipeView = new RecipeView(<any> consoleUIMock)
 
         sut.showRecipeInformation(stateMock.recipe)
 
-        expect(consoleUIMock.print).to.be.calledWith(`
-Recipe
-----------------------------------------------
-Volume:        20 l
-Efficiency:    80 %
-
-OG:            1.050
-FG:            1.010
-IBU:           36
-ABV:           4.8 %
-----------------------------------------------`)
+        expect(consoleUIMock.print).to.be.calledWith(expected)
       })
     })
   })
