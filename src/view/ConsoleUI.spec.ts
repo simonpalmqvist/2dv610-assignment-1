@@ -43,7 +43,6 @@ describe('Class ConsoleUI', () => {
         expect(readlineMock.question).to.be.calledWith(question)
       })
 
-
       it('Should resolve returned promise when input is added', (done) => {
         let input = 'my input'
         let promise: Promise<string> = sut.askQuestion('')
@@ -54,6 +53,17 @@ describe('Class ConsoleUI', () => {
           expect(result).to.equal(input)
           done()
         }).catch((error) => done(`promise was rejected: ${error}`))
+      })
+
+      it('Should ask for input again if value doesnt match validation', () => {
+        let input = 'bla bla'
+        let question = 'What day is it?'
+        let promise: Promise<string> = sut.askQuestion(question, () => false)
+
+        readlineMock.question.callArgWith(1, input)
+
+        expect(readlineMock.question).to.always.be.calledWith(question)
+        expect(readlineMock.question).to.be.calledTwice
       })
     })
   })
