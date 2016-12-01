@@ -1,3 +1,4 @@
+import Action from './Action'
 import { ConsoleUI } from './ConsoleUI'
 import { RecipeView } from './RecipeView'
 import { View } from './View'
@@ -55,6 +56,27 @@ describe('Class View', () => {
         consoleUIMock.registerInputHandler.callArgWith(0, 'add hop')
 
         expect(recipeViewMock.showAddHopsForm).to.be.called
+      })
+
+      it('Should emit action add hops when input is received from form', (done) => {
+        recipeViewMock.showAddHopsForm.returns(Promise.resolve({
+          alpha: 14,
+          amount: 30,
+          name: 'Amarillo',
+          time: 60
+        }))
+
+        sut.on(Action.ADD_HOP, (actual) => {
+          expect(actual).to.deep.equal({
+            alpha: 14,
+            amount: 30,
+            name: 'Amarillo',
+            time: 60
+          })
+          done()
+        })
+
+        consoleUIMock.registerInputHandler.callArgWith(0, 'add hop')
       })
     })
   })
