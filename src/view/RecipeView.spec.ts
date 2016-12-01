@@ -9,6 +9,15 @@ import * as SinonChai from 'sinon-chai'
 
 describe('Class RecipeView', () => {
   use(SinonChai)
+  let stateMock: State.State
+  let consoleUIMock: ConsoleUIMock
+  let sut: RecipeView
+
+  beforeEach(() => {
+    stateMock = getFakeStateWithoutIngredients()
+    consoleUIMock = <ConsoleUIMock> createStubInstance(ConsoleUI)
+    sut = new RecipeView(<any> consoleUIMock)
+  })
 
   describe('Method', () => {
     describe('showRecipeInformation', () => {
@@ -27,10 +36,6 @@ describe('Class RecipeView', () => {
           '--------------------------------------------------',
         ].join('\n')
 
-        let stateMock = getFakeStateWithoutIngredients()
-        let consoleUIMock: ConsoleUIMock = <ConsoleUIMock> createStubInstance(ConsoleUI)
-        let sut: RecipeView = new RecipeView(<any> consoleUIMock)
-
         sut.showRecipeInformation(stateMock.recipe)
 
         expect(consoleUIMock.print).to.be.calledWith(expected)
@@ -39,9 +44,6 @@ describe('Class RecipeView', () => {
 
     describe('showAddHopsForm', () => {
       it('Should ask for name', () => {
-        let consoleUIMock: ConsoleUIMock = <ConsoleUIMock> createStubInstance(ConsoleUI)
-        let sut: RecipeView = new RecipeView(<any> consoleUIMock)
-
         consoleUIMock.askQuestion.returns(Promise.resolve())
 
         sut.showAddHopsForm()
