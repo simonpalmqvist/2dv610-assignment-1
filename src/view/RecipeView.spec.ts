@@ -42,6 +42,8 @@ describe('Class RecipeView', () => {
         let consoleUIMock: ConsoleUIMock = <ConsoleUIMock> createStubInstance(ConsoleUI)
         let sut: RecipeView = new RecipeView(<any> consoleUIMock)
 
+        consoleUIMock.askQuestion.returns(Promise.resolve())
+
         sut.showAddHopsForm()
 
         expect(consoleUIMock.askQuestion).to.be.calledWith('Name of hop: ')
