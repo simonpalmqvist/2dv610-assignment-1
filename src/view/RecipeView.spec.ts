@@ -63,6 +63,14 @@ describe('Class RecipeView', () => {
           done()
         })
       })
+
+      it('Should ask for alpha acid', () => {
+        consoleUIMock.askQuestion.returns(Promise.resolve())
+
+        sut.showAddHopsForm()
+
+        expect(consoleUIMock.askQuestion.withArgs('Alpha [0-100%]: ')).to.be.called
+      })
     })
   })
 })
