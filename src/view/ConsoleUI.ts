@@ -28,4 +28,7 @@ export class ConsoleUI {
       })
     })
   }
+
+  public prompt () : void {
+  }
 }

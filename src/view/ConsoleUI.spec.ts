@@ -73,5 +73,13 @@ describe('Class ConsoleUI', () => {
         assertPromise(promise, (result) => expect(result).to.equal(answer), done)
       })
     })
+
+    describe('prompt', () => {
+      it('Should show prompt', () => {
+        sut.prompt()
+
+        expect(readlineMock.prompt).to.be.called
+      })
+    })
   })
 })
