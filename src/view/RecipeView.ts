@@ -32,12 +32,7 @@ export class RecipeView {
   }
 
   public showAddHopsForm () : Promise<HopForm> {
-    let result: HopForm = {
-      alpha: 0,
-      amount: 0,
-      name: '',
-      time: 0
-    }
+    let result: HopForm = {alpha: 0, amount: 0, name: '', time: 0}
 
     return this._ui.askQuestion('Name of hop: ')
       .then((name) => result.name = name)
@@ -73,7 +68,7 @@ export class RecipeView {
     return new Array(times + 1).join(char)
   }
 
-  private _validatePercent(answer: string) : boolean {
+  private _validatePercent (answer: string) : boolean {
     let number: number = +answer
     return !isNaN(number) && number > 0 && number <= 100
   }
