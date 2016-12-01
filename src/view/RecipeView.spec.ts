@@ -47,9 +47,9 @@ describe('Class RecipeView', () => {
       it('Should ask for name', () => {
         consoleUIMock.askQuestion.returns(Promise.resolve())
 
-        sut.showAddHopsForm()
-
-        expect(consoleUIMock.askQuestion).to.be.calledWith(nameLabel)
+        sut.showAddHopsForm().then(() => {
+          expect(consoleUIMock.askQuestion).to.be.calledWith(nameLabel)
+        })
       })
 
       it('Should set name received from question', (done) => {
@@ -65,7 +65,6 @@ describe('Class RecipeView', () => {
       })
 
       it('Should ask for alpha acid', (done) => {
-        consoleUIMock.askQuestion.withArgs(nameLabel).returns(Promise.resolve())
         consoleUIMock.askQuestion.returns(Promise.resolve())
 
         sut.showAddHopsForm().then(() => {
