@@ -59,7 +59,7 @@ describe('Class View', () => {
         expect(consoleUIMock.registerInputHandler).to.be.called
       })
 
-      it('Should show prompt if action is not found', () => {
+      it('Should show prompt after action', () => {
         consoleUIMock.registerInputHandler.callArgWith(0, 'dkqopdkwpqko')
 
         expect(consoleUIMock.prompt).to.be.called

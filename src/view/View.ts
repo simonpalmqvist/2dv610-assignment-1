@@ -44,5 +44,6 @@ export class View extends EventEmitter {
       default:
         'implement me'
     }
+  this._ui.prompt()
   }
 }
