@@ -12,7 +12,7 @@ const rlOptions: readline.ReadLineOptions = {
 
 const rl: readline.ReadLine = readline.createInterface(rlOptions)
 const consoleUI: ConsoleUI = new ConsoleUI(console, rl)
-const recipeView: RecipeView = new RecipeView()
+const recipeView: RecipeView = new RecipeView(consoleUI)
 const view: View = new View(consoleUI, recipeView)
 
 const recipe: Recipe = new Recipe()

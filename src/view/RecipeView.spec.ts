@@ -1,4 +1,4 @@
-import { getFakeStateWithoutIngredients } from '../test/helper'
+import { getFakeStateWithHops, getFakeStateWithoutIngredients } from '../test/helper'
 import { ConsoleUI } from './ConsoleUI'
 import { RecipeView } from './RecipeView'
 import { State } from './State'
@@ -34,6 +34,17 @@ describe('Class RecipeView', () => {
         sut.showRecipeInformation(stateMock.recipe)
 
         expect(consoleUIMock.print).to.be.calledWith(expected)
+      })
+    })
+
+    describe('showAddHopsForm', () => {
+      it('Should ask for name', () => {
+        let consoleUIMock: ConsoleUIMock = <ConsoleUIMock> createStubInstance(ConsoleUI)
+        let sut: RecipeView = new RecipeView(<any> consoleUIMock)
+
+        sut.showAddHopsForm()
+
+        expect(consoleUIMock.askQuestion).to.be.calledWith('Name of hop: ')
       })
     })
   })
