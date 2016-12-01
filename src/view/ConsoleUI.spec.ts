@@ -21,14 +21,6 @@ describe('Class ConsoleUI', () => {
   })
 
   describe('Method', () => {
-    describe('print', () => {
-      it('Should be able to print message', () => {
-        sut.print('this is my test output')
-
-        expect(consoleMock.log).to.be.calledWith('this is my test output')
-      })
-    })
-
     describe('registerInputHandler', () => {
       it('Should register callback function', () => {
         let callback: any = spy()
@@ -36,6 +28,22 @@ describe('Class ConsoleUI', () => {
         sut.registerInputHandler(callback)
 
         expect(readlineMock.on).to.be.calledWith('line', callback)
+      })
+    })
+
+    describe('prompt', () => {
+      it('Should show prompt', () => {
+        sut.prompt()
+
+        expect(readlineMock.prompt).to.be.called
+      })
+    })
+
+    describe('print', () => {
+      it('Should be able to print message', () => {
+        sut.print('this is my test output')
+
+        expect(consoleMock.log).to.be.calledWith('this is my test output')
       })
     })
 
@@ -74,12 +82,5 @@ describe('Class ConsoleUI', () => {
       })
     })
 
-    describe('prompt', () => {
-      it('Should show prompt', () => {
-        sut.prompt()
-
-        expect(readlineMock.prompt).to.be.called
-      })
-    })
   })
 })

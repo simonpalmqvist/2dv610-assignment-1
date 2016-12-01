@@ -13,6 +13,10 @@ export class ConsoleUI {
     this._input.on('line', callback)
   }
 
+  public prompt () : void {
+    this._input.prompt()
+  }
+
   public print (message: string) : void {
     this._output.log(message)
   }
@@ -27,9 +31,5 @@ export class ConsoleUI {
         resolve(result)
       })
     })
-  }
-
-  public prompt () : void {
-    this._input.prompt()
   }
 }
