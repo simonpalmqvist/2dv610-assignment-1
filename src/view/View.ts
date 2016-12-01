@@ -17,6 +17,8 @@ export class View extends EventEmitter {
   }
 
   public render (state: State.State) : void {
+    this._ui.print('\n\n')
+
     if (this._printStart) {
       this._printWelcomeMessage()
     }
