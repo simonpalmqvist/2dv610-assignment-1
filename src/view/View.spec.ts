@@ -59,6 +59,12 @@ describe('Class View', () => {
         expect(consoleUIMock.registerInputHandler).to.be.called
       })
 
+      it('Should show prompt if action is not found', () => {
+        consoleUIMock.registerInputHandler.callArgWith(0, 'dkqopdkwpqko')
+
+        expect(consoleUIMock.prompt).to.be.called
+      })
+
       it('Should show add hops form when input is "add hop"', () => {
         recipeViewMock.showAddHopsForm.returns(Promise.resolve(hopForm))
         consoleUIMock.registerInputHandler.callArgWith(0, 'add hop')
