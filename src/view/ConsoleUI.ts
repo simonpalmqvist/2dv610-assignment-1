@@ -17,9 +17,9 @@ export class ConsoleUI {
     this._output.log(message)
   }
 
-  public askQuestion (question: string) : Promise<any> {
-    return new Promise<string>(() => {
-      this._input.question(question, () => 'implement')
+  public askQuestion (question: string) : Promise<string> {
+    return new Promise<string>((resolve) => {
+      this._input.question(question, (answer) => resolve(answer.trim()))
     })
   }
 }

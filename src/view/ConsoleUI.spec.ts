@@ -51,7 +51,8 @@ describe('Class ConsoleUI', () => {
 
         promise.then((result) => {
           expect(result).to.equal('my input')
-        })
+          done()
+        }).catch((error) => done(`promise was rejected: ${error}`))
       })
     })
   })
