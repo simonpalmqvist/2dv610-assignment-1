@@ -72,6 +72,18 @@ describe('Class RecipeView', () => {
           done()
         })
       })
+
+      it('Should validate alpha and return false if not a number', (done) => {
+        let notNumber: string = 'fkerorekog'
+        consoleUIMock.askQuestion.returns(Promise.resolve())
+
+        sut.showAddHopsForm().then(({name}) => {
+          let validator: (answer: string) => boolean = consoleUIMock.askQuestion.withArgs('Alpha (%) [0-100]: ').firstCall.args[1]
+
+          expect(validator(notNumber)).to.be.false
+          done()
+        })
+      })
     })
   })
 })
