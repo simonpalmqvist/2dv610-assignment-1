@@ -3,8 +3,12 @@ import { State } from './State'
 
 export class RecipeView {
 
-  public showRecipeInformation (state: State.Recipe) : void {
+  public showRecipeInformation (recipe: State.Recipe) : void {
 
+  }
+
+  public showHopInformation (hops: ReadonlyArray<State.Hop>) : void {
+    
   }
 
   public showAddHopsForm () : Promise<HopForm> {

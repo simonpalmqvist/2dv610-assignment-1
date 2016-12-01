@@ -58,6 +58,12 @@ describe('Class View', () => {
         expect(recipeViewMock.showRecipeInformation).to.be.calledWith(stateMock.recipe)
       })
 
+      it('Should show hop information', () => {
+        sut.render(stateMock)
+
+        expect(recipeViewMock.showHopInformation).to.be.calledWith(stateMock.recipe.hops)
+      })
+
       it('Should show prompt last', () => {
         sut.render(stateMock)
 
