@@ -97,7 +97,8 @@ describe('Class View', () => {
       })
 
       it('Should show message if action doesnt exist', () => {
-        let expected: string = 'Please use one of the following commands: [add hop]'
+        let expected: string =
+          'Please use one of the following commands: [add hop] [add fermentable]'
         consoleUIMock.registerInputHandler.callArgWith(0, 'no action')
 
         expect(consoleUIMock.print).to.be.calledWith(expected)

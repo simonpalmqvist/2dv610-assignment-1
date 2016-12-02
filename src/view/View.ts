@@ -43,7 +43,7 @@ export class View extends EventEmitter {
         this._handleFermentableAction()
         break
       default:
-        this._ui.print('Please use one of the following commands: [add hop]')
+        this._ui.print('Please use one of the following commands: [add hop] [add fermentable]')
     }
     this._ui.prompt()
   }
