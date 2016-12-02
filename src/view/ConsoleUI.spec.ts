@@ -1,4 +1,3 @@
-import { assertPromise } from '../test/helper'
 import { ConsoleUI } from './ConsoleUI'
 import { expect, use } from 'chai'
 import * as readline from 'readline'
@@ -54,12 +53,12 @@ describe('Class ConsoleUI', () => {
         expect(readlineMock.question).to.be.calledWith(question)
       })
 
-      it('Should resolve returned promise when input is added', (done) => {
+      it('Should resolve returned promise when input is added', () => {
         promise = sut.askQuestion(question)
 
         readlineMock.question.callArgWith(1, answer)
 
-        assertPromise(promise, (result) => expect(result).to.equal(answer), done)
+        return promise.then((result) => expect(result).to.equal(answer))
       })
 
       it('Should ask for input again if value doesnt match validation', () => {
@@ -71,14 +70,14 @@ describe('Class ConsoleUI', () => {
         expect(readlineMock.question).to.be.calledTwice
       })
 
-      it('Should get second input when answer first was wrong', (done) => {
+      it('Should get second input when answer first was wrong', () => {
         const falseAnswer: string = 'Monkeyday'
         promise = sut.askQuestion(question, (a) => a === answer)
 
         readlineMock.question.firstCall.callArgWith(1, falseAnswer)
         readlineMock.question.secondCall.callArgWith(1, answer)
 
-        assertPromise(promise, (result) => expect(result).to.equal(answer), done)
+        return promise.then((result) => expect(result).to.equal(answer))
       })
     })
 
