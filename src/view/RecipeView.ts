@@ -17,7 +17,7 @@ export class RecipeView {
   public showRecipeInformation (recipe: State.Recipe) : void {
     let info: string = [
       '',
-      'Recipe',
+      'RECIPE',
       this._separationLine(),
       this._twoColumn('Volume', this._formatInt(recipe.volume) + ' l'),
       this._twoColumn('Efficiency', this._formatPercent(recipe.efficiency)),
@@ -26,7 +26,6 @@ export class RecipeView {
       this._twoColumn('FG', this._formatGravity(recipe.expectedFG)),
       this._twoColumn('IBU', this._formatInt(recipe.expectedIBU)),
       this._twoColumn('ABV', this._formatPercent(recipe.expectedABV)),
-      '',
     ].join('\n')
 
     this._ui.print(info)
@@ -117,7 +116,8 @@ export class RecipeView {
 
   private _header(title: string, headerRow: string) : string {
     return [
-      title,
+      '',
+      title.toUpperCase(),
       this._separationLine(),
       headerRow,
       this._separationLine(),
