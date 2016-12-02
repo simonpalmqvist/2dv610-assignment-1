@@ -12,3 +12,4 @@ This is a simplified application for creating beer recipes used in home brewing.
 * Run linter `npm run lint`
 * Run tests `npm run test`
 * Check code coverage `npm run coverage` and then visit url that is shown
+* Test watcher `npm run test:watch`
