@@ -16,8 +16,8 @@ describe('Class View', () => {
   let consoleUIMock: ConsoleUIMock
   let recipeViewMock: RecipeViewMock
   let sut: View
-  const hopTrigger = 'add hop'
-  const fermentableTrigger = 'add fermentable'
+  const hopTrigger: string = 'add hop'
+  const fermentableTrigger: string = 'add fermentable'
   const blankLines: string = '\n\n'
   const startMessage: string = 'Welcome to this beer brewing app!'
   const hopForm: HopForm = {
