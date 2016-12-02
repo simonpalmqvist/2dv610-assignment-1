@@ -17,6 +17,7 @@ import * as SinonChai from 'sinon-chai'
 describe('Class BrewApp', () => {
   use(SinonChai)
   let hopStub: Sinon.SinonStub
+  let fermentableStub: Sinon.SinonStub
   let viewMock: ViewMock
   let recipeMock: RecipeMock
   let sut: BrewApp
@@ -98,11 +99,14 @@ describe('Class BrewApp', () => {
   })
 
   describe('ADD_FERMENTABLE', () => {
-    let fermentableStub: Sinon.SinonStub
+    beforeEach(() => {
+      fermentableStub = stub(FermentableModule, 'Fermentable')
+    })
+
+    afterEach(() => fermentableStub.restore())
 
     it('Should create fermentable with values sent in event', () => {
       const args: any[] = [0.75, 3.5, 'Carapils']
-      fermentableStub = stub(FermentableModule, 'Fermentable')
 
       viewMock.on.withArgs(Action.ADD_FERMENTABLE).callArgWith(1, ...args)
 
@@ -110,15 +114,10 @@ describe('Class BrewApp', () => {
     })
 
     it('Should call recipe addFermentable with created fermentable', () => {
-      fermentableStub = stub(FermentableModule, 'Fermentable')
-
       viewMock.on.withArgs(Action.ADD_FERMENTABLE).callArg(1)
 
       const expected: Sinon.SinonStub = fermentableStub.firstCall.returnValue
       expect(recipeMock.addFermentable).calledWithExactly(expected)
     })
-
-    afterEach(() => fermentableStub.restore())
   })
-
 })
