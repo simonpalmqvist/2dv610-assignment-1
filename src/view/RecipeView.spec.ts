@@ -286,6 +286,15 @@ describe('Class RecipeView', () => {
           await sut.showAddFermentableForm()
           expect(questionValidator(yieldLabel, '0')).to.be.true
         })
+
+        it('Should return value received from question', async () => {
+          let expected: string = '75'
+          consoleUIMock.askQuestion.returns(Promise.resolve(expected))
+
+          let {yieldPercent}: FermentableForm = await sut.showAddFermentableForm()
+
+          expect(yieldPercent).to.equal(+expected / 100)
+        })
       })
     })
   })
