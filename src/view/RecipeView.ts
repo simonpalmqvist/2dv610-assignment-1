@@ -47,6 +47,10 @@ export class RecipeView {
     this._ui.print(footer)
   }
 
+  public showFermentableInformation (fermentables: ReadonlyArray<State.Fermentable>) : void {
+    
+  }
+
   public async showAddHopsForm () : Promise<HopForm> {
     const name: string = await this._ui.askQuestion('Name of hop: ')
     const alpha: string = await this._ui.askQuestion('Alpha (%) [0-100]: ', this._validatePercent)

@@ -88,6 +88,21 @@ describe('Class RecipeView', () => {
       })
     })
 
+    describe('showFermentableInformation', () => {
+      it('Should print header', () => {
+        const expected: string = [
+          'Fermentables',
+          separation,
+          'Name                               Yield    Amount        OG',
+          separation,
+        ].join('\n')
+
+        sut.showFermentableInformation(stateMock.recipe.fermentables)
+
+        expect(consoleUIMock.print.firstCall).to.be.calledWith(expected)
+      })
+    })
+
     describe('showAddHopsForm', () => {
       beforeEach(() => {
         consoleUIMock.askQuestion.returns(Promise.resolve())
