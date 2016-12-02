@@ -1,3 +1,4 @@
+import * as FermentableModule from '../model/Fermentable'
 import * as HopModule from '../model/Hop'
 import { Recipe } from '../model/Recipe'
 import {
@@ -95,4 +96,20 @@ describe('Class BrewApp', () => {
       expect(viewMock.render).to.be.calledAfter(recipeMock.addHop)
     })
   })
+
+  describe('ADD_FERMENTABLE', () => {
+    let fermentableStub: Sinon.SinonStub
+
+    it('Should create fermentable with values sent in event', () => {
+      const args: any[] = [3.5, 'Carapils', 0.75]
+      fermentableStub = stub(FermentableModule, 'Fermentable')
+
+      viewMock.on.withArgs(Action.ADD_FERMENTABLE).callArgWith(1, ...args)
+
+      expect(fermentableStub).calledWithExactly(...args)
+    })
+
+    afterEach(() => fermentableStub.restore())
+  })
+
 })
