@@ -256,7 +256,7 @@ describe('Class RecipeView', () => {
 
           let {amount}: FermentableForm = await sut.showAddFermentableForm()
 
-          expect(amount).to.equal(expected)
+          expect(amount).to.equal(+expected)
         })
       })
     })
