@@ -24,7 +24,7 @@ export class RecipeView {
       this._twoColumn('FG', this._formatGravity(recipe.expectedFG)),
       this._twoColumn('IBU', this._formatInt(recipe.expectedIBU)),
       this._twoColumn('ABV', this._formatPercent(recipe.expectedABV)),
-      this._separationLine(),
+      '',
     ].join('\n')
 
     this._ui.print(info)
@@ -40,6 +40,8 @@ export class RecipeView {
     const footer: string = this._separationLine()
 
     this._ui.print(header)
+
+    hops.forEach((hop) => this._ui.print(this._hopRow(hop)))
 
     this._ui.print(footer)
   }
@@ -58,12 +60,27 @@ export class RecipeView {
     }
   }
 
+  private _hopRow ({name, alpha, amount, time, ibu}: State.Hop) : string {
+    let rightPadding: number = 10
+    return [
+      this._leftAlign(name, 20),
+      this._rightAlign(this._formatPercent(alpha), rightPadding),
+      this._rightAlign(this._formatInt(amount) + ' g', rightPadding),
+      this._rightAlign(this._formatInt(time) + ' min', rightPadding),
+      this._rightAlign(this._formatInt(ibu), rightPadding),
+    ].join('')
+  }
+
   private _twoColumn (firstColumn: string, secondColumn: string) : string {
     return this._leftAlign(firstColumn + ':', 15) + secondColumn
   }
 
   private _leftAlign(text: string, length: number) : string {
     return text + this._repeatChar(' ', length - text.length)
+  }
+
+  private _rightAlign(text: string, length: number) : string {
+    return this._repeatChar(' ', length - text.length) + text
   }
 
   private _separationLine () : string {

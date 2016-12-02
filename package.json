@@ -29,7 +29,6 @@
   "homepage": "https://github.com/simonpalmqvist/2dv610-assignment-1#readme",
   "devDependencies": {
     "@types/chai": "^3.4.34",
-    "@types/es6-promise": "0.0.32",
     "@types/mocha": "^2.2.32",
     "@types/node": "^6.0.51",
     "@types/sinon": "^1.16.31",

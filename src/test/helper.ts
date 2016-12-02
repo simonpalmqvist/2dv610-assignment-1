@@ -11,7 +11,7 @@ export function getFakeStateWithoutIngredients () : State.State {
 export function getFakeStateWithHops () : State.State {
   return _generateFakeState([
     {
-      alpha: 6,
+      alpha: 0.06,
       amount: 50,
       ibu: 10,
       name: 'Cascade',
@@ -19,7 +19,7 @@ export function getFakeStateWithHops () : State.State {
 
     },
     {
-      alpha: 12,
+      alpha: 0.12,
       amount: 100,
       ibu: 0,
       name: 'Citra',

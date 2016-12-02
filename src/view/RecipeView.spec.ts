@@ -1,5 +1,5 @@
 import {
-  getFakeStateWithoutIngredients,
+  getFakeStateWithHops,
 } from '../test/helper'
 import { ConsoleUI } from './ConsoleUI'
 import { HopForm } from './HopForm'
@@ -22,7 +22,7 @@ describe('Class RecipeView', () => {
   const separation: string = '------------------------------------------------------------'
 
   beforeEach(() => {
-    stateMock = getFakeStateWithoutIngredients()
+    stateMock = getFakeStateWithHops()
     consoleUIMock = <ConsoleUIMock> createStubInstance(ConsoleUI)
     sut = new RecipeView(<any> consoleUIMock)
     questionValidator = (q, a) => consoleUIMock.askQuestion.withArgs(q).args[0][1](a)
@@ -42,7 +42,7 @@ describe('Class RecipeView', () => {
           'FG:            1.010',
           'IBU:           36',
           'ABV:           4.8 %',
-          separation,
+          '',
         ].join('\n')
 
         sut.showRecipeInformation(stateMock.recipe)
