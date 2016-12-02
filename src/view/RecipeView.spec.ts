@@ -110,16 +110,16 @@ describe('Class RecipeView', () => {
 
         sut.showFermentableInformation([
           {
-            name: 'Pale Ale-malt',
-            yield: 0.74,
             amount: 2.4,
-            og: 1.020
+            name: 'Pale Ale-malt',
+            og: 1.020,
+            yield: 0.74,
           },
           {
-            name: 'Carapils',
-            yield: 0.65,
             amount: 0.5,
-            og: 1.003
+            name: 'Carapils',
+            og: 1.003,
+            yield: 0.65,
           },
         ])
 
