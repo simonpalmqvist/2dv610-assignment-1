@@ -24,6 +24,7 @@ export class View extends EventEmitter {
     }
 
     this._recipeView.showRecipeInformation(state.recipe)
+    this._recipeView.showFermentableInformation(state.recipe.fermentables)
     this._recipeView.showHopInformation(state.recipe.hops)
 
     this._ui.prompt()
