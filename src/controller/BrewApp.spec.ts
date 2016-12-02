@@ -109,6 +109,15 @@ describe('Class BrewApp', () => {
       expect(fermentableStub).calledWithExactly(...args)
     })
 
+    it('Should call recipe addFermentable with created fermentable', () => {
+      fermentableStub = stub(FermentableModule, 'Fermentable')
+
+      viewMock.on.withArgs(Action.ADD_FERMENTABLE).callArg(1)
+
+      const expected: Sinon.SinonStub = fermentableStub.firstCall.returnValue
+      expect(recipeMock.addFermentable).calledWithExactly(expected)
+    })
+
     afterEach(() => fermentableStub.restore())
   })
 
