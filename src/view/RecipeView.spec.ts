@@ -134,6 +134,14 @@ describe('Class RecipeView', () => {
             done()
           })
         })
+
+        it('Should validate and return false if number is negative', (done) => {
+          sut.showAddHopsForm().then(() => {
+            expect(questionValidator(amountLabel, '-1')).to.be.false
+            done()
+          }).catch(done)
+        })
+
       })
     })
   })
