@@ -1,6 +1,7 @@
 import { getFakeStateWithoutIngredients } from '../test/helper'
 import Action from './Action'
 import { ConsoleUI } from './ConsoleUI'
+import { FermentableForm } from './FermentableForm'
 import { HopForm } from './HopForm'
 import { RecipeView } from './RecipeView'
 import { State } from './State'
@@ -119,6 +120,18 @@ describe('Class View', () => {
 
         consoleUIMock.registerInputHandler.callArgWith(0, 'add hop')
       })
+
+      it('Should show add fermentable form when input is "add fermentable"', () => {
+        recipeViewMock.showAddFermentableForm.returns(Promise.resolve({
+          amount: 3.5,
+          name: 'Pilsner malt',
+          yieldPercent: 0.75
+        }))
+        consoleUIMock.registerInputHandler.callArgWith(0, 'add fermentable')
+
+        expect(recipeViewMock.showAddFermentableForm).to.be.called
+      })
+
     })
   })
 
