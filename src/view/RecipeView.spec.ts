@@ -22,6 +22,7 @@ describe('Class RecipeView', () => {
   const timeLabel: string = 'Time (min): '
   const fermentableNameLabel: string = 'Name of fermentable: '
   const fermentableAmountLabel: string = 'Amount (kg): '
+  const yieldLabel: string = 'Yield (%) [0-100]: '
   const separation: string = '------------------------------------------------------------'
 
   beforeEach(() => {
@@ -263,27 +264,27 @@ describe('Class RecipeView', () => {
       describe('yield', () => {
         it('Should ask question', async () => {
           await sut.showAddFermentableForm()
-          expect(consoleUIMock.askQuestion.withArgs('Yield (%) [0-100]: ')).to.be.called
+          expect(consoleUIMock.askQuestion.withArgs(yieldLabel)).to.be.called
         })
 
         it('Should validate and return false if not a number', async () => {
           await sut.showAddFermentableForm()
-          expect(questionValidator('Yield (%) [0-100]: ', 'NANANA')).to.be.false
+          expect(questionValidator(yieldLabel, 'NANANA')).to.be.false
         })
 
         it('Should validate and return false if number is negative', async () => {
           await sut.showAddFermentableForm()
-          expect(questionValidator('Yield (%) [0-100]: ', '-1')).to.be.false
+          expect(questionValidator(yieldLabel, '-1')).to.be.false
         })
 
         it('Should validate and return false if number is over 100', async () => {
           await sut.showAddFermentableForm()
-          expect(questionValidator('Yield (%) [0-100]: ', '101')).to.be.false
+          expect(questionValidator(yieldLabel, '101')).to.be.false
         })
 
         it('Should validate and return true within 0-100', async () => {
           await sut.showAddFermentableForm()
-          expect(questionValidator('Yield (%) [0-100]: ', '0')).to.be.true
+          expect(questionValidator(yieldLabel, '0')).to.be.true
         })
       })
     })
