@@ -13,14 +13,16 @@ describe('Class RecipeView', () => {
   let stateMock: State.State
   let consoleUIMock: ConsoleUIMock
   let sut: RecipeView
-  let validator: (answer: string) => boolean
+  let questionValidator: (question: string, answer: string) => boolean
   const nameLabel: string = 'Name of hop: '
   const alphaLabel: string = 'Alpha (%) [0-100]: '
+  const amountLabel: string = 'Amount (g): '
 
   beforeEach(() => {
     stateMock = getFakeStateWithoutIngredients()
     consoleUIMock = <ConsoleUIMock> createStubInstance(ConsoleUI)
     sut = new RecipeView(<any> consoleUIMock)
+    questionValidator = (q, a) => consoleUIMock.askQuestion.withArgs(q).args[0][1](a)
   })
 
   describe('Method', () => {
@@ -47,115 +49,91 @@ describe('Class RecipeView', () => {
     })
 
     describe('showAddHopsForm', () => {
-      it('Should ask for name', () => {
+      beforeEach(() => {
         consoleUIMock.askQuestion.returns(Promise.resolve())
+      })
 
-        sut.showAddHopsForm().then(() => {
-          expect(consoleUIMock.askQuestion).to.be.calledWith(nameLabel)
+      describe('name', () => {
+        it('Should ask question', () => {
+          sut.showAddHopsForm().then(() => {
+            expect(consoleUIMock.askQuestion).to.be.calledWith(nameLabel)
+          })
+        })
+
+        it('Should return input received from question', (done) => {
+          let expected: string = 'Cascade'
+          consoleUIMock.askQuestion.returns(Promise.resolve(expected))
+
+          sut.showAddHopsForm().then(({name}) => {
+            expect(name).to.equal(expected)
+            done()
+          })
         })
       })
 
-      it('Should set name received from question', (done) => {
-        let expected: string = 'Cascade'
-        consoleUIMock.askQuestion.returns(Promise.resolve(expected))
+      describe('alpha', () => {
+        it('Should ask question', (done) => {
+          sut.showAddHopsForm().then(() => {
+            expect(consoleUIMock.askQuestion.withArgs(alphaLabel)).to.be.called
+            done()
+          })
+        })
 
-        sut.showAddHopsForm().then(({name}) => {
-          expect(name).to.equal(expected)
-          done()
+        it('Should validate and return false if not a number', (done) => {
+          let notNumber: string = 'fkerorekog'
+
+          sut.showAddHopsForm().then(() => {
+            expect(questionValidator(alphaLabel, notNumber)).to.be.false
+            done()
+          })
+        })
+
+        it('Should validate and return false if number is negative', (done) => {
+          sut.showAddHopsForm().then(() => {
+            expect(questionValidator(alphaLabel, '-1')).to.be.false
+            done()
+          })
+        })
+
+        it('Should validate and return false if number is over 100', (done) => {
+          sut.showAddHopsForm().then(() => {
+            expect(questionValidator(alphaLabel, '101')).to.be.false
+            done()
+          })
+        })
+
+        it('Should validate and return true within 0-100', (done) => {
+          sut.showAddHopsForm().then(() => {
+            expect(questionValidator(alphaLabel, '100')).to.be.true
+            done()
+          })
+        })
+
+        it('Should return value received from question', (done) => {
+          let expected: string = '45'
+          consoleUIMock.askQuestion.returns(Promise.resolve(expected))
+
+          sut.showAddHopsForm().then(({alpha}) => {
+            expect(alpha).to.equal(+expected / 100)
+            done()
+          })
         })
       })
 
-      it('Should ask for alpha acid', (done) => {
-        consoleUIMock.askQuestion.returns(Promise.resolve())
-
-        sut.showAddHopsForm().then(() => {
-          expect(consoleUIMock.askQuestion.withArgs(alphaLabel)).to.be.called
-          done()
+      describe('amount', () => {
+        it('Should ask question', (done) => {
+          sut.showAddHopsForm().then(() => {
+            expect(consoleUIMock.askQuestion.withArgs(amountLabel)).to.be.called
+            done()
+          })
         })
-      })
 
-      it('Should validate alpha and return false if not a number', (done) => {
-        let notNumber: string = 'fkerorekog'
-        consoleUIMock.askQuestion.returns(Promise.resolve())
-
-        sut.showAddHopsForm().then(() => {
-          validator = consoleUIMock.askQuestion
-            .withArgs(alphaLabel).firstCall.args[1]
-
-          expect(validator(notNumber)).to.be.false
-          done()
+        it('Should validate and return true if number is 0 or higher', (done) => {
+          sut.showAddHopsForm().then(() => {
+            expect(questionValidator(amountLabel, '1')).to.be.true
+            done()
+          })
         })
-      })
-
-      it('Should validate alpha and return false if number is negative', (done) => {
-        let negativeNumber: string = '-1'
-        consoleUIMock.askQuestion.returns(Promise.resolve())
-
-        sut.showAddHopsForm().then(() => {
-          validator = consoleUIMock.askQuestion
-            .withArgs(alphaLabel).firstCall.args[1]
-
-          expect(validator(negativeNumber)).to.be.false
-          done()
-        })
-      })
-
-      it('Should validate alpha and return false if number is over 100', (done) => {
-        let negativeNumber: string = '101'
-        consoleUIMock.askQuestion.returns(Promise.resolve())
-
-        sut.showAddHopsForm().then(() => {
-          validator = consoleUIMock.askQuestion
-            .withArgs(alphaLabel).firstCall.args[1]
-
-          expect(validator(negativeNumber)).to.be.false
-          done()
-        })
-      })
-
-      it('Should validate alpha and return true within 0-100', (done) => {
-        let negativeNumber: string = '100'
-        consoleUIMock.askQuestion.returns(Promise.resolve())
-
-        sut.showAddHopsForm().then(() => {
-          validator = consoleUIMock.askQuestion
-            .withArgs(alphaLabel).firstCall.args[1]
-
-          expect(validator(negativeNumber)).to.be.true
-          done()
-        })
-      })
-    })
-
-    it('Should set alpha received from question', (done) => {
-      let expected: string = '45'
-      consoleUIMock.askQuestion.returns(Promise.resolve(expected))
-
-      sut.showAddHopsForm().then(({alpha}) => {
-        expect(alpha).to.equal(+expected / 100)
-        done()
-      })
-    })
-
-    it('Should ask for amount in grams', (done) => {
-      consoleUIMock.askQuestion.returns(Promise.resolve())
-
-      sut.showAddHopsForm().then(() => {
-        expect(consoleUIMock.askQuestion.withArgs('Amount (g): ')).to.be.called
-        done()
-      })
-    })
-
-    it('Should validate amount and return true if number is 0 or higher', (done) => {
-      let correctNumber: string = '1'
-      consoleUIMock.askQuestion.returns(Promise.resolve())
-
-      sut.showAddHopsForm().then(() => {
-        validator = consoleUIMock.askQuestion
-          .withArgs('Amount (g): ').firstCall.args[1]
-
-        expect(validator(correctNumber)).to.be.true
-        done()
       })
     })
   })
