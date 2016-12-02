@@ -13,6 +13,7 @@ export class BrewApp {
     this._view = view
     this._recipe = recipe
     this._view.on(Actions.ADD_HOP, this._addHop.bind(this))
+    this._view.on(Actions.ADD_FERMENTABLE, () => undefined)
   }
 
   public render () : void {
