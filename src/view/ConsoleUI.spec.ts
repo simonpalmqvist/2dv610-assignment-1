@@ -9,13 +9,12 @@ describe('Class ConsoleUI', () => {
   let consoleMock: ConsoleMock
   let readlineMock: ReadlineMock
   let sut: ConsoleUI
-  let promise: Promise<string>
   const question: string = 'What day is it?'
   const answer: string = 'Sunday'
 
   beforeEach(() => {
     consoleMock = <ConsoleMock> createStubInstance(console.constructor)
-    readlineMock = <ReadlineMock> createStubInstance(readline[ 'Interface' ])
+    readlineMock = <ReadlineMock> createStubInstance((<any> readline).Interface)
     sut = new ConsoleUI(<any> consoleMock, <any> readlineMock)
   })
 
@@ -53,12 +52,12 @@ describe('Class ConsoleUI', () => {
         expect(readlineMock.question).to.be.calledWith(question)
       })
 
-      it('Should resolve returned promise when input is added', () => {
-        promise = sut.askQuestion(question)
+      it('Should resolve returned promise when input is added', async () => {
+        readlineMock.question.onFirstCall().callsArgWith(1, answer)
 
-        readlineMock.question.callArgWith(1, answer)
+        let result: string = await sut.askQuestion(question)
 
-        return promise.then((result) => expect(result).to.equal(answer))
+        expect(result).to.equal(answer)
       })
 
       it('Should ask for input again if value doesnt match validation', () => {
@@ -70,14 +69,14 @@ describe('Class ConsoleUI', () => {
         expect(readlineMock.question).to.be.calledTwice
       })
 
-      it('Should get second input when answer first was wrong', () => {
+      it('Should get second input when answer first was wrong', async () => {
         const falseAnswer: string = 'Monkeyday'
-        promise = sut.askQuestion(question, (a) => a === answer)
+        readlineMock.question.onFirstCall().callsArgWith(1, falseAnswer)
+        readlineMock.question.onSecondCall().callsArgWith(1, answer)
 
-        readlineMock.question.firstCall.callArgWith(1, falseAnswer)
-        readlineMock.question.secondCall.callArgWith(1, answer)
+        const result: string = await sut.askQuestion(question, (a) => a === answer)
 
-        return promise.then((result) => expect(result).to.equal(answer))
+        expect(result).to.equal(answer)
       })
     })
 

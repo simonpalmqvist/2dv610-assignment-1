@@ -43,8 +43,8 @@ export class RecipeView {
     return {
       alpha: +alpha / 100,
       amount: +amount,
-      name: name,
-      time: +time
+      name,
+      time: +time,
     }
   }
 

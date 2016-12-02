@@ -2,6 +2,7 @@ import {
   getFakeStateWithoutIngredients,
 } from '../test/helper'
 import { ConsoleUI } from './ConsoleUI'
+import { HopForm } from './HopForm'
 import { RecipeView } from './RecipeView'
 import { State } from './State'
 import { expect, use } from 'chai'
@@ -64,7 +65,7 @@ describe('Class RecipeView', () => {
           let expected: string = 'Cascade'
           consoleUIMock.askQuestion.returns(Promise.resolve(expected))
 
-          let {name} = await sut.showAddHopsForm()
+          let {name}: HopForm = await sut.showAddHopsForm()
           expect(name).to.equal(expected)
         })
       })
@@ -101,7 +102,7 @@ describe('Class RecipeView', () => {
           let expected: string = '45'
           consoleUIMock.askQuestion.returns(Promise.resolve(expected))
 
-          let {alpha} = await sut.showAddHopsForm()
+          let {alpha}: HopForm = await sut.showAddHopsForm()
 
           expect(alpha).to.equal(+expected / 100)
         })
@@ -132,7 +133,7 @@ describe('Class RecipeView', () => {
           let expected: string = '30'
           consoleUIMock.askQuestion.returns(Promise.resolve(expected))
 
-          let {amount} = await sut.showAddHopsForm()
+          let {amount}: HopForm = await sut.showAddHopsForm()
           expect(amount).to.equal(+expected)
         })
       })
@@ -163,7 +164,7 @@ describe('Class RecipeView', () => {
           let expected: string = '60'
           consoleUIMock.askQuestion.returns(Promise.resolve(expected))
 
-          let {time} = await sut.showAddHopsForm()
+          let {time}: HopForm = await sut.showAddHopsForm()
           expect(time).to.equal(+expected)
         })
       })
