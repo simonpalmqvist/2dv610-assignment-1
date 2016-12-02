@@ -5,6 +5,7 @@ import { State } from './State'
 
 export class RecipeView {
   private _ui: ConsoleUI
+  private _padding: number = 10
 
   constructor(ui: ConsoleUI) {
     this._ui = ui
@@ -35,7 +36,7 @@ export class RecipeView {
     const header: string = [
       'Hops',
       this._separationLine(),
-      'Name                     Alpha    Amount      Time       IBU',
+      this._hopHeaderRow(),
       this._separationLine(),
     ].join('\n')
     const footer: string = this._separationLine()
@@ -51,7 +52,7 @@ export class RecipeView {
     const header: string = [
       'Fermentables',
       this._separationLine(),
-      'Name                               Yield    Amount        OG',
+      this._fermentableHeaderRow(),
       this._separationLine(),
     ].join('\n')
 
@@ -87,14 +88,33 @@ export class RecipeView {
     }
   }
 
+  private _hopHeaderRow () : string {
+    return [
+      this._leftAlign('Name', this._padding * 2),
+      this._rightAlign('Alpha', this._padding),
+      this._rightAlign('Amount', this._padding),
+      this._rightAlign('Time', this._padding),
+      this._rightAlign('IBU', this._padding),
+    ].join('')
+  }
+
   private _hopRow ({name, alpha, amount, time, ibu}: State.Hop) : string {
     let rightPadding: number = 10
     return [
-      this._leftAlign(name, 20),
-      this._rightAlign(this._formatPercent(alpha), rightPadding),
-      this._rightAlign(this._formatInt(amount) + ' g', rightPadding),
-      this._rightAlign(this._formatInt(time) + ' min', rightPadding),
-      this._rightAlign(this._formatInt(ibu), rightPadding),
+      this._leftAlign(name, this._padding * 2),
+      this._rightAlign(this._formatPercent(alpha), this._padding),
+      this._rightAlign(this._formatInt(amount) + ' g', this._padding),
+      this._rightAlign(this._formatInt(time) + ' min', this._padding),
+      this._rightAlign(this._formatInt(ibu), this._padding),
+    ].join('')
+  }
+
+  private _fermentableHeaderRow () : string {
+    return [
+      this._leftAlign('Name', this._padding * 3),
+      this._rightAlign('Yield', this._padding),
+      this._rightAlign('Amount', this._padding),
+      this._rightAlign('OG', this._padding),
     ].join('')
   }
 
