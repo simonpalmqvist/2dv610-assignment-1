@@ -68,7 +68,7 @@ describe('Class RecipeView', () => {
         consoleUIMock.askQuestion.returns(Promise.resolve())
 
         sut.showAddHopsForm().then(() => {
-          expect(consoleUIMock.askQuestion.withArgs()).to.be.called
+          expect(consoleUIMock.askQuestion.withArgs(alphaLabel)).to.be.called
           done()
         })
       })
@@ -135,5 +135,15 @@ describe('Class RecipeView', () => {
         done()
       })
     })
+
+    it('Should ask for amount in grams', (done) => {
+      consoleUIMock.askQuestion.returns(Promise.resolve())
+
+      sut.showAddHopsForm().then(() => {
+        expect(consoleUIMock.askQuestion.withArgs('Amount (g): ')).to.be.called
+        done()
+      })
+    })
+
   })
 })
