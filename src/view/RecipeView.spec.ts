@@ -126,6 +126,12 @@ describe('Class RecipeView', () => {
         expect(consoleUIMock.print.secondCall).to.be.calledWith(row1)
         expect(consoleUIMock.print.thirdCall).to.be.calledWith(row2)
       })
+
+      it('Should print footer last', () => {
+        sut.showFermentableInformation(stateMock.recipe.fermentables)
+
+        expect(consoleUIMock.print.lastCall).to.be.calledWith(separation)
+      })
     })
 
     describe('showAddHopsForm', () => {
