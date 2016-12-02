@@ -207,11 +207,14 @@ describe('Class RecipeView', () => {
     })
 
     describe('ShowAddFermentableForm', () => {
+      beforeEach(() => {
+        consoleUIMock.askQuestion.returns(Promise.resolve())
+      })
+
       describe('name', () => {
         it('Should ask question', async () => {
-          consoleUIMock.askQuestion.returns(Promise.resolve())
-
           await sut.showAddFermentableForm()
+
           expect(consoleUIMock.askQuestion).to.be.calledWith(fermentableNameLabel)
         })
 
@@ -227,8 +230,6 @@ describe('Class RecipeView', () => {
 
       describe('amount', () => {
         it('Should ask question', async () => {
-          consoleUIMock.askQuestion.returns(Promise.resolve())
-
           await sut.showAddFermentableForm()
           expect(consoleUIMock.askQuestion.withArgs('Amount (kg): ')).to.be.called
         })
