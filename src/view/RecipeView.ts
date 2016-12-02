@@ -59,6 +59,8 @@ export class RecipeView {
     this._ui.print(header)
 
     fermentables.forEach((f) => this._ui.print(this._fermentableRow(f)))
+
+    this._ui.print(this._separationLine())
   }
 
   public async showAddHopsForm () : Promise<HopForm> {
