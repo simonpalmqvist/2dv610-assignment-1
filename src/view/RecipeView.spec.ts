@@ -54,10 +54,11 @@ describe('Class RecipeView', () => {
       })
 
       describe('name', () => {
-        it('Should ask question', () => {
+        it('Should ask question', (done) => {
           sut.showAddHopsForm().then(() => {
             expect(consoleUIMock.askQuestion).to.be.calledWith(nameLabel)
-          })
+            done()
+          }).catch(done)
         })
 
         it('Should return input received from question', (done) => {
@@ -67,7 +68,7 @@ describe('Class RecipeView', () => {
           sut.showAddHopsForm().then(({name}) => {
             expect(name).to.equal(expected)
             done()
-          })
+          }).catch(done)
         })
       })
 
@@ -76,7 +77,7 @@ describe('Class RecipeView', () => {
           sut.showAddHopsForm().then(() => {
             expect(consoleUIMock.askQuestion.withArgs(alphaLabel)).to.be.called
             done()
-          })
+          }).catch(done)
         })
 
         it('Should validate and return false if not a number', (done) => {
@@ -85,28 +86,28 @@ describe('Class RecipeView', () => {
           sut.showAddHopsForm().then(() => {
             expect(questionValidator(alphaLabel, notNumber)).to.be.false
             done()
-          })
+          }).catch(done)
         })
 
         it('Should validate and return false if number is negative', (done) => {
           sut.showAddHopsForm().then(() => {
             expect(questionValidator(alphaLabel, '-1')).to.be.false
             done()
-          })
+          }).catch(done)
         })
 
         it('Should validate and return false if number is over 100', (done) => {
           sut.showAddHopsForm().then(() => {
             expect(questionValidator(alphaLabel, '101')).to.be.false
             done()
-          })
+          }).catch(done)
         })
 
         it('Should validate and return true within 0-100', (done) => {
           sut.showAddHopsForm().then(() => {
             expect(questionValidator(alphaLabel, '100')).to.be.true
             done()
-          })
+          }).catch(done)
         })
 
         it('Should return value received from question', (done) => {
@@ -116,7 +117,7 @@ describe('Class RecipeView', () => {
           sut.showAddHopsForm().then(({alpha}) => {
             expect(alpha).to.equal(+expected / 100)
             done()
-          })
+          }).catch(done)
         })
       })
 
@@ -125,14 +126,14 @@ describe('Class RecipeView', () => {
           sut.showAddHopsForm().then(() => {
             expect(consoleUIMock.askQuestion.withArgs(amountLabel)).to.be.called
             done()
-          })
+          }).catch(done)
         })
 
         it('Should validate and return true if number is 0 or higher', (done) => {
           sut.showAddHopsForm().then(() => {
             expect(questionValidator(amountLabel, '1')).to.be.true
             done()
-          })
+          }).catch(done)
         })
 
         it('Should validate and return false if number is negative', (done) => {
