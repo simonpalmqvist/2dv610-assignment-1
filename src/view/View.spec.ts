@@ -134,6 +134,28 @@ describe('Class View', () => {
         expect(recipeViewMock.showAddFermentableForm).to.be.called
       })
 
+      it('Should emit action add fermentable when input is received from form', (done) => {
+        const expected: any[] = [
+          3.5,
+          'Pilsner',
+          0.75,
+        ]
+        const formData: FermentableForm = {
+          amount: 3.5,
+          name: 'Pilsner malt',
+          yieldPercent: 0.75,
+        }
+
+        recipeViewMock.showAddFermentableForm.returns(Promise.resolve(formData))
+
+        sut.on('ADD_FERMENTABLE', (...actual) => {
+          expect(actual).to.deep.equal(expected)
+          done()
+        })
+
+        consoleUIMock.registerInputHandler.callArgWith(0, 'add fermentable')
+      })
+
     })
   })
 
