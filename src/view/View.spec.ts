@@ -139,9 +139,9 @@ describe('Class View', () => {
 
       it('Should emit action add fermentable when input is received from form', (done) => {
         const expected: any[] = [
-          fermentableForm.amount,
-          fermentableForm.name,
           fermentableForm.yieldPercent,
+          fermentableForm.name,
+          fermentableForm.amount,
         ]
 
         recipeViewMock.showAddFermentableForm
