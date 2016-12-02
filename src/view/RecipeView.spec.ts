@@ -158,6 +158,14 @@ describe('Class RecipeView', () => {
           await sut.showAddHopsForm()
           expect(questionValidator(timeLabel, 'fkweofw')).to.be.false
         })
+
+        it('Should return value received from question', async () => {
+          let expected: string = '60'
+          consoleUIMock.askQuestion.returns(Promise.resolve(expected))
+
+          let {time} = await sut.showAddHopsForm()
+          expect(time).to.equal(+expected)
+        })
       })
 
     })
