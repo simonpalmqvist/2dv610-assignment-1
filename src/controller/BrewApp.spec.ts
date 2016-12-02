@@ -3,6 +3,7 @@ import * as HopModule from '../model/Hop'
 import { Recipe } from '../model/Recipe'
 import {
   addStateToRecipeMock,
+  getFakeStateWithFermentables,
   getFakeStateWithHops,
   getFakeStateWithoutIngredients,
 } from '../test/helper'
@@ -57,6 +58,15 @@ describe('Class BrewApp', () => {
 
       it('Should pass on current state to render with added hops', () => {
         let state: State.State = getFakeStateWithHops()
+        addStateToRecipeMock(recipeMock, state)
+
+        sut.render()
+
+        expect(viewMock.render.firstCall.args).to.deep.equal([state])
+      })
+
+      it('Should pass on current state to render with added fermentables', () => {
+        let state: State.State = getFakeStateWithFermentables()
         addStateToRecipeMock(recipeMock, state)
 
         sut.render()

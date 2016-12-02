@@ -28,6 +28,23 @@ export function getFakeStateWithHops () : State.State {
   ], [])
 }
 
+export function getFakeStateWithFermentables () : State.State {
+  return _generateFakeState([], [
+    {
+      amount: 2.4,
+      name: 'Pale Ale-malt',
+      og: 1.020,
+      yield: 0.74,
+    },
+    {
+      amount: 0.5,
+      name: 'Carapils',
+      og: 1.003,
+      yield: 0.65,
+    },
+  ])
+}
+
 function _generateFakeState (hops: State.Hop[],
                              fermentables: State.Fermentable[],
                              yeast?: State.Yeast) : State.State {
