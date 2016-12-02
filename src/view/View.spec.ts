@@ -16,6 +16,8 @@ describe('Class View', () => {
   let consoleUIMock: ConsoleUIMock
   let recipeViewMock: RecipeViewMock
   let sut: View
+  const hopTrigger = 'add hop'
+  const fermentableTrigger = 'add fermentable'
   const blankLines: string = '\n\n'
   const startMessage: string = 'Welcome to this beer brewing app!'
   const hopForm: HopForm = {
@@ -23,6 +25,11 @@ describe('Class View', () => {
     amount: 30,
     name: 'Amarillo',
     time: 60,
+  }
+  const fermentableForm: FermentableForm = {
+    amount: 3.5,
+    name: 'Pilsner malt',
+    yieldPercent: 0.75,
   }
 
   beforeEach(() => {
@@ -98,7 +105,7 @@ describe('Class View', () => {
 
       it('Should show add hops form when input is "add hop"', () => {
         recipeViewMock.showAddHopsForm.returns(Promise.resolve(hopForm))
-        consoleUIMock.registerInputHandler.callArgWith(0, 'add hop')
+        consoleUIMock.registerInputHandler.callArgWith(0, hopTrigger)
 
         expect(recipeViewMock.showAddHopsForm).to.be.called
       })
@@ -118,42 +125,34 @@ describe('Class View', () => {
           done()
         })
 
-        consoleUIMock.registerInputHandler.callArgWith(0, 'add hop')
+        consoleUIMock.registerInputHandler.callArgWith(0, hopTrigger)
       })
 
       it('Should show add fermentable form when input is "add fermentable"', () => {
-        const formData: FermentableForm = {
-          amount: 3.5,
-          name: 'Pilsner malt',
-          yieldPercent: 0.75,
-        }
+        recipeViewMock.showAddFermentableForm
+          .returns(Promise.resolve(fermentableForm))
 
-        recipeViewMock.showAddFermentableForm.returns(Promise.resolve(formData))
-        consoleUIMock.registerInputHandler.callArgWith(0, 'add fermentable')
+        consoleUIMock.registerInputHandler.callArgWith(0, fermentableTrigger)
 
         expect(recipeViewMock.showAddFermentableForm).to.be.called
       })
 
       it('Should emit action add fermentable when input is received from form', (done) => {
         const expected: any[] = [
-          3.5,
-          'Pilsner malt',
-          0.75,
+          fermentableForm.amount,
+          fermentableForm.name,
+          fermentableForm.yieldPercent,
         ]
-        const formData: FermentableForm = {
-          amount: 3.5,
-          name: 'Pilsner malt',
-          yieldPercent: 0.75,
-        }
 
-        recipeViewMock.showAddFermentableForm.returns(Promise.resolve(formData))
+        recipeViewMock.showAddFermentableForm
+          .returns(Promise.resolve(fermentableForm))
 
-        sut.on('ADD_FERMENTABLE', (...actual) => {
+        sut.on(Action.ADD_FERMENTABLE, (...actual) => {
           expect(actual).to.deep.equal(expected)
           done()
         })
 
-        consoleUIMock.registerInputHandler.callArgWith(0, 'add fermentable')
+        consoleUIMock.registerInputHandler.callArgWith(0, fermentableTrigger)
       })
 
     })
