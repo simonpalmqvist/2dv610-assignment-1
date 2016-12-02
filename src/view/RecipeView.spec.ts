@@ -147,6 +147,15 @@ describe('Class RecipeView', () => {
           })
         })
       })
+
+      describe('time', () => {
+        it('Should ask question', () => {
+          return sut.showAddHopsForm().then(() => {
+            expect(consoleUIMock.askQuestion.withArgs('Time (min): ')).to.be.called
+          })
+        })
+      })
+
     })
   })
 })
