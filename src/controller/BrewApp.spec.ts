@@ -101,7 +101,7 @@ describe('Class BrewApp', () => {
     let fermentableStub: Sinon.SinonStub
 
     it('Should create fermentable with values sent in event', () => {
-      const args: any[] = [3.5, 'Carapils', 0.75]
+      const args: any[] = [0.75, 3.5, 'Carapils']
       fermentableStub = stub(FermentableModule, 'Fermentable')
 
       viewMock.on.withArgs(Action.ADD_FERMENTABLE).callArgWith(1, ...args)

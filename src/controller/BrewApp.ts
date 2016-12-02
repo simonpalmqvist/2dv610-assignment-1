@@ -13,7 +13,9 @@ export class BrewApp {
     this._view = view
     this._recipe = recipe
     this._view.on(Actions.ADD_HOP, this._addHop.bind(this))
-    this._view.on(Actions.ADD_FERMENTABLE, () => undefined)
+    this._view.on(Actions.ADD_FERMENTABLE, (yieldPercent: number, amount: number, name: string, ) => {
+      new Fermentable(yieldPercent, amount, name)
+    })
   }
 
   public render () : void {
