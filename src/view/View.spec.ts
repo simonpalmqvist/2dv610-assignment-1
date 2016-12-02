@@ -66,6 +66,13 @@ describe('Class View', () => {
         expect(recipeViewMock.showRecipeInformation).to.be.calledWith(stateMock.recipe)
       })
 
+      it('Should show fermentable information', () => {
+        sut.render(stateMock)
+
+        expect(recipeViewMock.showFermentableInformation)
+          .to.be.calledWith(stateMock.recipe.fermentables)
+      })
+
       it('Should show hop information', () => {
         sut.render(stateMock)
 
