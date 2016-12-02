@@ -1,5 +1,7 @@
 import {
+  getFakeStateWithFermentables,
   getFakeStateWithHops,
+  getFakeStateWithoutIngredients,
 } from '../test/helper'
 import { ConsoleUI } from './ConsoleUI'
 import { FermentableForm } from './FermentableForm'
@@ -13,6 +15,8 @@ import * as SinonChai from 'sinon-chai'
 describe('Class RecipeView', () => {
   use(SinonChai)
   let stateMock: State.State
+  let stateHopMock: ReadonlyArray<State.Hop>
+  let stateFermentableMock: ReadonlyArray<State.Fermentable>
   let consoleUIMock: ConsoleUIMock
   let sut: RecipeView
   let questionValidator: (question: string, answer: string) => boolean
@@ -26,7 +30,10 @@ describe('Class RecipeView', () => {
   const separation: string = '------------------------------------------------------------'
 
   beforeEach(() => {
-    stateMock = getFakeStateWithHops()
+    stateMock = getFakeStateWithoutIngredients()
+    stateHopMock = getFakeStateWithHops().recipe.hops
+    stateFermentableMock = getFakeStateWithFermentables().recipe.fermentables
+
     consoleUIMock = <ConsoleUIMock> createStubInstance(ConsoleUI)
     sut = new RecipeView(<any> consoleUIMock)
     questionValidator = (q, a) => consoleUIMock.askQuestion.withArgs(q).args[0][1](a)
@@ -64,7 +71,7 @@ describe('Class RecipeView', () => {
           separation,
         ].join('\n')
 
-        sut.showHopInformation(stateMock.recipe.hops)
+        sut.showHopInformation(stateHopMock)
 
         expect(consoleUIMock.print.firstCall).to.be.calledWith(expected)
       })
@@ -75,14 +82,14 @@ describe('Class RecipeView', () => {
         const row2: string =
           'Citra                   12.0 %     100 g     0 min         0'
 
-        sut.showHopInformation(stateMock.recipe.hops)
+        sut.showHopInformation(stateHopMock)
 
         expect(consoleUIMock.print.secondCall).to.be.calledWith(row1)
         expect(consoleUIMock.print.thirdCall).to.be.calledWith(row2)
       })
 
       it('Should print footer last', () => {
-        sut.showHopInformation(stateMock.recipe.hops)
+        sut.showHopInformation(stateHopMock)
 
         expect(consoleUIMock.print.lastCall).to.be.calledWith(separation)
       })
@@ -97,7 +104,7 @@ describe('Class RecipeView', () => {
           separation,
         ].join('\n')
 
-        sut.showFermentableInformation(stateMock.recipe.fermentables)
+        sut.showFermentableInformation(stateFermentableMock)
 
         expect(consoleUIMock.print.firstCall).to.be.calledWith(expected)
       })
@@ -108,27 +115,14 @@ describe('Class RecipeView', () => {
         const row2: string =
           'Carapils                          65.0 %  0.500 kg     1.003'
 
-        sut.showFermentableInformation([
-          {
-            amount: 2.4,
-            name: 'Pale Ale-malt',
-            og: 1.020,
-            yield: 0.74,
-          },
-          {
-            amount: 0.5,
-            name: 'Carapils',
-            og: 1.003,
-            yield: 0.65,
-          },
-        ])
+        sut.showFermentableInformation(stateFermentableMock)
 
         expect(consoleUIMock.print.secondCall).to.be.calledWith(row1)
         expect(consoleUIMock.print.thirdCall).to.be.calledWith(row2)
       })
 
       it('Should print footer last', () => {
-        sut.showFermentableInformation(stateMock.recipe.fermentables)
+        sut.showFermentableInformation(stateFermentableMock)
 
         expect(consoleUIMock.print.lastCall).to.be.calledWith(separation)
       })
