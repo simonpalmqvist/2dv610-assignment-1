@@ -137,7 +137,7 @@ describe('Class View', () => {
       it('Should emit action add fermentable when input is received from form', (done) => {
         const expected: any[] = [
           3.5,
-          'Pilsner',
+          'Pilsner malt',
           0.75,
         ]
         const formData: FermentableForm = {

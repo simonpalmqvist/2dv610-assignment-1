@@ -40,7 +40,14 @@ export class View extends EventEmitter {
         this._handleHopAction()
         break
       case 'add fermentable':
-        this._recipeView.showAddFermentableForm()
+        this._recipeView.showAddFermentableForm().then((fermentable) => {
+          this.emit(
+            'ADD_FERMENTABLE',
+            fermentable.amount,
+            fermentable.name,
+            fermentable.yieldPercent,
+          )
+        })
         break
       default:
         this._ui.print('Please use one of the following commands: [add hop]')
