@@ -61,7 +61,9 @@ export class RecipeView {
   }
 
   public async showAddFermentableForm () : Promise<any> {
-    return Promise.resolve()
+    this._ui.askQuestion('Name of fermentable: ')
+    
+    return undefined
   }
 
   private _hopRow ({name, alpha, amount, time, ibu}: State.Hop) : string {
