@@ -63,9 +63,9 @@ export class View extends EventEmitter {
     this._recipeView.showAddFermentableForm().then((fermentable) => {
       this.emit(
         Action.ADD_FERMENTABLE,
+        fermentable.yieldPercent,
         fermentable.amount,
         fermentable.name,
-        fermentable.yieldPercent,
       )
     })
   }
