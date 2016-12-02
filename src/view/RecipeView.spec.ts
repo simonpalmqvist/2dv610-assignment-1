@@ -54,105 +54,93 @@ describe('Class RecipeView', () => {
       })
 
       describe('name', () => {
-        it('Should ask question', () => {
-          return sut.showAddHopsForm().then(() => {
-            expect(consoleUIMock.askQuestion).to.be.calledWith(nameLabel)
-          })
+        it('Should ask question', async () => {
+          await sut.showAddHopsForm()
+          expect(consoleUIMock.askQuestion).to.be.calledWith(nameLabel)
         })
 
-        it('Should return input received from question', () => {
+        it('Should return input received from question', async () => {
           let expected: string = 'Cascade'
           consoleUIMock.askQuestion.returns(Promise.resolve(expected))
 
-          return sut.showAddHopsForm().then(({name}) => {
-            expect(name).to.equal(expected)
-          })
+          let {name} = await sut.showAddHopsForm()
+          expect(name).to.equal(expected)
         })
       })
 
       describe('alpha', () => {
-        it('Should ask question', () => {
-          return sut.showAddHopsForm().then(() => {
-            expect(consoleUIMock.askQuestion.withArgs(alphaLabel)).to.be.called
-          })
+        it('Should ask question', async () => {
+          await sut.showAddHopsForm()
+          expect(consoleUIMock.askQuestion.withArgs(alphaLabel)).to.be.called
         })
 
-        it('Should validate and return false if not a number', () => {
+        it('Should validate and return false if not a number', async () => {
           let notNumber: string = 'fkerorekog'
 
-          return sut.showAddHopsForm().then(() => {
-            expect(questionValidator(alphaLabel, notNumber)).to.be.false
-          })
+          await sut.showAddHopsForm()
+          expect(questionValidator(alphaLabel, notNumber)).to.be.false
         })
 
-        it('Should validate and return false if number is negative', () => {
-          return sut.showAddHopsForm().then(() => {
-            expect(questionValidator(alphaLabel, '-1')).to.be.false
-          })
+        it('Should validate and return false if number is negative', async () => {
+          await sut.showAddHopsForm()
+          expect(questionValidator(alphaLabel, '-1')).to.be.false
         })
 
-        it('Should validate and return false if number is over 100', () => {
-          return sut.showAddHopsForm().then(() => {
-            expect(questionValidator(alphaLabel, '101')).to.be.false
-          })
+        it('Should validate and return false if number is over 100', async () => {
+          await sut.showAddHopsForm()
+          expect(questionValidator(alphaLabel, '101')).to.be.false
         })
 
-        it('Should validate and return true within 0-100', () => {
-          return sut.showAddHopsForm().then(() => {
-            expect(questionValidator(alphaLabel, '100')).to.be.true
-          })
+        it('Should validate and return true within 0-100', async () => {
+          await sut.showAddHopsForm()
+          expect(questionValidator(alphaLabel, '100')).to.be.true
         })
 
-        it('Should return value received from question', () => {
+        it('Should return value received from question', async () => {
           let expected: string = '45'
           consoleUIMock.askQuestion.returns(Promise.resolve(expected))
 
-          return sut.showAddHopsForm().then(({alpha}) => {
-            expect(alpha).to.equal(+expected / 100)
-          })
+          let {alpha} = await sut.showAddHopsForm()
+
+          expect(alpha).to.equal(+expected / 100)
         })
       })
 
       describe('amount', () => {
-        it('Should ask question', () => {
-          return sut.showAddHopsForm().then(() => {
-            expect(consoleUIMock.askQuestion.withArgs(amountLabel)).to.be.called
-          })
+        it('Should ask question', async () => {
+          await sut.showAddHopsForm()
+          expect(consoleUIMock.askQuestion.withArgs(amountLabel)).to.be.called
         })
 
-        it('Should validate and return true if number is 0 or higher', () => {
-          return sut.showAddHopsForm().then(() => {
-            expect(questionValidator(amountLabel, '1')).to.be.true
-          })
+        it('Should validate and return true if number is 0 or higher', async () => {
+          await sut.showAddHopsForm()
+          expect(questionValidator(amountLabel, '1')).to.be.true
         })
 
-        it('Should validate and return false if number is negative', () => {
-          return sut.showAddHopsForm().then(() => {
-            expect(questionValidator(amountLabel, '-1')).to.be.false
-          })
+        it('Should validate and return false if number is negative', async () => {
+          await sut.showAddHopsForm()
+          expect(questionValidator(amountLabel, '-1')).to.be.false
         })
 
-        it('Should validate and return false if not a number', () => {
-          return sut.showAddHopsForm().then(() => {
-            expect(questionValidator(amountLabel, 'fkweofw')).to.be.false
-          })
+        it('Should validate and return false if not a number', async () => {
+          await sut.showAddHopsForm()
+          expect(questionValidator(amountLabel, 'fkweofw')).to.be.false
         })
 
-        it('Should return value received from question', () => {
+        it('Should return value received from question', async () => {
           let expected: string = '30'
           consoleUIMock.askQuestion.returns(Promise.resolve(expected))
 
-          return sut.showAddHopsForm().then(({amount}) => {
-            expect(amount).to.equal(+expected)
-          })
+          let {amount} = await sut.showAddHopsForm()
+          expect(amount).to.equal(+expected)
         })
       })
 
       describe('time', () => {
-        it('Should ask question', () => {
-          return sut.showAddHopsForm().then(() => {
-            expect(consoleUIMock.askQuestion.withArgs('Time (min): ')).to.be.called
-          })
+        it('Should ask question', async () => {
+          await sut.showAddHopsForm()
+
+          expect(consoleUIMock.askQuestion.withArgs('Time (min): ')).to.be.called
         })
       })
 
