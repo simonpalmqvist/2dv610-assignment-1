@@ -19,6 +19,7 @@ describe('Class RecipeView', () => {
   const alphaLabel: string = 'Alpha (%) [0-100]: '
   const amountLabel: string = 'Amount (g): '
   const timeLabel: string = 'Time (min): '
+  const separation: string = '------------------------------------------------------------'
 
   beforeEach(() => {
     stateMock = getFakeStateWithoutIngredients()
@@ -33,7 +34,7 @@ describe('Class RecipeView', () => {
         const expected: string = [
           '',
           'Recipe',
-          '------------------------------------------------------------',
+          separation,
           'Volume:        20 l',
           'Efficiency:    80.0 %',
           '',
@@ -41,7 +42,7 @@ describe('Class RecipeView', () => {
           'FG:            1.010',
           'IBU:           36',
           'ABV:           4.8 %',
-          '------------------------------------------------------------',
+          separation,
         ].join('\n')
 
         sut.showRecipeInformation(stateMock.recipe)
@@ -54,9 +55,9 @@ describe('Class RecipeView', () => {
       it('Should print header', () => {
         const expected: string = [
           'Hops',
-          '------------------------------------------------------------',
+          separation,
           'Name                     Alpha    Amount      Time       IBU',
-          '------------------------------------------------------------',
+          separation,
         ].join('\n')
 
         sut.showHopInformation(stateMock.recipe.hops)
@@ -65,11 +66,9 @@ describe('Class RecipeView', () => {
       })
 
       it('Should print footer last', () => {
-        const expected: string = '------------------------------------------------------------'
-
         sut.showHopInformation(stateMock.recipe.hops)
 
-        expect(consoleUIMock.print.lastCall).to.be.calledWith(expected)
+        expect(consoleUIMock.print.lastCall).to.be.calledWith(separation)
       })
     })
 
