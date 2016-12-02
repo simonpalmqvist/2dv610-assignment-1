@@ -38,7 +38,7 @@ export class RecipeView {
     const name: string = await this._ui.askQuestion('Name of hop: ')
     const alpha: string = await this._ui.askQuestion('Alpha (%) [0-100]: ', this._validatePercent)
     const amount: string = await this._ui.askQuestion('Amount (g): ', this._validateNotNegative)
-    await this._ui.askQuestion('Time (min): ', () => undefined)
+    await this._ui.askQuestion('Time (min): ', this._validateNotNegative)
 
     return {
       alpha: +alpha / 100,
