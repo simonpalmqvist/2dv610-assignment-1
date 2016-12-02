@@ -63,6 +63,14 @@ describe('Class RecipeView', () => {
 
         expect(consoleUIMock.print.firstCall).to.be.calledWith(expected)
       })
+
+      it('Should print footer last', () => {
+        const expected: string = '------------------------------------------------------------'
+
+        sut.showHopInformation(stateMock.recipe.hops)
+
+        expect(consoleUIMock.print.lastCall).to.be.calledWith(expected)
+      })
     })
 
     describe('showAddHopsForm', () => {
