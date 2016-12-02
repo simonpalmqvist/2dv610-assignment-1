@@ -1,4 +1,5 @@
 import { ConsoleUI } from './ConsoleUI'
+import { FermentableForm } from './FermentableForm'
 import { HopForm } from './HopForm'
 import { State } from './State'
 
@@ -60,10 +61,14 @@ export class RecipeView {
     }
   }
 
-  public async showAddFermentableForm () : Promise<any> {
+  public async showAddFermentableForm () : Promise<FermentableForm> {
     this._ui.askQuestion('Name of fermentable: ')
-    
-    return undefined
+
+    return {
+      name: '',
+      amount: 0,
+      yieldPercent: 0
+    }
   }
 
   private _hopRow ({name, alpha, amount, time, ibu}: State.Hop) : string {
