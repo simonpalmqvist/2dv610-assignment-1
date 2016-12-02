@@ -60,6 +60,10 @@ export class RecipeView {
     }
   }
 
+  public async showAddFermentableForm () : Promise<any> {
+    return Promise.resolve()
+  }
+
   private _hopRow ({name, alpha, amount, time, ibu}: State.Hop) : string {
     let rightPadding: number = 10
     return [

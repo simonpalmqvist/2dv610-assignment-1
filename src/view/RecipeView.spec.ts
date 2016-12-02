@@ -202,7 +202,17 @@ describe('Class RecipeView', () => {
           expect(time).to.equal(+expected)
         })
       })
+    })
 
+    describe('ShowAddFermentableForm', () => {
+      describe('name', () => {
+        it('Should ask question', async () => {
+          consoleUIMock.askQuestion.returns(Promise.resolve())
+
+          await sut.showAddFermentableForm()
+          expect(consoleUIMock.askQuestion).to.be.calledWith('Name of fermentable: ')
+        })
+      })
     })
   })
 })
