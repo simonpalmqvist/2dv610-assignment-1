@@ -31,7 +31,14 @@ export class RecipeView {
   }
 
   public showHopInformation (hops: ReadonlyArray<State.Hop>) : void {
+    const header: string = [
+      'Hops',
+      this._separationLine(),
+      'Name                     Alpha    Amount      Time       IBU',
+      this._separationLine(),
+    ].join('\n')
 
+    this._ui.print(header)
   }
 
   public async showAddHopsForm () : Promise<HopForm> {
@@ -57,7 +64,7 @@ export class RecipeView {
   }
 
   private _separationLine () : string {
-    return this._repeatChar('-', 50)
+    return this._repeatChar('-', 60)
   }
 
   private _formatPercent (percent: number) : string {
