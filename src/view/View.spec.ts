@@ -122,11 +122,13 @@ describe('Class View', () => {
       })
 
       it('Should show add fermentable form when input is "add fermentable"', () => {
-        recipeViewMock.showAddFermentableForm.returns(Promise.resolve({
+        const formData: FermentableForm = {
           amount: 3.5,
           name: 'Pilsner malt',
-          yieldPercent: 0.75
-        }))
+          yieldPercent: 0.75,
+        }
+
+        recipeViewMock.showAddFermentableForm.returns(Promise.resolve(formData))
         consoleUIMock.registerInputHandler.callArgWith(0, 'add fermentable')
 
         expect(recipeViewMock.showAddFermentableForm).to.be.called
