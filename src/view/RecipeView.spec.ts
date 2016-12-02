@@ -17,6 +17,7 @@ describe('Class RecipeView', () => {
   const nameLabel: string = 'Name of hop: '
   const alphaLabel: string = 'Alpha (%) [0-100]: '
   const amountLabel: string = 'Amount (g): '
+  const timeLabel: string = 'Time (min): '
 
   beforeEach(() => {
     stateMock = getFakeStateWithoutIngredients()
@@ -140,22 +141,22 @@ describe('Class RecipeView', () => {
         it('Should ask question', async () => {
           await sut.showAddHopsForm()
 
-          expect(consoleUIMock.askQuestion.withArgs('Time (min): ')).to.be.called
+          expect(consoleUIMock.askQuestion.withArgs(timeLabel)).to.be.called
         })
 
         it('Should validate and return true if number is 0 or higher', async () => {
           await sut.showAddHopsForm()
-          expect(questionValidator('Time (min): ', '1')).to.be.true
+          expect(questionValidator(timeLabel, '1')).to.be.true
         })
 
         it('Should validate and return false if number is negative', async () => {
           await sut.showAddHopsForm()
-          expect(questionValidator('Time (min): ', '-1')).to.be.false
+          expect(questionValidator(timeLabel, '-1')).to.be.false
         })
 
         it('Should validate and return false if not a number', async () => {
           await sut.showAddHopsForm()
-          expect(questionValidator('Time (min): ', 'fkweofw')).to.be.false
+          expect(questionValidator(timeLabel, 'fkweofw')).to.be.false
         })
       })
 
