@@ -48,7 +48,14 @@ export class RecipeView {
   }
 
   public showFermentableInformation (fermentables: ReadonlyArray<State.Fermentable>) : void {
-    
+    const header: string = [
+      'Fermentables',
+      this._separationLine(),
+      'Name                               Yield    Amount        OG',
+      this._separationLine(),
+    ].join('\n')
+
+    this._ui.print(header)
   }
 
   public async showAddHopsForm () : Promise<HopForm> {
