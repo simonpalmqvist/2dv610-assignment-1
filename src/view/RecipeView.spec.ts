@@ -1,11 +1,12 @@
-import { getFakeStateWithHops, getFakeStateWithoutIngredients } from '../test/helper'
+import {
+  getFakeStateWithoutIngredients,
+} from '../test/helper'
 import { ConsoleUI } from './ConsoleUI'
 import { RecipeView } from './RecipeView'
 import { State } from './State'
 import { expect, use } from 'chai'
 import { createStubInstance } from 'sinon'
 import * as SinonChai from 'sinon-chai'
-
 
 describe('Class RecipeView', () => {
   use(SinonChai)
@@ -144,6 +145,5 @@ describe('Class RecipeView', () => {
         done()
       })
     })
-
   })
 })

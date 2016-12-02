@@ -42,7 +42,7 @@ export class View extends EventEmitter {
       default:
         this._ui.print('Please use one of the following commands: [add hop]')
     }
-  this._ui.prompt()
+    this._ui.prompt()
   }
 
   private _handleHopAction () : void {
