@@ -31,6 +31,17 @@ export class BrewApp {
   }
 
   private _getUpdatedState () : State.State {
+    let array: Array<State.Fermentable> = []
+
+    for (let f of this._recipe.fermentables) {
+      array.push({
+        amount: f.amount,
+        name: f.name,
+        yield: f.yield,
+        og: f.calcExpectedOG(this._recipe.efficiency, this._recipe.volume)
+      })
+    }
+
     return {
       recipe: {
         efficiency: this._recipe.efficiency,
@@ -38,7 +49,7 @@ export class BrewApp {
         expectedFG: this._recipe.expectedFG,
         expectedIBU: this._recipe.expectedIBU,
         expectedOG: this._recipe.expectedOG,
-        fermentables: <ReadonlyArray<State.Fermentable>> [],
+        fermentables: array,
         hops: this._getHopState(),
         volume: this._recipe.volume,
         yeast: undefined,

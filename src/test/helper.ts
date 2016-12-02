@@ -77,5 +77,11 @@ export function addStateToRecipeMock (recipeMock: RecipeMock, state: State.State
     time: hop.time,
     calculateIBU() : number { return  hop.ibu },
   })))
+  stubProperty(recipeMock, 'fermentables', state.recipe.fermentables.map((f) => ({
+    amount: f.amount,
+    name: f.name,
+    yield: f.yield,
+    calcExpectedOG() : number { return  f.og },
+  })))
   stubProperty(recipeMock, 'yeast', undefined)
 }
