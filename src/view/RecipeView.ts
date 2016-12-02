@@ -37,8 +37,11 @@ export class RecipeView {
       'Name                     Alpha    Amount      Time       IBU',
       this._separationLine(),
     ].join('\n')
+    const footer: string = this._separationLine()
 
     this._ui.print(header)
+
+    this._ui.print(footer)
   }
 
   public async showAddHopsForm () : Promise<HopForm> {
