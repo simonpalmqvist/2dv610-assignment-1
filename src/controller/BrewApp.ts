@@ -13,9 +13,7 @@ export class BrewApp {
     this._view = view
     this._recipe = recipe
     this._view.on(Actions.ADD_HOP, this._addHop.bind(this))
-    this._view.on(Actions.ADD_FERMENTABLE, (yieldPercent: number, amount: number, name: string, ) => {
-      new Fermentable(yieldPercent, amount, name)
-    })
+    this._view.on(Actions.ADD_FERMENTABLE, this._addFermentable.bind(this))
   }
 
   public render () : void {
@@ -25,6 +23,10 @@ export class BrewApp {
   private _addHop (alpha: number, amount: number, name: string, time: number) : void {
     this._recipe.addHop(new Hop(alpha, amount, name, time))
     this.render()
+  }
+
+  private _addFermentable (yieldPercent: number, amount: number, name: string) : void {
+    new Fermentable(yieldPercent, amount, name)
   }
 
   private _getUpdatedState () : State.State {
