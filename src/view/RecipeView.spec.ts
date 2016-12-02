@@ -16,10 +16,11 @@ describe('Class RecipeView', () => {
   let consoleUIMock: ConsoleUIMock
   let sut: RecipeView
   let questionValidator: (question: string, answer: string) => boolean
-  const nameLabel: string = 'Name of hop: '
+  const hopNameLabel: string = 'Name of hop: '
   const alphaLabel: string = 'Alpha (%) [0-100]: '
-  const amountLabel: string = 'Amount (g): '
+  const hopAmountLabel: string = 'Amount (g): '
   const timeLabel: string = 'Time (min): '
+  const fermentableNameLabel: string = 'Name of fermentable: '
   const separation: string = '------------------------------------------------------------'
 
   beforeEach(() => {
@@ -93,7 +94,7 @@ describe('Class RecipeView', () => {
       describe('name', () => {
         it('Should ask question', async () => {
           await sut.showAddHopsForm()
-          expect(consoleUIMock.askQuestion).to.be.calledWith(nameLabel)
+          expect(consoleUIMock.askQuestion).to.be.calledWith(hopNameLabel)
         })
 
         it('Should return input received from question', async () => {
@@ -146,22 +147,22 @@ describe('Class RecipeView', () => {
       describe('amount', () => {
         it('Should ask question', async () => {
           await sut.showAddHopsForm()
-          expect(consoleUIMock.askQuestion.withArgs(amountLabel)).to.be.called
+          expect(consoleUIMock.askQuestion.withArgs(hopAmountLabel)).to.be.called
         })
 
         it('Should validate and return true if number is 0 or higher', async () => {
           await sut.showAddHopsForm()
-          expect(questionValidator(amountLabel, '1')).to.be.true
+          expect(questionValidator(hopAmountLabel, '1')).to.be.true
         })
 
         it('Should validate and return false if number is negative', async () => {
           await sut.showAddHopsForm()
-          expect(questionValidator(amountLabel, '-1')).to.be.false
+          expect(questionValidator(hopAmountLabel, '-1')).to.be.false
         })
 
         it('Should validate and return false if not a number', async () => {
           await sut.showAddHopsForm()
-          expect(questionValidator(amountLabel, 'fkweofw')).to.be.false
+          expect(questionValidator(hopAmountLabel, 'fkweofw')).to.be.false
         })
 
         it('Should return value received from question', async () => {
@@ -211,7 +212,7 @@ describe('Class RecipeView', () => {
           consoleUIMock.askQuestion.returns(Promise.resolve())
 
           await sut.showAddFermentableForm()
-          expect(consoleUIMock.askQuestion).to.be.calledWith('Name of fermentable: ')
+          expect(consoleUIMock.askQuestion).to.be.calledWith(fermentableNameLabel)
         })
 
         it('Should return value received from question', async () => {
