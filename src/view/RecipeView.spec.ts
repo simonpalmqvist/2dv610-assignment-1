@@ -143,6 +143,12 @@ describe('Class RecipeView', () => {
           }).catch(done)
         })
 
+        it('Should validate and return false if not a number', (done) => {
+          sut.showAddHopsForm().then(() => {
+            expect(questionValidator(amountLabel, 'fkweofw')).to.be.false
+            done()
+          }).catch(done)
+        })
       })
     })
   })
