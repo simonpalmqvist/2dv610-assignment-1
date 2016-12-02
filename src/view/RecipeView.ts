@@ -64,7 +64,7 @@ export class RecipeView {
   public async showAddFermentableForm () : Promise<FermentableForm> {
     const name: string = await this._ui.askQuestion('Name of fermentable: ')
     const amount: string = await this._ui.askQuestion('Amount (kg): ', this._validateNotNegative)
-    await this._ui.askQuestion('Yield (%) [0-100]: ', () => undefined)
+    await this._ui.askQuestion('Yield (%) [0-100]: ', this._validatePercent)
 
     return {
       amount: +amount,
