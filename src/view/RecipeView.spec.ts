@@ -101,6 +101,31 @@ describe('Class RecipeView', () => {
 
         expect(consoleUIMock.print.firstCall).to.be.calledWith(expected)
       })
+
+      it('Should print rows in correct format', () => {
+        const row1: string =
+          'Pale Ale-malt                     74.0 %  2.400 kg     1.020'
+        const row2: string =
+          'Carapils                          65.0 %  0.500 kg     1.003'
+
+        sut.showFermentableInformation([
+          {
+            name: 'Pale Ale-malt',
+            yield: 0.74,
+            amount: 2.4,
+            og: 1.020
+          },
+          {
+            name: 'Carapils',
+            yield: 0.65,
+            amount: 0.5,
+            og: 1.003
+          },
+        ])
+
+        expect(consoleUIMock.print.secondCall).to.be.calledWith(row1)
+        expect(consoleUIMock.print.thirdCall).to.be.calledWith(row2)
+      })
     })
 
     describe('showAddHopsForm', () => {
