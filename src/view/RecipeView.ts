@@ -33,30 +33,15 @@ export class RecipeView {
   }
 
   public showHopInformation (hops: ReadonlyArray<State.Hop>) : void {
-    const header: string = [
-      'Hops',
-      this._separationLine(),
-      this._hopHeaderRow(),
-      this._separationLine(),
-    ].join('\n')
-    const footer: string = this._separationLine()
-
-    this._ui.print(header)
+    this._ui.print(this._header('Hops', this._hopHeaderRow()))
 
     hops.forEach((hop) => this._ui.print(this._hopRow(hop)))
 
-    this._ui.print(footer)
+    this._ui.print(this._separationLine())
   }
 
   public showFermentableInformation (fermentables: ReadonlyArray<State.Fermentable>) : void {
-    const header: string = [
-      'Fermentables',
-      this._separationLine(),
-      this._fermentableHeaderRow(),
-      this._separationLine(),
-    ].join('\n')
-
-    this._ui.print(header)
+    this._ui.print(this._header('Fermentables', this._fermentableHeaderRow()))
 
     fermentables.forEach((f) => this._ui.print(this._fermentableRow(f)))
 
@@ -128,6 +113,15 @@ export class RecipeView {
       this._rightAlign(this._formatGravity(f.amount) + ' kg', this._padding),
       this._rightAlign(this._formatGravity(f.og), this._padding),
     ].join('')
+  }
+
+  private _header(title: string, headerRow: string) : string {
+    return [
+      title,
+      this._separationLine(),
+      headerRow,
+      this._separationLine(),
+    ].join('\n')
   }
 
   private _twoColumn (firstColumn: string, secondColumn: string) : string {
