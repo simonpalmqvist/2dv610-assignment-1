@@ -119,5 +119,11 @@ describe('Class BrewApp', () => {
       const expected: Sinon.SinonStub = fermentableStub.firstCall.returnValue
       expect(recipeMock.addFermentable).calledWithExactly(expected)
     })
+
+    it('Should call render after fermentable is added', () => {
+      viewMock.on.withArgs(Action.ADD_FERMENTABLE).callArg(1)
+
+      expect(viewMock.render).to.be.calledAfter(recipeMock.addFermentable)
+    })
   })
 })
