@@ -50,6 +50,21 @@ describe('Class RecipeView', () => {
       })
     })
 
+    describe('showHopInformation', () => {
+      it('Should print header', () => {
+        const expected: string = [
+          'Hops',
+          '------------------------------------------------------------',
+          'Name                     Alpha    Amount      Time       IBU',
+          '------------------------------------------------------------',
+        ].join('\n')
+
+        sut.showHopInformation(stateMock.recipe.hops)
+
+        expect(consoleUIMock.print.firstCall).to.be.calledWith(expected)
+      })
+    })
+
     describe('showAddHopsForm', () => {
       beforeEach(() => {
         consoleUIMock.askQuestion.returns(Promise.resolve())
