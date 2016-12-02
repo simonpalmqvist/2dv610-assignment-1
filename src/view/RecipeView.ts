@@ -57,6 +57,15 @@ export class RecipeView {
     ].join('\n')
 
     this._ui.print(header)
+
+    fermentables.forEach((f) => {
+      this._ui.print([
+        this._leftAlign(f.name, this._padding * 3),
+        this._rightAlign(this._formatPercent(f.yield), this._padding),
+        this._rightAlign(this._formatGravity(f.amount) + ' kg', this._padding),
+        this._rightAlign(this._formatGravity(f.og), this._padding),
+      ].join(''))
+    })
   }
 
   public async showAddHopsForm () : Promise<HopForm> {
