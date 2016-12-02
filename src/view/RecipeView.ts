@@ -38,7 +38,7 @@ export class RecipeView {
       .then((name) => result.name = name)
       .then(() => this._ui.askQuestion('Alpha (%) [0-100]: ', this._validatePercent))
       .then((alpha) => result.alpha = +alpha / 100)
-      .then(() => this._ui.askQuestion('Amount (g): '))
+      .then(() => this._ui.askQuestion('Amount (g): ', () => undefined))
       .then(() => result)
   }
 

@@ -145,5 +145,18 @@ describe('Class RecipeView', () => {
         done()
       })
     })
+
+    it('Should validate amount and return true if number is 0 or higher', (done) => {
+      let correctNumber: string = '1'
+      consoleUIMock.askQuestion.returns(Promise.resolve())
+
+      sut.showAddHopsForm().then(() => {
+        validator = consoleUIMock.askQuestion
+          .withArgs('Amount (g): ').firstCall.args[1]
+
+        expect(validator(correctNumber)).to.be.true
+        done()
+      })
+    })
   })
 })
