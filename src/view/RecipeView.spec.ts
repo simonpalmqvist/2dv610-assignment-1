@@ -142,6 +142,21 @@ describe('Class RecipeView', () => {
 
           expect(consoleUIMock.askQuestion.withArgs('Time (min): ')).to.be.called
         })
+
+        it('Should validate and return true if number is 0 or higher', async () => {
+          await sut.showAddHopsForm()
+          expect(questionValidator('Time (min): ', '1')).to.be.true
+        })
+
+        it('Should validate and return false if number is negative', async () => {
+          await sut.showAddHopsForm()
+          expect(questionValidator('Time (min): ', '-1')).to.be.false
+        })
+
+        it('Should validate and return false if not a number', async () => {
+          await sut.showAddHopsForm()
+          expect(questionValidator('Time (min): ', 'fkweofw')).to.be.false
+        })
       })
 
     })
