@@ -44,7 +44,7 @@ describe('Class RecipeView', () => {
       it('Should print correct layout', () => {
         const expected: string = [
           '',
-          'Recipe',
+          'RECIPE',
           separation,
           'Volume:        20 l',
           'Efficiency:    80.0 %',
@@ -53,7 +53,6 @@ describe('Class RecipeView', () => {
           'FG:            1.010',
           'IBU:           36',
           'ABV:           4.8 %',
-          '',
         ].join('\n')
 
         sut.showRecipeInformation(stateMock.recipe)
@@ -65,7 +64,8 @@ describe('Class RecipeView', () => {
     describe('showHopInformation', () => {
       it('Should print header', () => {
         const expected: string = [
-          'Hops',
+          '',
+          'HOPS',
           separation,
           'Name                     Alpha    Amount      Time       IBU',
           separation,
@@ -98,7 +98,8 @@ describe('Class RecipeView', () => {
     describe('showFermentableInformation', () => {
       it('Should print header', () => {
         const expected: string = [
-          'Fermentables',
+          '',
+          'FERMENTABLES',
           separation,
           'Name                               Yield    Amount        OG',
           separation,
