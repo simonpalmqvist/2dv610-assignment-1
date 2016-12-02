@@ -65,6 +65,18 @@ describe('Class RecipeView', () => {
         expect(consoleUIMock.print.firstCall).to.be.calledWith(expected)
       })
 
+      it('Should print rows in correct format', () => {
+        const row1: string =
+          'Cascade                  6.0 %      50 g    15 min        10'
+        const row2: string =
+          'Citra                   12.0 %     100 g     0 min         0'
+
+        sut.showHopInformation(stateMock.recipe.hops)
+
+        expect(consoleUIMock.print.secondCall).to.be.calledWith(row1)
+        expect(consoleUIMock.print.thirdCall).to.be.calledWith(row2)
+      })
+
       it('Should print footer last', () => {
         sut.showHopInformation(stateMock.recipe.hops)
 
