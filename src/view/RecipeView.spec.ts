@@ -223,7 +223,15 @@ describe('Class RecipeView', () => {
 
           expect(name).to.equal(expected)
         })
+      })
 
+      describe('amount', () => {
+        it('Should ask question', async () => {
+          consoleUIMock.askQuestion.returns(Promise.resolve())
+
+          await sut.showAddFermentableForm()
+          expect(consoleUIMock.askQuestion.withArgs('Amount (kg): ')).to.be.called
+        })
       })
     })
   })
