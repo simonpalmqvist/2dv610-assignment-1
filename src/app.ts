@@ -1,5 +1,6 @@
 import { BrewApp } from './controller/BrewApp'
 import { Recipe } from './model/Recipe'
+import { Yeast } from './model/Yeast'
 import { ConsoleUI } from './view/ConsoleUI'
 import { RecipeView } from './view/RecipeView'
 import { View } from './view/View'
@@ -16,6 +17,8 @@ const recipeView: RecipeView = new RecipeView(consoleUI)
 const view: View = new View(consoleUI, recipeView)
 
 const recipe: Recipe = new Recipe()
+
+recipe.yeast = new Yeast('Default yeast', 0.75)
 
 const app: BrewApp = new BrewApp(view, recipe)
 
