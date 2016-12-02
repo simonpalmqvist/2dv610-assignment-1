@@ -18,6 +18,7 @@ const view: View = new View(consoleUI, recipeView)
 
 const recipe: Recipe = new Recipe()
 
+// Setting default yeast since adding yeast in UI is not possible yet
 recipe.yeast = new Yeast('Default yeast', 0.75)
 
 const app: BrewApp = new BrewApp(view, recipe)
