@@ -27,6 +27,7 @@ export class BrewApp {
 
   private _addFermentable (yieldPercent: number, amount: number, name: string) : void {
     this._recipe.addFermentable(new Fermentable(yieldPercent, amount, name))
+    this.render()
   }
 
   private _getUpdatedState () : State.State {
