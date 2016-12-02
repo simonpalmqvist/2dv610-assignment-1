@@ -233,6 +233,21 @@ describe('Class RecipeView', () => {
           await sut.showAddFermentableForm()
           expect(consoleUIMock.askQuestion.withArgs('Amount (kg): ')).to.be.called
         })
+
+        it('Should validate and return true if number is 0 or higher', async () => {
+          await sut.showAddFermentableForm()
+          expect(questionValidator('Amount (kg): ', '1.5')).to.be.true
+        })
+
+        it('Should validate and return false if number is negative', async () => {
+          await sut.showAddFermentableForm()
+          expect(questionValidator('Amount (kg): ', '-1')).to.be.false
+        })
+
+        it('Should validate and return false if not a number', async () => {
+          await sut.showAddFermentableForm()
+          expect(questionValidator('Amount (kg): ', 'fkweofw')).to.be.false
+        })
       })
     })
   })
