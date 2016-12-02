@@ -263,8 +263,8 @@ describe('Class RecipeView', () => {
       describe('yield', () => {
         it('Should ask question', async () => {
           await sut.showAddFermentableForm()
-          expect(consoleUIMock.askQuestion.withArgs('Yields (%) [0-100]')).to.be.called
-        })        
+          expect(consoleUIMock.askQuestion.withArgs('Yield (%) [0-100]: ')).to.be.called
+        })
       })
     })
   })
