@@ -2,6 +2,7 @@ import {
   getFakeStateWithHops,
 } from '../test/helper'
 import { ConsoleUI } from './ConsoleUI'
+import { FermentableForm } from './FermentableForm'
 import { HopForm } from './HopForm'
 import { RecipeView } from './RecipeView'
 import { State } from './State'
@@ -212,6 +213,16 @@ describe('Class RecipeView', () => {
           await sut.showAddFermentableForm()
           expect(consoleUIMock.askQuestion).to.be.calledWith('Name of fermentable: ')
         })
+
+        it('Should return value received from question', async () => {
+          let expected: string = 'Pale ale-malt'
+          consoleUIMock.askQuestion.returns(Promise.resolve(expected))
+
+          let {name}: FermentableForm = await sut.showAddFermentableForm()
+
+          expect(name).to.equal(expected)
+        })
+
       })
     })
   })
