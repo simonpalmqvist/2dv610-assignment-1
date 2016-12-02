@@ -27,8 +27,12 @@ describe('Class BrewApp', () => {
   })
 
   describe('Constructor', () => {
-    it('Should add listener for ADD_HOPS action', () => {
+    it('Should add listener for ADD_HOP action', () => {
       expect(viewMock.on).calledWith(Action.ADD_HOP)
+    })
+
+    it('Should add listener for ADD_FERMENTABLE action', () => {
+      expect(viewMock.on).calledWith(Action.ADD_FERMENTABLE)
     })
   })
 
