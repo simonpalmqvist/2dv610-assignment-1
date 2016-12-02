@@ -149,6 +149,16 @@ describe('Class RecipeView', () => {
             done()
           }).catch(done)
         })
+
+        it('Should return value received from question', (done) => {
+          let expected: string = '30'
+          consoleUIMock.askQuestion.returns(Promise.resolve(expected))
+
+          sut.showAddHopsForm().then(({amount}) => {
+            expect(amount).to.equal(+expected)
+            done()
+          }).catch(done)
+        })
       })
     })
   })
