@@ -58,14 +58,7 @@ export class RecipeView {
 
     this._ui.print(header)
 
-    fermentables.forEach((f) => {
-      this._ui.print([
-        this._leftAlign(f.name, this._padding * 3),
-        this._rightAlign(this._formatPercent(f.yield), this._padding),
-        this._rightAlign(this._formatGravity(f.amount) + ' kg', this._padding),
-        this._rightAlign(this._formatGravity(f.og), this._padding),
-      ].join(''))
-    })
+    fermentables.forEach((f) => this._ui.print(this._fermentableRow(f)))
   }
 
   public async showAddHopsForm () : Promise<HopForm> {
@@ -108,7 +101,6 @@ export class RecipeView {
   }
 
   private _hopRow ({name, alpha, amount, time, ibu}: State.Hop) : string {
-    let rightPadding: number = 10
     return [
       this._leftAlign(name, this._padding * 2),
       this._rightAlign(this._formatPercent(alpha), this._padding),
@@ -124,6 +116,15 @@ export class RecipeView {
       this._rightAlign('Yield', this._padding),
       this._rightAlign('Amount', this._padding),
       this._rightAlign('OG', this._padding),
+    ].join('')
+  }
+
+  private _fermentableRow (f: State.Fermentable) : string {
+    return [
+      this._leftAlign(f.name, this._padding * 3),
+      this._rightAlign(this._formatPercent(f.yield), this._padding),
+      this._rightAlign(this._formatGravity(f.amount) + ' kg', this._padding),
+      this._rightAlign(this._formatGravity(f.og), this._padding),
     ].join('')
   }
 
