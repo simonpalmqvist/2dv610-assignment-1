@@ -42,6 +42,7 @@ export class RecipeView {
       .then(() => this._ui.askQuestion('Alpha (%) [0-100]: ', this._validatePercent))
       .then((alpha) => result.alpha = +alpha / 100)
       .then(() => this._ui.askQuestion('Amount (g): ', this._validateNotNegative))
+      .then((amount) => result.amount = +amount)
       .then(() => result)
   }
 
