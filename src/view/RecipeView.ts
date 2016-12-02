@@ -7,6 +7,9 @@ export class RecipeView {
 
   constructor(ui: ConsoleUI) {
     this._ui = ui
+
+    this._validatePercent = this._validatePercent.bind(this)
+    this._validateNotNegative = this._validateNotNegative.bind(this)
   }
 
   public showRecipeInformation (recipe: State.Recipe) : void {
@@ -38,7 +41,7 @@ export class RecipeView {
       .then((name) => result.name = name)
       .then(() => this._ui.askQuestion('Alpha (%) [0-100]: ', this._validatePercent))
       .then((alpha) => result.alpha = +alpha / 100)
-      .then(() => this._ui.askQuestion('Amount (g): ', (amount) => !isNaN(+amount) && +amount >= 0 ))
+      .then(() => this._ui.askQuestion('Amount (g): ', this._validateNotNegative))
       .then(() => result)
   }
 
@@ -71,7 +74,10 @@ export class RecipeView {
   }
 
   private _validatePercent (answer: string) : boolean {
-    let number: number = +answer
-    return !isNaN(number) && number > 0 && number <= 100
+    return this._validateNotNegative(answer) && +answer <= 100
+  }
+
+  private _validateNotNegative (answer: string) : boolean {
+    return +answer >= 0
   }
 }
